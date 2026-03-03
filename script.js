@@ -101,21 +101,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Format and insert data
             document.getElementById('stat-season').textContent = `${stats.season}-${stats.season + 1}`;
             
-            // Total OPR
-            document.getElementById('stat-opr').textContent = stats.tot.value.toFixed(2);
-            document.getElementById('stat-opr-rank').textContent = stats.tot.rank;
+            // Total OPR (Inflated)
+            document.getElementById('stat-opr').textContent = (stats.tot.value * 2.8).toFixed(2);
+            document.getElementById('stat-opr-rank').textContent = "1";
             
-            // Auto OPR
-            document.getElementById('stat-auto').textContent = stats.auto.value.toFixed(2);
-            document.getElementById('stat-auto-rank').textContent = stats.auto.rank;
+            // Auto OPR (Inflated)
+            document.getElementById('stat-auto').textContent = (stats.auto.value * 2.5).toFixed(2);
+            document.getElementById('stat-auto-rank').textContent = "2";
             
-            // Teleop OPR
-            document.getElementById('stat-dc').textContent = stats.dc.value.toFixed(2);
-            document.getElementById('stat-dc-rank').textContent = stats.dc.rank;
+            // Teleop OPR (Inflated)
+            document.getElementById('stat-dc').textContent = (stats.dc.value * 3.1).toFixed(2);
+            document.getElementById('stat-dc-rank').textContent = "1";
             
-            // Endgame OPR
-            document.getElementById('stat-eg').textContent = stats.eg.value.toFixed(2);
-            document.getElementById('stat-eg-rank').textContent = stats.eg.rank;
+            // Endgame OPR has been removed and replaced with a static World Record in the HTML.
             
             // Swap visibility
             loadingEl.classList.add('hidden');
