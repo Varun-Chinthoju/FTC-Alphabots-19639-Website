@@ -7,38 +7,36 @@
     <title>FTC Team 19639 | Alphabots Robotics</title>
     
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Icons (Phosphor Icons for premium look) -->
+    <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-    <div class="glow-orb orb-3"></div>
-    <div class="grid-overlay"></div>
-
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <span class="logo-text">ALPHAB<span class="accent-color">O</span>TS</span>
-                <span class="team-number">19639</span>
+        <div class="top-banner">
+            <div class="logo-container">
+                <!-- User should place their logo file here named logo.png -->
+                <img src="logo.png" alt="Alphabots Robotics Logo" id="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+                <div id="logo-fallback" style="display: none;">
+                    <h1>ALPHABOTS ROBOTICS</h1>
+                    <p>FTC Team 19639</p>
+                </div>
             </div>
-            
-            <ul class="nav-links">
+        </div>
+        
+        <nav class="navbar">
+            <ul class="nav-links" id="nav-links">
                 <li><button class="nav-btn active" data-target="home">Home</button></li>
-                <li><button class="nav-btn" data-target="about">About Us</button></li>
+                <li><button class="nav-btn" data-target="team">Team & About Us</button></li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
+                <li><button class="nav-btn" data-target="stats">Stats & Scout Data</button></li>
                 <li><button class="nav-btn" data-target="contact">Contact</button></li>
             </ul>
-            
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <i class="ph ph-list"></i>
             </button>
         </nav>
@@ -47,88 +45,103 @@
     <main class="content-container">
         <!-- HOME SECTION -->
         <section id="home" class="tab-pane active fade-in">
-            <div class="hero">
-                <div class="hero-content">
-                    <div class="badge">FTC TEAM 19639</div>
-                    <h1 class="hero-title">Engineering the <span class="gradient-text">Future</span></h1>
-                    <p class="hero-subtitle">We are a Bay Area-based robotics team passionate about STEM, competition, and community.</p>
-                    <div class="hero-actions">
-                        <button class="btn btn-primary cta-nav" data-target="about">Discover Our Story</button>
-                        <button class="btn btn-secondary cta-nav" data-target="contact">Partner With Us</button>
-                    </div>
+            <div class="simple-card">
+                <h2>Welcome to Alphabots FTC Team 19639</h2>
+                <p>We are a Bay Area-based high school robotics team passionately learning, competing, and growing through the FIRST® Tech Challenge program. Join us on our journey to engineer the future.</p>
+                
+                <div class="action-buttons mt-2">
+                    <button class="btn btn-green cta-nav" data-target="team">Learn About Us</button>
+                    <button class="btn btn-black cta-nav" data-target="contact">Partner With Us</button>
                 </div>
+            </div>
+            
+            <div class="photo-placeholder mt-2">
+                <p>Team Photo</p>
             </div>
         </section>
 
-        <!-- ABOUT US SECTION -->
-        <section id="about" class="tab-pane fade-in hidden">
-            <div class="section-header">
-                <h2>Our <span class="accent-color">Mission</span></h2>
-                <div class="header-line"></div>
+        <!-- TEAM & ABOUT US SECTION -->
+        <section id="team" class="tab-pane fade-in hidden">
+            <div class="simple-card">
+                <h2>Our Mission</h2>
+                <p>Facilitate members of the organization and the community to learn more about math and science, while expanding their knowledge of careers involving computer programming, business, engineering and robotics. Our goal is also to spread STEM awareness by getting young people interested in these fields to get them to pursue their interests further.</p>
             </div>
-            
-            <div class="about-grid">
-                <div class="glass-card">
-                    <i class="ph ph-target icon-large text-gradient"></i>
-                    <h3>Our Goal</h3>
-                    <p>Facilitate members of the organization and the community to learn more about math and science, while expanding their knowledge of careers involving computer programming, business, engineering and robotics.</p>
-                </div>
-                
-                <div class="glass-card">
-                    <i class="ph ph-users-three icon-large text-gradient"></i>
-                    <h3>Who We Are</h3>
-                    <p>We are a group of 13 to 15-year-olds with a passion for robotics. Our robotics team members build and program robots to compete at regional competitions, potentially qualifying for the NorCal State tournament and World Championship. Our team consists of 9 students from multiple middle and high schools in Fremont.</p>
-                </div>
-                
-                <div class="glass-card">
-                    <i class="ph ph-buildings icon-large text-gradient"></i>
-                    <h3>Organization</h3>
-                    <p>Alphabots is a 501(c)(3) non-profit organization (EIN: 81-1543325) based in Fremont, California representing a team participating in the FIRST® Tech Challenge program.</p>
-                </div>
+
+            <div class="simple-card mt-2">
+                <h2>About Us</h2>
+                <p>We are a group of 13 to 15-year-olds with a passion for robotics. We have the drive to compete, trying to learn and also spread the word about computer science, business, and engineering.</p>
+                <p>Our robotics team members build and program robots to compete at regional competitions, potentially qualifying for the NorCal State tournament and World Championship. Our team consists of 9 students from multiple middle and high schools in the Fremont Unified School District. We have 2 coaches and 2 mentors on the team.</p>
+                <p>Alphabots is a 501(c)(3) non-profit organization (EIN: 81-1543325) based in Fremont, California representing a team participating in the FIRST® Tech Challenge program.</p>
             </div>
         </section>
 
         <!-- OUTREACH SECTION -->
         <section id="outreach" class="tab-pane fade-in hidden">
-            <div class="section-header">
-                <h2>Community <span class="accent-color">Outreach</span></h2>
-                <p class="section-subtitle">Spreading STEM awareness by inspiring young minds.</p>
-                <div class="header-line"></div>
+            <div class="simple-card">
+                <h2>Community Outreach</h2>
+                <p>As part of our wider aim to empower ourselves and others through STEM, we hold various events. Getting young people interested in these fields is very important, not only to our community, but also to our state and country.</p>
+                <br>
+                <h3>FIRST® Tech Challenge Impact</h3>
+                <p>FIRST® Tech Challenge is an out-of-school program for students (grades 7-12) to learn about STEM through hands-on robotics. Participating allows us to expand our knowledge of computer programming, business, and engineering.</p>
             </div>
-            
-            <div class="outreach-content glass-card large-card">
-                <div class="outreach-text">
-                    <h3>FIRST® Tech Challenge Impact</h3>
-                    <p>FIRST® Tech Challenge is an out-of-school program for students (grades 7-12) to learn about STEM through hands-on robotics. Participating allows us to expand our knowledge of computer programming, business, and engineering.</p>
-                    <br>
-                    <p>As part of our wider aim to empower ourselves and others through STEM, we hold various events. Getting young people interested in these fields is very important, not only to our community, but also to our state and country.</p>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section id="stats" class="tab-pane fade-in hidden">
+            <div class="simple-card">
+                <h2>FTC Scout Statistics</h2>
+                <p>Live data fetched directly from FTC Scout API for Team 19639.</p>
+                
+                <div id="stats-container" class="stats-grid mt-2">
+                    <p id="stats-loading">Loading stats...</p>
+                    <p id="stats-error" class="hidden text-red">Could not load stats.</p>
+                    
+                    <div id="stats-data" class="hidden">
+                        <div class="stat-box">
+                            <h4 id="season-title">Season</h4>
+                            <div class="stat-value" id="stat-season">--</div>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Total OPR</h4>
+                            <div class="stat-value text-green" id="stat-opr">--</div>
+                            <div class="stat-rank">Global Rank: #<span id="stat-opr-rank">--</span></div>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Auto OPR</h4>
+                            <div class="stat-value" id="stat-auto">--</div>
+                            <div class="stat-rank">Global Rank: #<span id="stat-auto-rank">--</span></div>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Teleop OPR</h4>
+                            <div class="stat-value" id="stat-dc">--</div>
+                            <div class="stat-rank">Global Rank: #<span id="stat-dc-rank">--</span></div>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Endgame OPR</h4>
+                            <div class="stat-value" id="stat-eg">--</div>
+                            <div class="stat-rank">Global Rank: #<span id="stat-eg-rank">--</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT SECTION -->
         <section id="contact" class="tab-pane fade-in hidden">
-            <div class="section-header">
-                <h2>Get In <span class="accent-color">Touch</span></h2>
-                <div class="header-line"></div>
-            </div>
-            
-            <div class="contact-container glass-card large-card">
-                <div class="contact-info">
-                    <h3>Sponsorship & Funding</h3>
-                    <p>We are actively seeking team funding to support our robot build, competition fees, and community outreach events. As a 501(c)(3) non-profit, your donations are tax-deductible.</p>
-                    
-                    <ul class="contact-methods">
-                        <li>
-                            <i class="ph ph-envelope-simple text-gradient"></i>
-                            <a href="mailto:contact@alphabotsrobotics.com">contact@alphabotsrobotics.com</a>
-                        </li>
-                        <li>
-                            <i class="ph ph-map-pin text-gradient"></i>
-                            <span>Fremont, California</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="simple-card">
+                <h2>Contact Us</h2>
+                <p>We are actively seeking team funding to support our robot build, competition fees, and community outreach events. As a 501(c)(3) non-profit, your donations are tax-deductible.</p>
+                
+                <ul class="contact-methods mt-2">
+                    <li>
+                        <i class="ph ph-envelope-simple"></i>
+                        <a href="mailto:contact@alphabotsrobotics.com">contact@alphabotsrobotics.com</a>
+                    </li>
+                    <li>
+                        <i class="ph ph-map-pin"></i>
+                        <span>Fremont, California</span>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
@@ -136,17 +149,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <span class="logo-text">ALPHAB<span class="accent-color">O</span>TS</span>
-                <p>FTC Team 19639</p>
+                <span>ALPHABOTS ROBOTICS</span>
             </div>
-            <div class="footer-socials">
-                <a href="#" class="social-icon" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
-                <a href="#" class="social-icon" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-                <a href="#" class="social-icon" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Alphabots Robotics 19639. A 501(c)(3) Non-Profit Organization.</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Alphabots Robotics 19639. A 501(c)(3) Non-Profit Organization.</p>
         </div>
     </footer>
 
