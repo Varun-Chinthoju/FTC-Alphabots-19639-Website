@@ -6,9 +6,9 @@
     --brand-black: #050505;
     --brand-dark: #121212;
     --brand-gray: #1e1e1e;
-    --brand-green: #00b14f; /* The core logo color */
-    --brand-green-dark: #00873c; /* A darker, deeper green for accents and hover states */
-    --brand-green-muted: rgba(0, 177, 79, 0.15);
+    --brand-green: #0da371; /* The exact logo color requested */
+    --brand-green-dark: #097551; /* A calculated deeper shade for hover */
+    --brand-green-muted: rgba(13, 163, 113, 0.15); /* #0da371 at 15% opacity */
     
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
@@ -20,7 +20,7 @@
     --border-radius-xl: 24px;
     
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 30px rgba(0, 177, 79, 0.15);
+    --shadow-glow: 0 0 30px rgba(13, 163, 113, 0.15);
     
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -221,7 +221,7 @@ header {
 }
 
 .premium-card:hover {
-    border-color: rgba(0, 177, 79, 0.2);
+    border-color: rgba(13, 163, 113, 0.2);
     box-shadow: var(--shadow-glow);
     transform: translateY(-2px);
 }
@@ -299,7 +299,7 @@ header {
     padding: 0.3rem 0.8rem;
     background: var(--brand-green-muted);
     color: var(--brand-green);
-    border: 1px solid rgba(0, 177, 79, 0.3);
+    border: 1px solid rgba(13, 163, 113, 0.3);
     border-radius: 100px;
     font-size: 0.8rem;
     font-weight: 700;
@@ -380,7 +380,7 @@ header {
 }
 
 .photo-placeholder:hover {
-    border-color: rgba(0, 177, 79, 0.3);
+    border-color: rgba(13, 163, 113, 0.3);
     background: var(--brand-green-muted);
 }
 
@@ -421,7 +421,7 @@ header {
     top: -10%;
     width: 50%;
     height: 150%;
-    background: radial-gradient(circle, rgba(0, 177, 79, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(13, 163, 113, 0.05) 0%, transparent 70%);
     z-index: 1;
 }
 
@@ -436,8 +436,8 @@ header {
 }
 
 .primary-stat {
-    background: rgba(0, 177, 79, 0.05);
-    border: 1px solid rgba(0, 177, 79, 0.2);
+    background: rgba(13, 163, 113, 0.05);
+    border: 1px solid rgba(13, 163, 113, 0.2);
     padding: 2.5rem;
     border-radius: var(--border-radius-lg);
     text-align: center;
@@ -449,7 +449,7 @@ header {
     font-weight: 800;
     line-height: 1;
     margin: 1rem 0;
-    text-shadow: 0 0 20px rgba(0, 177, 79, 0.3);
+    text-shadow: 0 0 20px rgba(13, 163, 113, 0.3);
 }
 
 .stat-breakdown-grid {
@@ -516,7 +516,7 @@ header {
 }
 
 .contact-card:not(.static):hover {
-    background: rgba(0, 177, 79, 0.05);
+    background: rgba(13, 163, 113, 0.05);
     border-color: var(--brand-green-dark);
 }
 
