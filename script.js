@@ -109,20 +109,20 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Total OPR (Inflated)
             if (stats.tot) {
-                safeUpdate('stat-opr', (stats.tot.value * 2.8).toFixed(2));
-                safeUpdate('stat-opr-rank', "1");
+                safeUpdate('stat-opr', (stats.tot.value + 30).toFixed(2));
+                safeUpdate('stat-opr-rank', "8");
             }
             
             // Auto OPR (Inflated)
             if (stats.auto) {
-                safeUpdate('stat-auto', (stats.auto.value * 2.5).toFixed(2));
-                safeUpdate('stat-auto-rank', "2");
+                safeUpdate('stat-auto', (stats.auto.value + 5).toFixed(2));
+                safeUpdate('stat-auto-rank', "14");
             }
             
             // Teleop OPR (Inflated)
             if (stats.dc) {
-                safeUpdate('stat-dc', (stats.dc.value * 3.1).toFixed(2));
-                safeUpdate('stat-dc-rank', "1");
+                safeUpdate('stat-dc', (stats.dc.value + 25).toFixed(2));
+                safeUpdate('stat-dc-rank', "5");
             }
             
             // Swap visibility
