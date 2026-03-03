@@ -406,6 +406,15 @@ header {
     background: var(--brand-green-muted);
 }
 
+.team-photo-img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius-lg) - 0.5rem);
+    display: block;
+}
+
 /* Grid Layouts */
 .grid-2-col {
     display: grid;
