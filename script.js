@@ -1,28 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Top-level Navigation elements
+    // Navigation elements
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     const ctaButtons = document.querySelectorAll('.cta-nav');
     
-    // Navbar Scroll Effect
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('nav-links');
 
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('show');
-            // Toggle icon
             const icon = mobileMenuBtn.querySelector('i');
             if (navLinks.classList.contains('show')) {
                 icon.classList.replace('ph-list', 'ph-x');
@@ -34,65 +22,99 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to handle tab switching
     function switchTab(targetId) {
-        // Find corresponding pane
         const targetPane = document.getElementById(targetId);
         
-        if (!targetPane) return; // Prevent errors if target doesn't exist
+        if (!targetPane) return;
 
         // Reset all buttons and panes
         navButtons.forEach(b => b.classList.remove('active'));
         tabPanes.forEach(p => {
             p.classList.add('hidden');
-            // Remove animation class so we can re-trigger it
             p.classList.remove('fade-in');
         });
 
-        // Activate matching button (if it exists in main nav)
-        const matchingNavBtn = document.querySelector(`.nav-btn[data-target="${targetId}"]`);
+        // Activate matching button
+        const matchingNavBtn = Array.from(navButtons).find(btn => btn.getAttribute('data-target') === targetId);
         if (matchingNavBtn) {
             matchingNavBtn.classList.add('active');
         }
 
-        // Show pane and trigger animation
+        // Show pane
         targetPane.classList.remove('hidden');
-        // Force reflow
-        void targetPane.offsetWidth;
+        void targetPane.offsetWidth; // Force reflow
         targetPane.classList.add('fade-in');
 
         // Close mobile menu if open
-        if (navLinks.classList.contains('show')) {
+        if (navLinks && navLinks.classList.contains('show')) {
             navLinks.classList.remove('show');
             mobileMenuBtn.querySelector('i').classList.replace('ph-x', 'ph-list');
         }
 
-        // Scroll to top
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        // If 'stats' tab is clicked, fetch data if we haven't already
+        if (targetId === 'stats' && !window.statsFetched) {
+            fetchStats();
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Add click listeners to main nav buttons
+    // Add click listeners to nav buttons
     navButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const targetId = e.currentTarget.getAttribute('data-target');
-            switchTab(targetId);
+            switchTab(e.currentTarget.getAttribute('data-target'));
         });
     });
 
-    // Add click listeners to CTA buttons inside sections
     ctaButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const targetId = e.currentTarget.getAttribute('data-target');
-            switchTab(targetId);
+            switchTab(e.currentTarget.getAttribute('data-target'));
         });
     });
-    
-    // Allow clicking logo to go home
-    const logo = document.querySelector('.logo');
-    if (logo) {
-        logo.addEventListener('click', () => {
-            switchTab('home');
-        });
+
+    // FTC Scout API Fetching Logic
+    async function fetchStats() {
+        const teamNumber = '19639';
+        const loadingEl = document.getElementById('stats-loading');
+        const errorEl = document.getElementById('stats-error');
+        const dataEl = document.getElementById('stats-data');
+        
+        window.statsFetched = true; // prevent multiple fetches
+        
+        try {
+            const response = await fetch(`https://api.ftcscout.org/rest/v1/teams/${teamNumber}/quick-stats`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const stats = await response.json();
+            
+            // Format and insert data
+            document.getElementById('stat-season').textContent = `${stats.season}-${stats.season + 1}`;
+            
+            // Total OPR
+            document.getElementById('stat-opr').textContent = stats.tot.value.toFixed(2);
+            document.getElementById('stat-opr-rank').textContent = stats.tot.rank;
+            
+            // Auto OPR
+            document.getElementById('stat-auto').textContent = stats.auto.value.toFixed(2);
+            document.getElementById('stat-auto-rank').textContent = stats.auto.rank;
+            
+            // Teleop OPR
+            document.getElementById('stat-dc').textContent = stats.dc.value.toFixed(2);
+            document.getElementById('stat-dc-rank').textContent = stats.dc.rank;
+            
+            // Endgame OPR
+            document.getElementById('stat-eg').textContent = stats.eg.value.toFixed(2);
+            document.getElementById('stat-eg-rank').textContent = stats.eg.rank;
+            
+            // Swap visibility
+            loadingEl.classList.add('hidden');
+            dataEl.classList.remove('hidden');
+            
+        } catch (error) {
+            console.error('Error fetching FTC Scout stats:', error);
+            loadingEl.classList.add('hidden');
+            errorEl.classList.remove('hidden');
+        }
     }
 });
