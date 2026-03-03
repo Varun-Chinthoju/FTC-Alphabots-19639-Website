@@ -106,10 +106,11 @@ header {
     top: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(5, 5, 5, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
 }
 
 .navbar {
@@ -206,12 +207,33 @@ header {
     100% { opacity: 1; transform: translateY(0); }
 }
 
+/* Scroll Reveal Animations (Apple Style) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Classic Apple smooth spring */
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Stagger delays for multiple items */
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+.reveal.delay-4 { transition-delay: 0.4s; }
+
 /* =========================================
    UI Components (Cards & Buttons)
    ========================================= */
 .premium-card {
-    background: var(--brand-dark);
-    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(18, 18, 18, 0.65);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--border-radius-xl);
     padding: 2.5rem;
     box-shadow: var(--shadow-soft);

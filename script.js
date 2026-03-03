@@ -56,6 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Trigger reveal animations manually for the new tab after a tiny delay
+        setTimeout(() => {
+            const revealElements = targetPane.querySelectorAll('.reveal');
+            revealElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('active');
+                }, index * 100); // Stagger them
+            });
+        }, 50);
     }
 
     // Add click listeners to nav buttons
@@ -117,4 +127,34 @@ document.addEventListener('DOMContentLoaded', () => {
             errorEl.classList.remove('hidden');
         }
     }
+
+    // Scroll Reveal Animation Observer (Apple Style)
+    const revealObserverOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Stop observing once revealed if you only want it to happen once
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, revealObserverOptions);
+
+    // Initial query
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // Trigger home tab reveals initially
+    setTimeout(() => {
+        document.getElementById('home').querySelectorAll('.reveal').forEach((el, index) => {
+            setTimeout(() => {
+                el.classList.add('active');
+            }, index * 100);
+        });
+    }, 100);
 });
