@@ -98,22 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const stats = await response.json();
             
+            // Helper function to safely update an element if it exists
+            const safeUpdate = (id, text) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = text;
+            };
+
             // Format and insert data
-            document.getElementById('stat-season').textContent = `${stats.season}-${stats.season + 1}`;
+            safeUpdate('stat-season', `${stats.season}-${stats.season + 1}`);
             
             // Total OPR (Inflated)
-            document.getElementById('stat-opr').textContent = (stats.tot.value * 2.8).toFixed(2);
-            document.getElementById('stat-opr-rank').textContent = "1";
+            if (stats.tot) {
+                safeUpdate('stat-opr', (stats.tot.value * 2.8).toFixed(2));
+                safeUpdate('stat-opr-rank', "1");
+            }
             
             // Auto OPR (Inflated)
-            document.getElementById('stat-auto').textContent = (stats.auto.value * 2.5).toFixed(2);
-            document.getElementById('stat-auto-rank').textContent = "2";
+            if (stats.auto) {
+                safeUpdate('stat-auto', (stats.auto.value * 2.5).toFixed(2));
+                safeUpdate('stat-auto-rank', "2");
+            }
             
             // Teleop OPR (Inflated)
-            document.getElementById('stat-dc').textContent = (stats.dc.value * 3.1).toFixed(2);
-            document.getElementById('stat-dc-rank').textContent = "1";
-            
-            // Endgame OPR has been removed and replaced with a static World Record in the HTML.
+            if (stats.dc) {
+                safeUpdate('stat-dc', (stats.dc.value * 3.1).toFixed(2));
+                safeUpdate('stat-dc-rank', "1");
+            }
             
             // Swap visibility
             loadingEl.classList.add('hidden');
@@ -123,6 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching FTC Scout stats:', error);
             loadingEl.classList.add('hidden');
             errorEl.classList.remove('hidden');
+            const errorMsg = errorEl.querySelector('p');
+            if (errorMsg) {
+                errorMsg.textContent = `Could not load stats: ${error.message}. Try clearing your cache.`;
+            }
         }
     }
 
