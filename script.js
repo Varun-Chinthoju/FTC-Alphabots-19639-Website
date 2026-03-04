@@ -19,12 +19,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // Liquid Drop Particle System
+    function spawnLiquidDrops(sourceElement) {
+        if (!sourceElement) return;
+        const rect = sourceElement.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dropCount = 8 + Math.floor(Math.random() * 6); // 8-13 drops
+
+        for (let i = 0; i < dropCount; i++) {
+            const drop = document.createElement('div');
+            drop.classList.add('liquid-drop');
+
+            // Random size between 4px and 12px
+            const size = 4 + Math.random() * 8;
+            drop.style.width = size + 'px';
+            drop.style.height = size + 'px';
+
+            // Position at the center of the source button
+            drop.style.left = (cx - size / 2 + (Math.random() - 0.5) * rect.width * 0.6) + 'px';
+            drop.style.top = (cy - size / 2 + (Math.random() - 0.5) * rect.height * 0.4) + 'px';
+
+            // Random direction for each drop
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 15 + Math.random() * 35;
+            const dx = Math.cos(angle) * distance;
+            const dy = Math.sin(angle) * distance + 10; // Bias downward slightly (gravity)
+            drop.style.setProperty('--drop-x', dx + 'px');
+            drop.style.setProperty('--drop-y', dy + 'px');
+
+            // Random duration for organic feel
+            const duration = 0.5 + Math.random() * 0.6;
+            drop.style.setProperty('--drop-duration', duration + 's');
+
+            // Slight staggered spawn
+            drop.style.animationDelay = (Math.random() * 0.1) + 's';
+
+            document.body.appendChild(drop);
+
+            // Clean up after animation finishes
+            setTimeout(() => drop.remove(), (duration + 0.15) * 1000);
+        }
+    }
 
     // Function to handle tab switching
     function switchTab(targetId) {
         const targetPane = document.getElementById(targetId);
         
         if (!targetPane) return;
+
+        // Spawn liquid drops from the OLD active tab before switching
+        const currentActiveBtn = document.querySelector('.nav-btn.active');
+        if (currentActiveBtn && currentActiveBtn.getAttribute('data-target') !== targetId) {
+            spawnLiquidDrops(currentActiveBtn);
+        }
 
         // Reset all buttons and panes
         navButtons.forEach(b => b.classList.remove('active'));
