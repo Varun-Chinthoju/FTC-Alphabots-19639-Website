@@ -19,48 +19,106 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    // Liquid Drop Particle System
-    function spawnLiquidDrops(sourceElement) {
-        if (!sourceElement) return;
-        const rect = sourceElement.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dropCount = 8 + Math.floor(Math.random() * 6); // 8-13 drops
+    // ======= Liquid Blob Indicator System =======
+    const navLinksContainer = document.getElementById('nav-links');
+    let liquidIndicator = null;
+
+    function initLiquidIndicator() {
+        liquidIndicator = document.createElement('div');
+        liquidIndicator.classList.add('liquid-indicator');
+        navLinksContainer.style.position = 'relative';
+        navLinksContainer.appendChild(liquidIndicator);
+
+        // Position on the initial active button
+        const activeBtn = document.querySelector('.nav-btn.active');
+        if (activeBtn) {
+            positionIndicator(activeBtn, false);
+        }
+    }
+
+    function positionIndicator(targetBtn, animate) {
+        if (!liquidIndicator || !targetBtn) return;
+        const containerRect = navLinksContainer.getBoundingClientRect();
+        const btnRect = targetBtn.getBoundingClientRect();
+
+        const left = btnRect.left - containerRect.left;
+        const top = btnRect.top - containerRect.top;
+        const width = btnRect.width;
+        const height = btnRect.height;
+
+        if (!animate) {
+            // Instant position (initial load)
+            liquidIndicator.style.transition = 'none';
+            liquidIndicator.style.left = left + 'px';
+            liquidIndicator.style.top = top + 'px';
+            liquidIndicator.style.width = width + 'px';
+            liquidIndicator.style.height = height + 'px';
+            liquidIndicator.style.transform = 'scaleY(1)';
+            void liquidIndicator.offsetWidth; // force reflow
+            liquidIndicator.style.transition = '';
+        } else {
+            // Get current position for residue drops
+            const currentLeft = parseFloat(liquidIndicator.style.left) || 0;
+            const currentWidth = parseFloat(liquidIndicator.style.width) || 0;
+
+            // Phase 1: Stretch to cover both old and new positions
+            const stretchLeft = Math.min(currentLeft, left);
+            const stretchRight = Math.max(currentLeft + currentWidth, left + width);
+            const stretchWidth = stretchRight - stretchLeft;
+
+            liquidIndicator.style.transition = 'left 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0, 0.2, 1), height 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+            liquidIndicator.style.left = stretchLeft + 'px';
+            liquidIndicator.style.width = stretchWidth + 'px';
+            liquidIndicator.style.transform = 'scaleY(0.75)'; // squish vertically while stretching
+
+            // Spawn residue drops along the path
+            spawnResidueDrops(containerRect, currentLeft, currentWidth, left, width, top, height);
+
+            // Phase 2: Snap to destination and restore shape
+            setTimeout(() => {
+                liquidIndicator.style.transition = 'left 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                liquidIndicator.style.left = left + 'px';
+                liquidIndicator.style.width = width + 'px';
+                liquidIndicator.style.transform = 'scaleY(1)';
+            }, 200);
+        }
+    }
+
+    function spawnResidueDrops(containerRect, fromLeft, fromWidth, toLeft, toWidth, topOffset, height) {
+        const midY = containerRect.top + topOffset + height / 2;
+        const pathStart = Math.min(fromLeft + fromWidth / 2, toLeft + toWidth / 2);
+        const pathEnd = Math.max(fromLeft + fromWidth / 2, toLeft + toWidth / 2);
+        const pathLength = pathEnd - pathStart;
+        const dropCount = 3 + Math.floor(Math.random() * 3); // 3-5 residue drops
 
         for (let i = 0; i < dropCount; i++) {
             const drop = document.createElement('div');
             drop.classList.add('liquid-drop');
 
-            // Random size between 4px and 12px
-            const size = 4 + Math.random() * 8;
+            const size = 3 + Math.random() * 5;
+            // Distribute drops along the path
+            const t = 0.2 + Math.random() * 0.6; // middle 60% of path
+            const dropX = containerRect.left + pathStart + pathLength * t;
+            const dropY = midY + (Math.random() - 0.3) * 8; // slight vertical scatter, biased down
+
             drop.style.width = size + 'px';
             drop.style.height = size + 'px';
+            drop.style.left = dropX + 'px';
+            drop.style.top = dropY + 'px';
 
-            // Position at the center of the source button
-            drop.style.left = (cx - size / 2 + (Math.random() - 0.5) * rect.width * 0.6) + 'px';
-            drop.style.top = (cy - size / 2 + (Math.random() - 0.5) * rect.height * 0.4) + 'px';
-
-            // Random direction for each drop
-            const angle = Math.random() * Math.PI * 2;
-            const distance = 15 + Math.random() * 35;
-            const dx = Math.cos(angle) * distance;
-            const dy = Math.sin(angle) * distance + 10; // Bias downward slightly (gravity)
-            drop.style.setProperty('--drop-x', dx + 'px');
-            drop.style.setProperty('--drop-y', dy + 'px');
-
-            // Random duration for organic feel
-            const duration = 0.5 + Math.random() * 0.6;
-            drop.style.setProperty('--drop-duration', duration + 's');
-
-            // Slight staggered spawn
-            drop.style.animationDelay = (Math.random() * 0.1) + 's';
+            // Residue drops fall down and evaporate
+            drop.style.setProperty('--drop-x', ((Math.random() - 0.5) * 6) + 'px');
+            drop.style.setProperty('--drop-y', (8 + Math.random() * 15) + 'px');
+            drop.style.setProperty('--drop-duration', (0.4 + Math.random() * 0.4) + 's');
+            drop.style.animationDelay = (0.1 + Math.random() * 0.15) + 's';
 
             document.body.appendChild(drop);
-
-            // Clean up after animation finishes
-            setTimeout(() => drop.remove(), (duration + 0.15) * 1000);
+            setTimeout(() => drop.remove(), 900);
         }
     }
+
+    // Initialize on load
+    initLiquidIndicator();
 
     // Function to handle tab switching
     function switchTab(targetId) {
@@ -68,10 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!targetPane) return;
 
-        // Spawn liquid drops from the OLD active tab before switching
-        const currentActiveBtn = document.querySelector('.nav-btn.active');
-        if (currentActiveBtn && currentActiveBtn.getAttribute('data-target') !== targetId) {
-            spawnLiquidDrops(currentActiveBtn);
+        // Animate the liquid indicator to the new tab
+        const matchingNavBtn = Array.from(navButtons).find(btn => btn.getAttribute('data-target') === targetId);
+        if (matchingNavBtn) {
+            positionIndicator(matchingNavBtn, true);
         }
 
         // Reset all buttons and panes
@@ -81,8 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.classList.remove('fade-in');
         });
 
-        // Activate matching button
-        const matchingNavBtn = Array.from(navButtons).find(btn => btn.getAttribute('data-target') === targetId);
+        // Activate matching button (reuses matchingNavBtn from above)
         if (matchingNavBtn) {
             matchingNavBtn.classList.add('active');
         }
