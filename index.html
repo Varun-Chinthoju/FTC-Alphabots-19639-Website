@@ -27,6 +27,7 @@
                 <li><button class="nav-btn active" data-target="home">Home</button></li>
                 <li><button class="nav-btn" data-target="team">Team & About Us</button></li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
+                <li><button class="nav-btn" data-target="gallery">Gallery</button></li>
                 <li><button class="nav-btn" data-target="stats">Stats & Scout Data</button></li>
                 <li><button class="nav-btn" data-target="contact">Contact</button></li>
             </ul>
@@ -57,13 +58,10 @@
                 <!-- Large Logo Feature in Hero -->
                 <div class="hero-visual reveal delay-2">
                     <div class="logo-glow-wrapper">
-                        <img src="logo.png" alt="Alphabots Large Logo" class="hero-large-logo" onerror="this.style.display='none';">
+                        <!-- Bot photo with background removed replacing the logo placeholder -->
+                        <img src="bot-nobg.png" alt="Alphabots Robot" style="width: 100%; height: auto; transform: scale(1.15) translateY(20px); filter: drop-shadow(0 30px 40px rgba(13, 163, 113, 0.4));">
                     </div>
                 </div>
-            </div>
-            
-            <div class="premium-card team-photo-card mt-3 reveal delay-3" style="padding: 1rem;">
-                <img src="bot.jpg" alt="Alphabots Robot and Awards" class="team-photo-img">
             </div>
         </section>
 
@@ -116,6 +114,32 @@
                     <h3>FIRST® Tech Challenge Impact</h3>
                 </div>
                 <p>FIRST® Tech Challenge is an out-of-school program for students (grades 7-12) to learn about STEM through hands-on robotics. Participating allows us to expand our knowledge of computer programming, business, and engineering.</p>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section id="gallery" class="tab-pane fade-in hidden">
+             <div class="section-header reveal">
+                <h2>Photo <span class="highlight-text">Gallery</span></h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="premium-card reveal delay-1 gallery-item p-1">
+                    <img src="gallery/media__1772515084776.jpg" alt="Gallery Image 1" class="gallery-img">
+                </div>
+                <div class="premium-card reveal delay-2 gallery-item p-1">
+                    <img src="gallery/media__1772515098673.jpg" alt="Gallery Image 2" class="gallery-img">
+                </div>
+                <div class="premium-card reveal delay-3 gallery-item p-1">
+                    <img src="gallery/media__1772515103798.jpg" alt="Gallery Image 3" class="gallery-img">
+                </div>
+                <div class="premium-card reveal delay-4 gallery-item p-1">
+                    <img src="gallery/media__1772515111777.jpg" alt="Gallery Image 4" class="gallery-img">
+                </div>
+                <div class="premium-card reveal gallery-item p-1" style="grid-column: 1 / -1;">
+                    <img src="gallery/media__1772515078968.jpg" alt="Gallery Image 5" class="gallery-img">
+                </div>
             </div>
         </section>
 
