@@ -1042,6 +1042,65 @@ const ftcWords = [
     }
 
     // ---- Wordle Bot Analysis ----
+
+    // Get the feedback pattern for a guess against a target word
+    function getWordleFeedback(guess, answer) {
+        const result = Array(5).fill('absent'); // gray
+        const answerUsed = Array(5).fill(false);
+        const guessUsed = Array(5).fill(false);
+        // Greens first
+        for (let i = 0; i < 5; i++) {
+            if (guess[i] === answer[i]) {
+                result[i] = 'correct';
+                answerUsed[i] = true;
+                guessUsed[i] = true;
+            }
+        }
+        // Yellows
+        for (let i = 0; i < 5; i++) {
+            if (guessUsed[i]) continue;
+            for (let j = 0; j < 5; j++) {
+                if (!answerUsed[j] && guess[i] === answer[j]) {
+                    result[i] = 'present';
+                    answerUsed[j] = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    // Filter word pool based on a guess and its feedback
+    function filterPool(pool, guess, feedback) {
+        return pool.filter(word => {
+            const fb = getWordleFeedback(guess, word);
+            return fb.every((v, i) => v === feedback[i]);
+        });
+    }
+
+    // Find the best guess from the word pool (maximizes expected eliminations)
+    function findBestGuess(pool) {
+        if (pool.length <= 2) return pool[0];
+        let bestWord = pool[0];
+        let bestScore = -1;
+        // For performance, evaluate candidates from the pool itself
+        const candidates = pool.length > 30 ? pool.slice(0, 30) : pool;
+        for (const candidate of candidates) {
+            // Count unique feedback patterns this candidate produces
+            const patterns = new Set();
+            for (const target of pool) {
+                patterns.add(getWordleFeedback(candidate, target).join(','));
+            }
+            // More unique patterns = more information gained
+            const score = patterns.size;
+            if (score > bestScore) {
+                bestScore = score;
+                bestWord = candidate;
+            }
+        }
+        return bestWord;
+    }
+
     function runBotAnalysis() {
         const botDiv = document.getElementById('wordle-bot');
         const botContent = document.getElementById('wordle-bot-content');
@@ -1052,60 +1111,76 @@ const ftcWords = [
         const numGuesses = wordleGuesses.length;
 
         let html = '';
+        let remainingPool = [...ftcWords]; // start with all words
 
-        // Analyze each guess
+        // Analyze each guess with cumulative pool narrowing
         wordleGuesses.forEach((guess, idx) => {
-            const greens = [];
-            const yellows = [];
-            const grays = [];
+            const poolBefore = remainingPool.length;
+            const feedback = getWordleFeedback(guess, wordleAnswer);
+            const isInWordList = ftcWords.includes(guess);
 
-            for (let i = 0; i < 5; i++) {
-                if (guess[i] === wordleAnswer[i]) greens.push(guess[i]);
-                else if (wordleAnswer.includes(guess[i])) yellows.push(guess[i]);
-                else grays.push(guess[i]);
-            }
+            // Find what the bot would have suggested
+            const botSuggestion = findBestGuess(remainingPool);
 
-            // Calculate how many words this guess could have eliminated
-            let possibleBefore = ftcWords.length;
-            let possibleAfter = ftcWords.filter(w => {
-                for (let i = 0; i < 5; i++) {
-                    if (guess[i] === wordleAnswer[i] && w[i] !== guess[i]) return false;
-                    if (guess[i] !== wordleAnswer[i] && wordleAnswer.includes(guess[i]) && !w.includes(guess[i])) return false;
-                    if (!wordleAnswer.includes(guess[i]) && w.includes(guess[i])) return false;
-                }
-                return true;
-            }).length;
-            const eliminated = Math.max(0, possibleBefore - possibleAfter);
-            const pct = Math.round((eliminated / possibleBefore) * 100);
-
-            // Grade the guess
-            let grade, gradeColor;
-            if (guess === wordleAnswer) {
-                grade = '🎯 Perfect!';
-                gradeColor = 'var(--brand-green)';
-            } else if (greens.length >= 3) {
-                grade = '🟢 Excellent';
-                gradeColor = 'var(--brand-green)';
-            } else if (greens.length >= 1 && yellows.length >= 2) {
-                grade = '🟡 Great';
-                gradeColor = '#fbbf24';
-            } else if (yellows.length >= 2 || greens.length >= 1) {
-                grade = '🟡 Good';
-                gradeColor = '#fbbf24';
-            } else if (pct >= 50) {
-                grade = '🔵 Strategic';
-                gradeColor = '#3b82f6';
-            } else {
-                grade = '⚪ Exploratory';
-                gradeColor = 'var(--text-muted)';
-            }
+            // Narrow the pool
+            remainingPool = filterPool(remainingPool, guess, feedback);
+            const poolAfter = remainingPool.length;
+            const eliminated = poolBefore - poolAfter;
+            const pct = poolBefore > 0 ? Math.round((eliminated / poolBefore) * 100) : 0;
 
             // Tile preview
             let tilePreview = '';
             for (let i = 0; i < 5; i++) {
-                if (guess[i] === wordleAnswer[i]) tilePreview += '🟩';
-                else if (wordleAnswer.includes(guess[i])) tilePreview += '🟨';
+                if (feedback[i] === 'correct') tilePreview += '🟩';
+                else if (feedback[i] === 'present') tilePreview += '🟨';
                 else tilePreview += '⬛';
+            }
+
+            // Count greens/yellows for grading
+            const greens = feedback.filter(f => f === 'correct').length;
+            const yellows = feedback.filter(f => f === 'present').length;
+
+            // Grade the guess (honest grading)
+            let grade, gradeColor;
+            if (guess === wordleAnswer) {
+                grade = '🎯 Solved!';
+                gradeColor = 'var(--brand-green)';
+            } else if (!isInWordList) {
+                grade = '❌ Not in word list';
+                gradeColor = '#ef4444';
+            } else if (greens >= 3) {
+                grade = '🟢 Excellent';
+                gradeColor = 'var(--brand-green)';
+            } else if (greens >= 2 || (greens >= 1 && yellows >= 2)) {
+                grade = '🟡 Great';
+                gradeColor = '#fbbf24';
+            } else if (pct >= 70) {
+                grade = '🔵 Strong';
+                gradeColor = '#3b82f6';
+            } else if (greens >= 1 || yellows >= 2 || pct >= 40) {
+                grade = '🟡 Decent';
+                gradeColor = '#fbbf24';
+            } else if (pct >= 20) {
+                grade = '⚪ Weak';
+                gradeColor = 'var(--text-muted)';
+            } else {
+                grade = '🔴 Poor';
+                gradeColor = '#ef4444';
+            }
+
+            // Build suggestion text
+            let suggestionHTML = '';
+            if (guess !== wordleAnswer && botSuggestion && botSuggestion !== guess) {
+                suggestionHTML = `<div style="font-size: 0.75rem; color: #3b82f6; margin-top: 0.3rem;">💡 Bot would have guessed <strong style="font-family: monospace; letter-spacing: 1px;">${botSuggestion}</strong></div>`;
+            }
+
+            // Show remaining candidates (up to 5)
+            let candidatesHTML = '';
+            if (guess !== wordleAnswer && poolAfter > 0 && poolAfter <= 8) {
+                const candidateList = remainingPool.map(w =>
+                    `<span style="font-family: monospace; background: rgba(13,163,113,0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;">${w}</span>`
+                ).join(' ');
+                candidatesHTML = `<div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.3rem;">Remaining: ${candidateList}</div>`;
             }
 
             html += `
@@ -1117,7 +1192,9 @@ const ftcWords = [
                         <span style="font-size: 0.8rem;">${tilePreview}</span>
                     </div>
                     <div style="font-size: 0.8rem; color: ${gradeColor}; font-weight: 600;">${grade}</div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Eliminated ~${pct}% of possible words (${eliminated}/${possibleBefore})</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">${poolAfter === 0 ? 'Solved!' : `${poolAfter} word${poolAfter === 1 ? '' : 's'} remaining (eliminated ${eliminated} of ${poolBefore})`}</div>
+                    ${suggestionHTML}
+                    ${candidatesHTML}
                 </div>
             </div>`;
         });
@@ -1139,7 +1216,7 @@ const ftcWords = [
         <div style="margin-top: 1.5rem; padding: 1rem; border-radius: 10px; background: rgba(13,163,113,0.08); text-align: center; border: 1px solid rgba(13,163,113,0.2);">
             <div style="font-size: 2rem; margin-bottom: 0.25rem;">${overallEmoji}</div>
             <div style="font-size: 1.3rem; font-weight: 700; color: ${overallColor};">${overallScore}</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${won ? `Solved in ${numGuesses}/6 guesses` : 'Failed to solve'}</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${won ? `Solved in ${numGuesses}/6 guesses` : `The answer was ${wordleAnswer}`}</div>
         </div>`;
 
         botContent.innerHTML = html;
