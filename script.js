@@ -1586,5 +1586,169 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('memory-restart').addEventListener('click', initMemory);
 
+    // --- INTERACTIVE GREEN FLUID BOX ---
+    function initFluidSimulation() {
+        const canvas = document.getElementById('fluid-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        // Approx 150 particles for good goo effect and performance
+        const numParticles = 150;
+        const particles = [];
+        const baseRadius = 18;
+
+        function resize() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.parentElement.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.scale(dpr, dpr);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 5,
+                vy: (Math.random() - 0.5) * 5,
+                radius: baseRadius + Math.random() * 8,
+                mass: 1
+            });
+        }
+
+        let gravity = { x: 0, y: 0.6 };
+        let mouse = { x: -1000, y: -1000, isDown: false, activeRow: false };
+
+        // Mouse & Touch interactions
+        function updateMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            mouse.x = clientX - rect.left;
+            mouse.y = clientY - rect.top;
+            mouse.activeRow = true;
+        }
+
+        // Mouse events
+        canvas.addEventListener('mousemove', updateMousePos);
+        canvas.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.activeRow = false; mouse.isDown = false; });
+        canvas.addEventListener('mousedown', () => mouse.isDown = true);
+        window.addEventListener('mouseup', () => mouse.isDown = false);
+        
+        // Touch events
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); updateMousePos(e); }, {passive: false});
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); mouse.isDown = true; updateMousePos(e); }, {passive: false});
+        canvas.addEventListener('touchend', () => { mouse.isDown = false; mouse.x = -1000; mouse.activeRow = false; });
+
+        // Device Orientation (Tilt)
+        window.addEventListener('deviceorientation', (e) => {
+            if (e.beta !== null && e.gamma !== null) {
+                // gamma is left/right (-90 to 90), beta is front/back (-180 to 180)
+                let tiltX = e.gamma / 45;
+                let tiltY = e.beta / 45;
+                // Clamp and apply to gravity
+                gravity.x = Math.max(-1.5, Math.min(1.5, tiltX));
+                gravity.y = Math.max(-1.5, Math.min(1.5, tiltY));
+            }
+        });
+
+        function update() {
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. Integration
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+
+                // Gravity (default falls down, tilts shift it)
+                p.vx += gravity.x;
+                p.vy += gravity.y;
+
+                // Mouse interaction
+                if (mouse.activeRow) {
+                    let dx = mouse.x - p.x;
+                    let dy = mouse.y - p.y;
+                    let distSq = dx * dx + dy * dy;
+                    let radiusEff = mouse.isDown ? 15000 : 8000; // click repels stronger
+                    if (distSq < radiusEff) {
+                        let dist = Math.sqrt(distSq);
+                        if(dist === 0) dist = 0.1;
+                        let force = (Math.sqrt(radiusEff) - dist) / Math.sqrt(radiusEff);
+                        let strength = mouse.isDown ? -3 : 1.5; // push away heavily on click, slight attract on hover
+                        p.vx += (dx / dist) * force * strength;
+                        p.vy += (dy / dist) * force * strength;
+                    }
+                }
+
+                // Drag/viscosity
+                p.vx *= 0.94;
+                p.vy *= 0.94;
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Border Constraints
+                if (p.x < p.radius) { p.x = p.radius; p.vx *= -0.5; }
+                if (p.x > width - p.radius) { p.x = width - p.radius; p.vx *= -0.5; }
+                if (p.y < p.radius) { p.y = p.radius; p.vy *= -0.5; }
+                if (p.y > height - p.radius) { p.y = height - p.radius; p.vy *= -0.5; }
+            }
+
+            // 2. Collision Resolution (Relaxation) - Make it feel like a cohesive fluid
+            const gridCols = Math.ceil(width / (baseRadius * 2));
+            const gridRows = Math.ceil(height / (baseRadius * 2));
+            const iterations = 3;
+
+            for (let k = 0; k < iterations; k++) {
+                // Spatial hash or simple O(n^2) is fine for ~150 particles
+                for (let i = 0; i < particles.length; i++) {
+                    let p1 = particles[i];
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let p2 = particles[j];
+                        let dx = p2.x - p1.x;
+                        let dy = p2.y - p1.y;
+                        let distSq = dx * dx + dy * dy;
+                        let minDist = p1.radius + p2.radius - 2; // slight overlap allowed for goo
+
+                        if (distSq < minDist * minDist) {
+                            let dist = Math.sqrt(distSq);
+                            if (dist === 0) dist = 0.1;
+                            let overlap = minDist - dist;
+                            let nx = dx / dist;
+                            let ny = dy / dist;
+
+                            // Push apart equally
+                            const correction = (overlap * 0.5) * 0.8; // relaxation factor
+                            p1.x -= nx * correction;
+                            p1.y -= ny * correction;
+                            p2.x += nx * correction;
+                            p2.y += ny * correction;
+                        }
+                    }
+                }
+            }
+
+            // 3. Render
+            ctx.fillStyle = '#0da371';
+            ctx.beginPath();
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                ctx.moveTo(p.x, p.y);
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            }
+            ctx.fill();
+
+            requestAnimationFrame(update);
+        }
+        
+        update();
+    }
+
+    // Initialize fluid on load
+    initFluidSimulation();
 
 });

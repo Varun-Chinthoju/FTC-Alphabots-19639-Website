@@ -74,6 +74,28 @@
                         <img src="bot.jpg" alt="Alphabots Robot" style="width: 100%; height: auto; border-radius: calc(var(--border-radius-2xl) - 4px); object-fit: cover; aspect-ratio: 4/3;">
                     </div>
                 </div>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE GREEN FLUID LAB -->
+            <div class="fluid-lab-section reveal delay-3" style="margin-top: 4rem;">
+                <div class="section-header">
+                    <h2>Interactive <span class="highlight-text">Slime Lab</span></h2>
+                    <p class="text-muted text-center" style="margin-bottom: 2rem;">Tilt your device or move your mouse to play with the fluid!</p>
+                </div>
+                <!-- SVG Filter for Gooey Effect -->
+                <svg width="0" height="0" style="position:absolute; visibility:hidden;">
+                  <defs>
+                    <filter id="goo">
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+                      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10" result="goo" />
+                      <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                  </defs>
+                </svg>
+                <div class="fluid-container premium-card p-0" style="padding:0; overflow:hidden;">
+                    <canvas id="fluid-canvas"></canvas>
+                </div>
             </div>
         </section>
 
