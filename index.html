@@ -42,6 +42,7 @@
                 <li><button class="nav-btn" data-target="gallery">Gallery</button></li>
                 <li><button class="nav-btn" data-target="robot">Robot & CAD</button></li>
                 <li><button class="nav-btn" data-target="stats">Stats & Scout Data</button></li>
+                <li><button class="nav-btn" data-target="training">Training</button></li>
                 <li><button class="nav-btn" data-target="contact">Contact</button></li>
             </ul>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -233,6 +234,155 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAINING SECTION -->
+        <section id="training" class="tab-pane fade-in hidden">
+            <div class="section-header reveal">
+                <h2>Member <span class="highlight-text">Training</span></h2>
+                <p class="text-muted text-center">Sharpen your FTC knowledge with fun mini-games</p>
+                <div class="header-line"></div>
+            </div>
+
+            <!-- Game Launcher Grid -->
+            <div id="training-launcher" class="training-grid reveal delay-1">
+                <button class="game-card" data-game="wordle" id="launch-wordle">
+                    <div class="game-card-icon"><i class="ph ph-textbox"></i></div>
+                    <h3>FTC Wordle</h3>
+                    <p>Guess the 5-letter FTC term in 6 tries</p>
+                    <span class="game-card-tag">Word Puzzle</span>
+                </button>
+
+                <button class="game-card" data-game="trivia" id="launch-trivia">
+                    <div class="game-card-icon"><i class="ph ph-brain"></i></div>
+                    <h3>FTC Trivia</h3>
+                    <p>Test your knowledge with multiple-choice questions</p>
+                    <span class="game-card-tag">Quiz</span>
+                </button>
+
+                <button class="game-card" data-game="scramble" id="launch-scramble">
+                    <div class="game-card-icon"><i class="ph ph-shuffle"></i></div>
+                    <h3>Term Scramble</h3>
+                    <p>Unscramble jumbled FTC terms before time runs out</p>
+                    <span class="game-card-tag">Speed</span>
+                </button>
+
+                <button class="game-card" data-game="flashcards" id="launch-flashcards">
+                    <div class="game-card-icon"><i class="ph ph-cards"></i></div>
+                    <h3>Flashcards</h3>
+                    <p>Flip through FTC rules, parts & concepts</p>
+                    <span class="game-card-tag">Study</span>
+                </button>
+
+                <button class="game-card" data-game="speedmatch" id="launch-speedmatch">
+                    <div class="game-card-icon"><i class="ph ph-lightning"></i></div>
+                    <h3>Speed Match</h3>
+                    <p>Match FTC terms to their definitions as fast as you can</p>
+                    <span class="game-card-tag">Matching</span>
+                </button>
+            </div>
+
+            <!-- ===== GAME: FTC WORDLE ===== -->
+            <div id="game-wordle" class="game-container hidden">
+                <button class="game-back-btn" data-back><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-textbox text-green"></i> FTC Wordle</h3>
+                    <p class="text-muted">Guess the FTC-related word (5 letters, 6 tries)</p>
+                </div>
+                <div id="wordle-board" class="wordle-board"></div>
+                <div id="wordle-message" class="wordle-message"></div>
+                <div id="wordle-keyboard" class="wordle-keyboard"></div>
+                <button id="wordle-restart" class="btn btn-primary mt-2 hidden">Play Again</button>
+            </div>
+
+            <!-- ===== GAME: FTC TRIVIA ===== -->
+            <div id="game-trivia" class="game-container hidden">
+                <button class="game-back-btn" data-back><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-brain text-green"></i> FTC Trivia</h3>
+                </div>
+                <div id="trivia-progress" class="trivia-progress">
+                    <div id="trivia-bar" class="trivia-bar"></div>
+                </div>
+                <div id="trivia-question-area" class="trivia-question-area">
+                    <div id="trivia-q-num" class="trivia-q-num"></div>
+                    <div id="trivia-question" class="trivia-question"></div>
+                    <div id="trivia-options" class="trivia-options"></div>
+                </div>
+                <div id="trivia-result" class="trivia-result hidden">
+                    <div class="trivia-score-circle">
+                        <span id="trivia-final-score">0</span>
+                    </div>
+                    <p id="trivia-result-msg" class="text-xl font-bold mt-1"></p>
+                    <button id="trivia-restart" class="btn btn-primary mt-2">Play Again</button>
+                </div>
+            </div>
+
+            <!-- ===== GAME: TERM SCRAMBLE ===== -->
+            <div id="game-scramble" class="game-container hidden">
+                <button class="game-back-btn" data-back><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-shuffle text-green"></i> Term Scramble</h3>
+                    <p class="text-muted">Unscramble the FTC term!</p>
+                </div>
+                <div class="scramble-timer-bar">
+                    <div id="scramble-timer-fill" class="scramble-timer-fill"></div>
+                </div>
+                <div id="scramble-score" class="scramble-score">Score: <span id="scramble-score-val">0</span></div>
+                <div id="scramble-jumbled" class="scramble-jumbled"></div>
+                <div id="scramble-hint" class="scramble-hint"></div>
+                <input type="text" id="scramble-input" class="scramble-input" placeholder="Type your answer..." autocomplete="off" spellcheck="false">
+                <div id="scramble-feedback" class="scramble-feedback"></div>
+                <button id="scramble-submit" class="btn btn-primary">Submit</button>
+                <button id="scramble-skip" class="btn btn-secondary" style="margin-left:0.5rem;">Skip</button>
+                <div id="scramble-over" class="scramble-over hidden">
+                    <p class="text-xl font-bold mt-1">Time's Up!</p>
+                    <p class="text-muted mt-1">Final Score: <span id="scramble-final" class="text-green font-bold">0</span></p>
+                    <button id="scramble-restart" class="btn btn-primary mt-2">Play Again</button>
+                </div>
+            </div>
+
+            <!-- ===== GAME: FLASHCARDS ===== -->
+            <div id="game-flashcards" class="game-container hidden">
+                <button class="game-back-btn" data-back><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-cards text-green"></i> Flashcards</h3>
+                    <p class="text-muted">Click a card to flip it</p>
+                </div>
+                <div id="flashcard-counter" class="flashcard-counter"></div>
+                <div id="flashcard-wrapper" class="flashcard-wrapper">
+                    <div id="flashcard" class="flashcard">
+                        <div class="flashcard-front" id="flashcard-front"></div>
+                        <div class="flashcard-back" id="flashcard-back"></div>
+                    </div>
+                </div>
+                <div class="flashcard-nav">
+                    <button id="fc-prev" class="btn btn-secondary"><i class="ph ph-arrow-left"></i> Prev</button>
+                    <button id="fc-shuffle" class="btn btn-secondary"><i class="ph ph-shuffle"></i> Shuffle</button>
+                    <button id="fc-next" class="btn btn-primary">Next <i class="ph ph-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- ===== GAME: SPEED MATCH ===== -->
+            <div id="game-speedmatch" class="game-container hidden">
+                <button class="game-back-btn" data-back><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-lightning text-green"></i> Speed Match</h3>
+                    <p class="text-muted">Click the correct definition for each term</p>
+                </div>
+                <div class="speedmatch-hud">
+                    <div class="speedmatch-timer">⏱ <span id="sm-timer">30</span>s</div>
+                    <div class="speedmatch-score">Score: <span id="sm-score">0</span></div>
+                </div>
+                <div id="sm-term" class="sm-term"></div>
+                <div id="sm-options" class="sm-options"></div>
+                <div id="sm-feedback" class="sm-feedback"></div>
+                <div id="sm-gameover" class="sm-gameover hidden">
+                    <p class="text-xl font-bold">Game Over!</p>
+                    <p class="text-muted mt-1">You matched <span id="sm-final" class="text-green font-bold">0</span> terms correctly.</p>
+                    <button id="sm-restart" class="btn btn-primary mt-2">Play Again</button>
                 </div>
             </div>
         </section>
