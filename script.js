@@ -265,4 +265,104 @@ document.addEventListener('DOMContentLoaded', () => {
             }, index * 100);
         });
     }, 100);
+
+    // ======= Team Members Season Selector =======
+    const teamData = {
+        '2025-2026': [
+            { name: 'Suhas Bathini', role: 'Team Captain' },
+            { name: 'Akshay Shoroff', role: 'Team Captain' },
+            { name: 'Rushil Shah', role: 'Outreach Captain' },
+            { name: 'Saket Sandru', role: 'Hardware Captain' },
+            { name: 'Aadit Verma', role: 'Outreach Captain' },
+            { name: 'Varun Chinthoju', role: 'Hardware Member' },
+            { name: 'Srithan Deverashetty', role: 'Hardware Member' },
+            { name: 'Shiv Gurjar', role: 'Hardware Member' },
+            { name: 'Vihaan Sanghvi', role: 'Outreach Member' },
+            { name: 'Dhruv Mandala', role: 'Software Member' },
+            { name: 'Renu Mandala', role: 'Outreach Member' },
+            { name: 'Aashi', role: 'Outreach Member' },
+        ],
+        '2024-2025': [
+            { name: 'Suhas Bathini', role: 'Team Captain' },
+            { name: 'Akshay Shoroff', role: 'Team Captain' },
+            { name: 'Rushil Shah', role: 'Outreach Captain' },
+            { name: 'Shiv Gurjar', role: 'Hardware Captain' },
+            { name: 'Aadit Verma', role: 'Outreach Captain' },
+            { name: 'Trisha Bhuwania', role: 'Software Member' },
+            { name: 'Ronit Parikh', role: 'Software Member' },
+            { name: 'Rishaan Jain', role: 'Software Member' },
+            { name: 'Saket Sandru', role: 'Hardware Member' },
+            { name: 'Vihaan Sanghvi', role: 'Outreach Member' },
+            { name: 'Simran Chhabria', role: 'Hardware Member' },
+            { name: 'Saanvi Shah', role: 'Outreach Member' },
+        ],
+        '2023-2024': [
+            { name: 'Suhas Bathini', role: 'Team Captain' },
+            { name: 'Maanav Shah', role: 'Hardware Engineering Captain' },
+            { name: 'Gabriel Hwang', role: 'Outreach Captain' },
+            { name: 'Parsh Gandhi', role: 'Team Advisor' },
+            { name: 'Anand Raghunath', role: 'Software Engineering Captain' },
+            { name: 'Simran Chhabria', role: 'Hardware Engineering Vice Captain' },
+            { name: 'Rushil Shah', role: 'Game Strategy & Hardware' },
+            { name: 'Shakil Musthafa', role: 'Fundraising & Outreach' },
+            { name: 'Shiv Gurjar', role: 'Hardware & Outreach' },
+            { name: 'Akshay Shoroff', role: 'CAD Lead' },
+            { name: 'Rishaan Jain', role: 'Software & Documentation Lead' },
+            { name: 'Saanvi Shah', role: 'Outreach Member' },
+            { name: 'Trisha Bhuwania', role: 'Software Member' },
+        ],
+        '2022-2023': [
+            { name: 'Parsh Gandhi', role: 'Team Captain' },
+            { name: 'Maanav Shah', role: 'Hardware Engineering Captain' },
+            { name: 'Suhas Bathini', role: 'Software Engineering Captain' },
+            { name: 'Gabriel Hwang', role: 'Outreach Captain' },
+            { name: 'Tarun Iyer', role: 'Hardware Engineering Vice Captain' },
+            { name: 'Anand Raghunath', role: 'Software Engineering Vice Captain' },
+            { name: 'Rushil Shah', role: 'Game Strategy & Hardware' },
+            { name: 'Pranav Kunisetty', role: 'CAD Lead' },
+            { name: 'Amogh Khandkar', role: 'Documentation Lead & Outreach' },
+            { name: 'Shakil Musthafa', role: 'Fundraising & Outreach' },
+            { name: 'Shiv Gurjar', role: 'Hardware & Outreach' },
+        ],
+        '2021-2022': [
+            { name: 'Parsh Gandhi', role: 'Team Captain' },
+            { name: 'Maanav Shah', role: 'Hardware Engineering Captain' },
+            { name: 'Anand Raghunath', role: 'Software Engineering Captain' },
+            { name: 'Gabriel Hwang', role: 'Outreach Captain' },
+            { name: 'Tarun Iyer', role: 'Hardware Engineering Vice Captain' },
+            { name: 'Suhas Bathini', role: 'Software Engineering Vice Captain' },
+            { name: 'Rushil Shah', role: 'Game Strategy Lead' },
+            { name: 'Pranav Kunisetty', role: 'CAD Lead' },
+            { name: 'Amogh Khandkar', role: 'Documentation Lead' },
+        ],
+    };
+
+    function getInitials(name) {
+        return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+    }
+
+    function renderMembers(season) {
+        const grid = document.getElementById('members-grid');
+        const members = teamData[season] || [];
+        if (members.length === 0) {
+            grid.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">No roster data for this season.</p>';
+            return;
+        }
+        grid.innerHTML = members.map((m, i) => `
+            <div class="member-card" style="animation: fadeInUp 0.4s ease ${i * 0.07}s both;">
+                <div class="member-avatar">${getInitials(m.name)}</div>
+                <div class="member-name">${m.name}</div>
+                <div class="member-role">${m.role}</div>
+            </div>
+        `).join('');
+    }
+
+    const seasonSelect = document.getElementById('season-select');
+    if (seasonSelect) {
+        seasonSelect.addEventListener('change', (e) => {
+            renderMembers(e.target.value);
+        });
+        // Render default season
+        renderMembers(seasonSelect.value);
+    }
 });

@@ -31,6 +31,7 @@
                 <li><button class="nav-btn" data-target="team">Team & About Us</button></li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
                 <li><button class="nav-btn" data-target="gallery">Gallery</button></li>
+                <li><button class="nav-btn" data-target="members">Team Members</button></li>
                 <li><button class="nav-btn" data-target="robot">Robot & CAD</button></li>
                 <li><button class="nav-btn" data-target="stats">Stats & Scout Data</button></li>
                 <li><button class="nav-btn" data-target="contact">Contact</button></li>
@@ -143,6 +144,33 @@
                 <div class="premium-card reveal gallery-item p-1" style="grid-column: 1 / -1;">
                     <img src="gallery/media__1772515078968.jpg" alt="Gallery Image 5" class="gallery-img">
                 </div>
+            </div>
+        </section>
+
+        <!-- TEAM MEMBERS SECTION -->
+        <section id="members" class="tab-pane fade-in hidden">
+            <div class="section-header reveal">
+                <h2>Team <span class="highlight-text">Members</span></h2>
+                <p class="text-muted text-center">Select a season to view the roster</p>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="reveal delay-1" style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                <div class="season-select-wrapper">
+                    <select id="season-select" class="season-select">
+                        <option value="2025-2026" selected>2025–2026 (DECODE)</option>
+                        <option value="2024-2025">2024–2025 (INTO THE DEEP)</option>
+                        <option value="2023-2024">2023–2024 (CENTERSTAGE)</option>
+                        <option value="2022-2023">2022–2023 (POWERPLAY)</option>
+                        <option value="2021-2022">2021–2022 (FREIGHT FRENZY)</option>
+                    </select>
+                    <i class="ph ph-caret-down season-select-icon"></i>
+                </div>
+            </div>
+
+            <div id="members-grid" class="members-grid reveal delay-2">
+                <!-- Members will be populated by JS based on selected season -->
+                <p class="text-muted text-center" style="grid-column: 1/-1;">Select a season above to view team members.</p>
             </div>
         </section>
 
