@@ -296,11 +296,23 @@
                 <div class="game-header">
                     <h3><i class="ph ph-textbox text-green"></i> FTC Wordle</h3>
                     <p class="text-muted">Guess the FTC-related word (5 letters, 6 tries)</p>
+                    <div id="wordle-mode-badge" style="display: inline-block; margin-top: 0.5rem; padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;"></div>
                 </div>
                 <div id="wordle-board" class="wordle-board"></div>
                 <div id="wordle-message" class="wordle-message"></div>
                 <div id="wordle-keyboard" class="wordle-keyboard"></div>
-                <button id="wordle-restart" class="btn btn-primary mt-2 hidden">Play Again</button>
+
+                <div id="wordle-endgame" style="display: none; margin-top: 1.5rem; text-align: center;">
+                    <button id="wordle-restart" class="btn btn-primary">Play Again (Unlimited)</button>
+                </div>
+
+                <!-- Wordle Bot Analysis -->
+                <div id="wordle-bot" style="display: none; margin-top: 2rem; text-align: left;">
+                    <div style="border: 1px solid rgba(13,163,113,0.3); border-radius: var(--border-radius-lg); padding: 1.5rem; background: rgba(13,163,113,0.05);">
+                        <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><i class="ph ph-robot text-green"></i> Wordle Bot Analysis</h4>
+                        <div id="wordle-bot-content"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- ===== GAME: FTC TRIVIA ===== -->

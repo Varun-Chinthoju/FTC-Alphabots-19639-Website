@@ -795,24 +795,84 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameId === 'memory') initMemory();
     }
 
-    // --- 1. FTC WORDLE ---
-    const ftcWords = ["SERVO", "MOTOR", "AUTON", "DRIVE", "ROBOT", "MATCH", "BRICK", "POWER", "WHEEL", "GEARS", "ALLOY", "FIELD"];
+    // --- 1. FTC WORDLE (Daily + Unlimited + Bot) ---
+    const ftcWords = ["SERVO","MOTOR","AUTON","DRIVE","ROBOT","MATCH","BRICK","POWER","WHEEL","GEARS","ALLOY","FIELD","CRANE","CLAW","PIVOT","SLIDE","GRIPS","JOINT","SHAFT","LEVEL","CYCLE","FRAME","STONE","PIXEL","STACK","PLATE","SCREW","LEVER","ANKER","SPARK","ULTRA","LIGHT","LIDAR","PRESS","BLOCK","MOUNT","CHAIN","GUARD","PANEL","BOARD"];
     let wordleAnswer = "";
     let wordleGuesses = [];
     let wordleCurrentGuess = "";
     let wordleGameOver = false;
+    let wordleMode = "daily"; // "daily" or "unlimited"
+    let dailyCompleted = false;
+
+    function getDailyWord() {
+        // Deterministic daily word: same word for everyone on the same day
+        const now = new Date();
+        const daysSinceEpoch = Math.floor(now.getTime() / 86400000);
+        const index = daysSinceEpoch % ftcWords.length;
+        return ftcWords[index];
+    }
+
+    function getDailyKey() {
+        const now = new Date();
+        return `ftc-wordle-daily-${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+    }
 
     function initWordle() {
-        wordleAnswer = ftcWords[Math.floor(Math.random() * ftcWords.length)];
+        // Check if daily was already completed today
+        const dailyKey = getDailyKey();
+        const savedDaily = localStorage.getItem(dailyKey);
+
+        if (savedDaily && wordleMode === 'daily') {
+            // Already played today's daily — show results and offer unlimited
+            const data = JSON.parse(savedDaily);
+            wordleAnswer = data.answer;
+            wordleGuesses = data.guesses;
+            wordleCurrentGuess = "";
+            wordleGameOver = true;
+            dailyCompleted = true;
+
+            updateModeBadge();
+            renderWordleGrid();
+            renderWordleKeyboard();
+            showMessage(data.won ? "You already solved today's daily!" : `Today's word was ${wordleAnswer}`, data.won ? "correct" : "error");
+            document.getElementById('wordle-endgame').style.display = 'block';
+            runBotAnalysis();
+            return;
+        }
+
+        if (wordleMode === 'daily') {
+            wordleAnswer = getDailyWord();
+        } else {
+            wordleAnswer = ftcWords[Math.floor(Math.random() * ftcWords.length)];
+        }
+
         wordleGuesses = [];
         wordleCurrentGuess = "";
         wordleGameOver = false;
-        
+
         document.getElementById('wordle-message').textContent = "";
-        document.getElementById('wordle-restart').classList.add('hidden');
-        
+        document.getElementById('wordle-endgame').style.display = 'none';
+        document.getElementById('wordle-bot').style.display = 'none';
+
+        updateModeBadge();
         renderWordleGrid();
         renderWordleKeyboard();
+    }
+
+    function updateModeBadge() {
+        const badge = document.getElementById('wordle-mode-badge');
+        if (!badge) return;
+        if (wordleMode === 'daily') {
+            badge.textContent = '📅 Daily Challenge';
+            badge.style.background = 'rgba(251, 191, 36, 0.15)';
+            badge.style.color = '#fbbf24';
+            badge.style.border = '1px solid rgba(251, 191, 36, 0.3)';
+        } else {
+            badge.textContent = '♾️ Unlimited Mode';
+            badge.style.background = 'rgba(59, 130, 246, 0.15)';
+            badge.style.color = '#3b82f6';
+            badge.style.border = '1px solid rgba(59, 130, 246, 0.3)';
+        }
     }
 
     function renderWordleGrid() {
@@ -821,26 +881,25 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 6; i++) {
             const row = document.createElement('div');
             row.className = 'wordle-row';
-            
+
             let guessString = "";
             if (i < wordleGuesses.length) guessString = wordleGuesses[i];
             else if (i === wordleGuesses.length) guessString = wordleCurrentGuess;
-            
+
             for (let j = 0; j < 5; j++) {
                 const tile = document.createElement('div');
                 tile.className = 'wordle-tile';
                 const letter = guessString[j] || "";
                 tile.textContent = letter;
-                
+
                 if (letter) tile.classList.add('filled');
-                
-                // If it's a past guess, colorize it
+
                 if (i < wordleGuesses.length) {
                     if (wordleAnswer[j] === letter) tile.classList.add('correct');
                     else if (wordleAnswer.includes(letter)) tile.classList.add('present');
                     else tile.classList.add('absent');
                 }
-                
+
                 row.appendChild(tile);
             }
             board.appendChild(row);
@@ -855,7 +914,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ['A','S','D','F','G','H','J','K','L'],
             ['ENTER','Z','X','C','V','B','N','M','BACK']
         ];
-        
+
         const usedLetters = {};
         wordleGuesses.forEach(guess => {
             for (let i = 0; i < 5; i++) {
@@ -874,9 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.className = 'wordle-key';
                 btn.textContent = key === 'BACK' ? '⌫' : key;
                 if (key === 'ENTER' || key === 'BACK') btn.classList.add('wide');
-                
                 if (usedLetters[key]) btn.classList.add(usedLetters[key]);
-                
                 btn.addEventListener('click', () => handleWordleKey(key));
                 rowDiv.appendChild(btn);
             });
@@ -886,40 +943,192 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleWordleKey(key) {
         if (wordleGameOver) return;
-        
+
         if (key === 'BACK' || key === 'Backspace') {
             wordleCurrentGuess = wordleCurrentGuess.slice(0, -1);
+            renderWordleGrid();
         } else if (key === 'ENTER' || key === 'Enter') {
             if (wordleCurrentGuess.length !== 5) {
                 showMessage("Word must be 5 letters");
                 shakeCurrentRow();
                 return;
             }
-            wordleGuesses.push(wordleCurrentGuess);
-            
-            if (wordleCurrentGuess === wordleAnswer) {
-                showMessage("Great job!", "correct");
-                wordleGameOver = true;
-                document.getElementById('wordle-restart').classList.remove('hidden');
-                jiggleLastRow();
-            } else if (wordleGuesses.length === 6) {
-                showMessage(`Game over! Word was ${wordleAnswer}`); // ALREADY SHOWS CORRECT WORD
-                wordleGameOver = true;
-                document.getElementById('wordle-restart').classList.remove('hidden');
-                shakeLastRow();
-            } else {
-                shakeLastRow();
-            }
-            
+            const guess = wordleCurrentGuess;
+            wordleGuesses.push(guess);
             wordleCurrentGuess = "";
-            renderWordleKeyboard(); // update key colors
+
+            // Staggered flip reveal animation
+            const rowIndex = wordleGuesses.length - 1;
+            const rows = document.querySelectorAll('.wordle-row');
+            const row = rows[rowIndex];
+            if (row) {
+                const tiles = row.querySelectorAll('.wordle-tile');
+                tiles.forEach((tile, j) => {
+                    // Start flip with stagger
+                    setTimeout(() => {
+                        tile.classList.add('flip');
+                        // Apply color at midpoint of flip (when tile is edge-on)
+                        setTimeout(() => {
+                            const letter = guess[j];
+                            if (wordleAnswer[j] === letter) {
+                                tile.classList.add('correct');
+                            } else if (wordleAnswer.includes(letter)) {
+                                tile.classList.add('present');
+                            } else {
+                                tile.classList.add('absent');
+                            }
+                        }, 250); // Half of the 500ms flip
+                    }, j * 100); // Stagger 100ms per tile
+                });
+            }
+
+            // After all flips complete, handle game state
+            const totalFlipTime = 5 * 100 + 500; // stagger + flip duration
+            setTimeout(() => {
+                if (guess === wordleAnswer) {
+                    showMessage("Great job!", "correct");
+                    wordleGameOver = true;
+                    document.getElementById('wordle-endgame').style.display = 'block';
+                    if (wordleMode === 'daily') saveDailyResult(true);
+                    // Bounce celebration with stagger
+                    if (row) {
+                        const tiles = row.querySelectorAll('.wordle-tile');
+                        tiles.forEach((tile, j) => {
+                            setTimeout(() => tile.classList.add('bounce'), j * 80);
+                        });
+                    }
+                    runBotAnalysis();
+                } else if (wordleGuesses.length === 6) {
+                    showMessage(`Game over! Word was ${wordleAnswer}`);
+                    wordleGameOver = true;
+                    document.getElementById('wordle-endgame').style.display = 'block';
+                    if (wordleMode === 'daily') saveDailyResult(false);
+                    runBotAnalysis();
+                }
+                renderWordleKeyboard();
+                renderWordleGrid();
+            }, totalFlipTime);
+
         } else if (/^[A-Z]$/.test(key) && wordleCurrentGuess.length < 5) {
             wordleCurrentGuess += key;
+            renderWordleGrid();
         }
-        
-        renderWordleGrid();
     }
-    
+
+    function saveDailyResult(won) {
+        const dailyKey = getDailyKey();
+        localStorage.setItem(dailyKey, JSON.stringify({
+            answer: wordleAnswer,
+            guesses: wordleGuesses,
+            won: won
+        }));
+        dailyCompleted = true;
+    }
+
+    // ---- Wordle Bot Analysis ----
+    function runBotAnalysis() {
+        const botDiv = document.getElementById('wordle-bot');
+        const botContent = document.getElementById('wordle-bot-content');
+        if (!botDiv || !botContent) return;
+
+        botDiv.style.display = 'block';
+        const won = wordleGuesses.includes(wordleAnswer);
+        const numGuesses = wordleGuesses.length;
+
+        let html = '';
+
+        // Analyze each guess
+        wordleGuesses.forEach((guess, idx) => {
+            const greens = [];
+            const yellows = [];
+            const grays = [];
+
+            for (let i = 0; i < 5; i++) {
+                if (guess[i] === wordleAnswer[i]) greens.push(guess[i]);
+                else if (wordleAnswer.includes(guess[i])) yellows.push(guess[i]);
+                else grays.push(guess[i]);
+            }
+
+            // Calculate how many words this guess could have eliminated
+            let possibleBefore = ftcWords.length;
+            let possibleAfter = ftcWords.filter(w => {
+                for (let i = 0; i < 5; i++) {
+                    if (guess[i] === wordleAnswer[i] && w[i] !== guess[i]) return false;
+                    if (guess[i] !== wordleAnswer[i] && wordleAnswer.includes(guess[i]) && !w.includes(guess[i])) return false;
+                    if (!wordleAnswer.includes(guess[i]) && w.includes(guess[i])) return false;
+                }
+                return true;
+            }).length;
+            const eliminated = Math.max(0, possibleBefore - possibleAfter);
+            const pct = Math.round((eliminated / possibleBefore) * 100);
+
+            // Grade the guess
+            let grade, gradeColor;
+            if (guess === wordleAnswer) {
+                grade = '🎯 Perfect!';
+                gradeColor = 'var(--brand-green)';
+            } else if (greens.length >= 3) {
+                grade = '🟢 Excellent';
+                gradeColor = 'var(--brand-green)';
+            } else if (greens.length >= 1 && yellows.length >= 2) {
+                grade = '🟡 Great';
+                gradeColor = '#fbbf24';
+            } else if (yellows.length >= 2 || greens.length >= 1) {
+                grade = '🟡 Good';
+                gradeColor = '#fbbf24';
+            } else if (pct >= 50) {
+                grade = '🔵 Strategic';
+                gradeColor = '#3b82f6';
+            } else {
+                grade = '⚪ Exploratory';
+                gradeColor = 'var(--text-muted)';
+            }
+
+            // Tile preview
+            let tilePreview = '';
+            for (let i = 0; i < 5; i++) {
+                if (guess[i] === wordleAnswer[i]) tilePreview += '🟩';
+                else if (wordleAnswer.includes(guess[i])) tilePreview += '🟨';
+                else tilePreview += '⬛';
+            }
+
+            html += `
+            <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; padding: 0.75rem; border-radius: 8px; background: rgba(255,255,255,0.02);">
+                <div style="min-width: 28px; font-weight: 700; color: var(--text-muted); font-size: 0.85rem;">#${idx + 1}</div>
+                <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
+                        <span style="font-family: monospace; font-size: 1.1rem; letter-spacing: 2px; font-weight: 700;">${guess}</span>
+                        <span style="font-size: 0.8rem;">${tilePreview}</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: ${gradeColor}; font-weight: 600;">${grade}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Eliminated ~${pct}% of possible words (${eliminated}/${possibleBefore})</div>
+                </div>
+            </div>`;
+        });
+
+        // Overall score
+        let overallScore, overallEmoji, overallColor;
+        if (won) {
+            if (numGuesses === 1) { overallScore = 'Genius'; overallEmoji = '🧠'; overallColor = '#a855f7'; }
+            else if (numGuesses === 2) { overallScore = 'Magnificent'; overallEmoji = '🌟'; overallColor = '#fbbf24'; }
+            else if (numGuesses === 3) { overallScore = 'Impressive'; overallEmoji = '🔥'; overallColor = 'var(--brand-green)'; }
+            else if (numGuesses === 4) { overallScore = 'Solid'; overallEmoji = '👍'; overallColor = '#3b82f6'; }
+            else if (numGuesses === 5) { overallScore = 'Close Call'; overallEmoji = '😅'; overallColor = '#fbbf24'; }
+            else { overallScore = 'Phew!'; overallEmoji = '😰'; overallColor = '#ef4444'; }
+        } else {
+            overallScore = 'Better luck next time'; overallEmoji = '💀'; overallColor = '#ef4444';
+        }
+
+        html += `
+        <div style="margin-top: 1.5rem; padding: 1rem; border-radius: 10px; background: rgba(13,163,113,0.08); text-align: center; border: 1px solid rgba(13,163,113,0.2);">
+            <div style="font-size: 2rem; margin-bottom: 0.25rem;">${overallEmoji}</div>
+            <div style="font-size: 1.3rem; font-weight: 700; color: ${overallColor};">${overallScore}</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${won ? `Solved in ${numGuesses}/6 guesses` : 'Failed to solve'}</div>
+        </div>`;
+
+        botContent.innerHTML = html;
+    }
+
     function shakeCurrentRow() {
         const rows = document.querySelectorAll('.wordle-row');
         if (rows[wordleGuesses.length]) {
@@ -927,7 +1136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => rows[wordleGuesses.length].classList.remove('shake'), 400);
         }
     }
-    
+
     function shakeLastRow() {
         const rows = document.querySelectorAll('.wordle-row');
         if (rows[wordleGuesses.length - 1]) {
@@ -937,15 +1146,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 400);
         }
     }
-    
+
     function jiggleLastRow() {
         const rows = document.querySelectorAll('.wordle-row');
         if (rows[wordleGuesses.length - 1]) {
             rows[wordleGuesses.length - 1].classList.add('jiggle');
         }
     }
-    
-    // Add global keyboard support for Wordle
+
+    // Keyboard support
     document.addEventListener('keydown', (e) => {
         if (!document.getElementById('game-wordle').classList.contains('hidden') && !wordleGameOver) {
             const key = e.key.toUpperCase();
@@ -962,7 +1171,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => el.textContent = "", 3000);
     }
 
-    document.getElementById('wordle-restart').addEventListener('click', initWordle);
+    document.getElementById('wordle-restart').addEventListener('click', () => {
+        wordleMode = 'unlimited';
+        initWordle();
+    });
 
 
     // --- 2. FTC TRIVIA ---
