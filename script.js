@@ -372,7 +372,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle dropdown on Team Members button click
         membersToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            seasonDropdown.classList.toggle('open');
+            
+            if (seasonDropdown.classList.contains('open')) {
+                seasonDropdown.classList.remove('open');
+            } else {
+                // 1. Move the slider over to Team Members immediately
+                navButtons.forEach(b => b.classList.remove('active'));
+                membersToggle.classList.add('active');
+                if (typeof moveIndicator === 'function') {
+                    moveIndicator(membersToggle, true);
+                }
+
+                // 2. Wait for the slide animation to finish (220ms), then drip down
+                setTimeout(() => {
+                    seasonDropdown.classList.add('open');
+                }, 220);
+            }
         });
 
         // Close dropdown when clicking outside
