@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             "name": "Shiv Gurjar",
-            "role": "Hardware Member",
+            "role": "Software Captain",
             "img": "images/team/2025_2026_shiv_gurjar.jpg"
         },
         {
