@@ -21,8 +21,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="nav-brand" style="position: relative;">
-                <i class="ph-fill ph-key easter-egg-key" id="key-1" title="Mystery Key" style="top: -5px; left: -15px;"></i>
+            <div class="nav-brand">
                 <img src="logo.png" alt="Alphabots Logo" class="nav-logo" onerror="this.style.display='none'; document.getElementById('nav-logo-fallback').style.display='block';">
                 <div id="nav-logo-fallback" class="nav-logo-text" style="display: none;">ALPHAB<span>O</span>TS</div>
             </div>
@@ -60,8 +59,7 @@
                     <h1 class="hero-title">Engineering the <span class="highlight-text">Future</span></h1>
                     <p class="hero-subtitle">We are a Bay Area-based high school robotics team passionately learning, competing, and growing through the FIRST® Tech Challenge program.</p>
                     
-                    <div class="action-buttons" style="position: relative;">
-                        <i class="ph-fill ph-key easter-egg-key" id="key-2" title="Mystery Key" style="top: 15px; right: -40px;"></i>
+                    <div class="action-buttons">
                         <button class="btn btn-primary cta-nav" data-target="team">
                             Learn About Us <i class="ph ph-arrow-right"></i>
                         </button>
@@ -109,8 +107,7 @@
              </div>
 
             <div class="premium-card reveal delay-1">
-                <div class="flex-row items-center gap-2 mb-2" style="position: relative;">
-                    <i class="ph-fill ph-key easter-egg-key" id="key-3" title="Mystery Key" style="top: 5px; right: 10px;"></i>
+                <div class="flex-row items-center gap-2 mb-2">
                     <div class="icon-box"><i class="ph ph-globe-hemisphere-west"></i></div>
                     <h3>Global Impact, Local Roots</h3>
                 </div>
@@ -146,8 +143,7 @@
                 <div class="premium-card reveal delay-4 gallery-item p-1">
                     <img src="gallery/media__1772515111777.jpg" alt="Gallery Image 4" class="gallery-img">
                 </div>
-                <div class="premium-card reveal gallery-item p-1" style="grid-column: 1 / -1; position: relative;">
-                    <i class="ph-fill ph-key easter-egg-key" id="key-4" title="Mystery Key" style="bottom: 15px; right: 15px;"></i>
+                <div class="premium-card reveal gallery-item p-1" style="grid-column: 1 / -1;">
                     <img src="gallery/media__1772515078968.jpg" alt="Gallery Image 5" class="gallery-img">
                 </div>
             </div>
@@ -516,8 +512,7 @@
     </main>
 
     <footer>
-        <div class="footer-container" style="position: relative;">
-            <i class="ph-fill ph-key easter-egg-key" id="key-5" title="Mystery Key" style="bottom: 10px; left: 10px;"></i>
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none';">
@@ -536,46 +531,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- 5 KEYS EASTER EGG UI -->
-    <div id="keys-inventory" class="keys-inventory">
-        <i class="ph ph-key key-slot" id="slot-1"></i>
-        <i class="ph ph-key key-slot" id="slot-2"></i>
-        <i class="ph ph-key key-slot" id="slot-3"></i>
-        <i class="ph ph-key key-slot" id="slot-4"></i>
-        <i class="ph ph-key key-slot" id="slot-5"></i>
-    </div>
-
-    <!-- SECRET BOSS FIGHT MODAL -->
-    <div id="boss-fight-modal" class="modal-overlay" style="display: none; z-index: 9999;">
-        <div class="premium-card text-center" style="max-width: 600px; padding: 3rem; position: relative; width: 90%;">
-            <button class="modal-close" id="boss-close" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;"><i class="ph ph-x"></i></button>
-            <h2 class="hero-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;"><span class="highlight-text">ACCESS GRANTED</span></h2>
-            <p class="text-muted" style="margin-bottom: 1.5rem;">You discovered all exactly 5 hidden keys across the mainframe. Entering Developer Sandbox...</p>
-            
-            <div id="boss-intro">
-                <p><strong>MISSION:</strong> Click the elusive Alphabot 15 times before the 10-second timer expires.</p>
-                <button id="start-boss-fight" class="btn btn-primary mt-3">Initiate Sequence</button>
-            </div>
-
-            <div id="boss-fight-area" style="display: none; height: 350px; width: 100%; position: relative; border: 2px solid var(--brand-green); border-radius: 12px; margin-top: 1.5rem; overflow: hidden; background: #050505; cursor: crosshair;">
-                <div id="boss-target" style="position: absolute; width: 60px; height: 60px; background: rgba(13, 163, 113, 0.2); border: 2px solid var(--brand-green); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; top: 10%; left: 10%; transition: top 0.1s, left 0.1s; box-shadow: 0 0 15px var(--brand-green);">
-                    <i class="ph ph-robot" style="color: var(--brand-green); font-size: 32px; pointer-events: none;"></i>
-                </div>
-            </div>
-            
-            <div id="boss-stats" style="margin-top: 1rem; display: none; justify-content: space-between; align-items: center;">
-                <span style="font-size: 1.2rem;">Hits: <span id="hits-left" class="highlight-text font-bold" style="font-size:1.5rem;">15</span></span>
-                <span style="font-size: 1.2rem;">Time left: <span id="time-left" class="highlight-text font-bold" style="font-size:1.5rem;">10.0</span>s</span>
-            </div>
-
-            <div id="boss-result" style="display: none; margin-top: 2rem;">
-                <h3 id="result-title" style="font-size: 2rem; margin-bottom: 1rem;"></h3>
-                <p id="result-desc" class="text-muted mb-3"></p>
-                <button id="retry-boss" class="btn btn-secondary">Try Again</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Custom Script -->
     <script src="script.js?v=2"></script>
