@@ -648,25 +648,22 @@ header {
 }
 
 .member-card {
-    background: linear-gradient(135deg, rgba(13, 163, 113, 0.12) 0%, rgba(5, 5, 5, 0.35) 100%);
-    border: 1px solid rgba(13, 163, 113, 0.2);
-    border-top: 1px solid rgba(13, 163, 113, 0.35);
-    border-radius: var(--border-radius-xl);
-    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 1rem 0.5rem;
     text-align: center;
     transition: var(--transition);
 }
 
 .member-card:hover {
-    border-color: rgba(13, 163, 113, 0.5);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(13, 163, 113, 0.2);
+    transform: translateY(-5px);
 }
 
 .member-avatar {
     width: 140px;
     height: 140px;
-    border-radius: var(--border-radius-lg);
+    border-radius: 50%;
     background: linear-gradient(135deg, rgba(13, 163, 113, 0.3), rgba(13, 163, 113, 0.1));
     display: flex;
     align-items: center;
@@ -674,8 +671,35 @@ header {
     margin: 0 auto 1.5rem;
     font-size: 2.5rem;
     color: var(--brand-green);
-    border: 2px solid rgba(13, 163, 113, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.1); /* default border */
     overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.member-card:hover .member-avatar {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Role-based frames */
+.member-avatar.role-captain {
+    border-color: #fbbf24; /* Amber/Gold */
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+.member-avatar.role-software {
+    border-color: #3b82f6; /* Blue */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+.member-avatar.role-hardware {
+    border-color: #ef4444; /* Red */
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+.member-avatar.role-outreach {
+    border-color: #a855f7; /* Purple */
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+.member-avatar.role-member {
+    border-color: rgba(255, 255, 255, 0.3); /* Neutral Gray */
 }
 
 .member-avatar img {

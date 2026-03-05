@@ -590,9 +590,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 avatarHTML = `<span>${getInitials(m.name)}</span>`;
             }
 
+            let roleClass = 'role-member';
+            const r = m.role.toLowerCase();
+            if ((r.includes('captain') || r === 'captain') && !r.includes('software') && !r.includes('hardware') && !r.includes('outreach')) {
+                roleClass = 'role-captain';
+            } else if (r.includes('software')) {
+                roleClass = 'role-software';
+            } else if (r.includes('hardware')) {
+                roleClass = 'role-hardware';
+            } else if (r.includes('outreach')) {
+                roleClass = 'role-outreach';
+            }
+
             return `
             <div class="member-card" style="animation: fadeInUp 0.4s ease ${i * 0.07}s both;">
-                <div class="member-avatar">${avatarHTML}</div>
+                <div class="member-avatar ${roleClass}">${avatarHTML}</div>
                 <div class="member-name">${m.name}</div>
                 <div class="member-role">${m.role}</div>
             </div>
