@@ -1751,4 +1751,167 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize fluid on load
     initFluidSimulation();
 
+    // --- 5 KEYS EASTER EGG LOGIC ---
+    let keysFound = 0;
+    const totalKeys = 5;
+    const keysInventory = document.getElementById('keys-inventory');
+    const bossModal = document.getElementById('boss-fight-modal');
+    const bossStartBtn = document.getElementById('start-boss-fight');
+    const bossArea = document.getElementById('boss-fight-area');
+    const bossTarget = document.getElementById('boss-target');
+    const bossStats = document.getElementById('boss-stats');
+    const bossResult = document.getElementById('boss-result');
+    const bossCloseBtn = document.getElementById('boss-close');
+    const retryBossBtn = document.getElementById('retry-boss');
+    const hitsLeftSpan = document.getElementById('hits-left');
+    const timeSpan = document.getElementById('time-left');
+
+    let bossTimer;
+    let bossMoveInterval;
+    let timeLeft = 10.0;
+    let hitsNeeded = 15;
+    let bossActive = false;
+
+    // Handle Key Collection
+    document.querySelectorAll('.easter-egg-key').forEach((keyEl) => {
+        keyEl.addEventListener('click', function() {
+            if (this.classList.contains('found')) return;
+            
+            this.classList.add('found');
+            keysFound++;
+            
+            // Show inventory if first key
+            if (keysFound === 1 && keysInventory) {
+                keysInventory.classList.add('visible');
+            }
+            
+            // Light up slot
+            const slot = document.getElementById(`slot-${keysFound}`);
+            if (slot) slot.classList.add('filled');
+            
+            // Check win condition
+            if (keysFound === totalKeys) {
+                setTimeout(() => {
+                    if(bossModal) bossModal.style.display = 'flex';
+                }, 1000); // Wait for the last key animation to finish
+            }
+        });
+    });
+
+    // Boss Fight Logic
+    function resetBoss() {
+        timeLeft = 10.0;
+        hitsNeeded = 15;
+        bossActive = false;
+        clearInterval(bossTimer);
+        clearInterval(bossMoveInterval);
+        
+        if(document.getElementById('boss-intro')) document.getElementById('boss-intro').style.display = 'block';
+        if(bossArea) bossArea.style.display = 'none';
+        if(bossStats) bossStats.style.display = 'none';
+        if(bossResult) bossResult.style.display = 'none';
+        
+        if(hitsLeftSpan) hitsLeftSpan.textContent = hitsNeeded;
+        if(timeSpan) timeSpan.textContent = timeLeft.toFixed(1);
+        if(bossTarget) {
+            bossTarget.style.top = '10%';
+            bossTarget.style.left = '10%';
+        }
+    }
+
+    function moveBoss() {
+        if (!bossActive || !bossTarget || !bossArea) return;
+        const areaW = bossArea.clientWidth;
+        const areaH = bossArea.clientHeight;
+        const targetW = bossTarget.offsetWidth || 60;
+        const targetH = bossTarget.offsetHeight || 60;
+        
+        const maxLeft = areaW - targetW - 10;
+        const maxTop = areaH - targetH - 10;
+        
+        const randomLeft = Math.max(10, Math.random() * maxLeft);
+        const randomTop = Math.max(10, Math.random() * maxTop);
+        
+        bossTarget.style.left = `${randomLeft}px`;
+        bossTarget.style.top = `${randomTop}px`;
+    }
+
+    function startBossFight() {
+        if(document.getElementById('boss-intro')) document.getElementById('boss-intro').style.display = 'none';
+        if(bossResult) bossResult.style.display = 'none';
+        if(bossArea) bossArea.style.display = 'block';
+        if(bossStats) bossStats.style.display = 'flex';
+        
+        bossActive = true;
+        hitsNeeded = 15;
+        timeLeft = 10.0;
+        if(hitsLeftSpan) hitsLeftSpan.textContent = hitsNeeded;
+        if(timeSpan) timeSpan.textContent = timeLeft.toFixed(1);
+
+        // Timer
+        bossTimer = setInterval(() => {
+            timeLeft -= 0.1;
+            if (timeLeft <= 0) {
+                timeLeft = 0;
+                endBossFight(false);
+            }
+            if(timeSpan) timeSpan.textContent = timeLeft.toFixed(1);
+        }, 100);
+
+        // Move target randomly
+        bossMoveInterval = setInterval(moveBoss, 700);
+        moveBoss(); // initial move
+    }
+
+    function endBossFight(win) {
+        bossActive = false;
+        clearInterval(bossTimer);
+        clearInterval(bossMoveInterval);
+        
+        if(bossArea) bossArea.style.display = 'none';
+        if(bossStats) bossStats.style.display = 'none';
+        if(bossResult) bossResult.style.display = 'block';
+        
+        if (win) {
+            if(document.getElementById('result-title')) document.getElementById('result-title').innerHTML = '<span class="text-green">SYSTEM SECURED</span>';
+            if(document.getElementById('result-desc')) document.getElementById('result-desc').textContent = 'Incredible reflexes! You successfully neutralized the rogue Alphabot object and proved your developer mettle. Welcome to the elite tier.';
+            if(retryBossBtn) retryBossBtn.textContent = 'Play Again';
+        } else {
+            if(document.getElementById('result-title')) document.getElementById('result-title').innerHTML = '<span style="color: #ef4444;">MISSION FAILED</span>';
+            if(document.getElementById('result-desc')) document.getElementById('result-desc').textContent = 'The rogue Alphabot escaped. You weren\'t fast enough.';
+            if(retryBossBtn) retryBossBtn.textContent = 'Retry Mission';
+        }
+    }
+
+    if(bossTarget) {
+        bossTarget.addEventListener('click', (e) => {
+            if (!bossActive) return;
+            // prevent clicks from bubbling or selecting text
+            e.preventDefault();
+            
+            hitsNeeded--;
+            hitsLeftSpan.textContent = hitsNeeded;
+            
+            // Visual feedback
+            bossTarget.style.transform = 'scale(0.8)';
+            setTimeout(() => bossTarget.style.transform = 'scale(1)', 100);
+            
+            if (hitsNeeded <= 0) {
+                endBossFight(true);
+            } else {
+                // Move immediately on hit to make it harder
+                moveBoss();
+            }
+        });
+    }
+
+    if(bossStartBtn) bossStartBtn.addEventListener('click', startBossFight);
+    if(retryBossBtn) retryBossBtn.addEventListener('click', resetBoss);
+    if(bossCloseBtn && bossModal) {
+        bossCloseBtn.addEventListener('click', () => {
+            bossModal.style.display = 'none';
+            resetBoss();
+        });
+    }
+
 });
