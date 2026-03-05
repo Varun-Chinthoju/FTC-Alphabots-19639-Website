@@ -135,6 +135,16 @@ document.addEventListener('DOMContentLoaded', () => {
             matchingNavBtn.classList.add('active');
         }
 
+        // Show/hide season sub-bar based on active tab
+        const seasonSubBar = document.getElementById('season-sub-bar');
+        if (seasonSubBar) {
+            if (targetId === 'members') {
+                seasonSubBar.style.display = 'flex';
+            } else {
+                seasonSubBar.style.display = 'none';
+            }
+        }
+
         // Show pane
         targetPane.classList.remove('hidden');
         void targetPane.offsetWidth; // Force reflow

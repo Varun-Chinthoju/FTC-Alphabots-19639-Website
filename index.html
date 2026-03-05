@@ -28,10 +28,9 @@
             
             <ul class="nav-links" id="nav-links">
                 <li><button class="nav-btn active" data-target="home">Home</button></li>
-                <li><button class="nav-btn" data-target="team">Team & About Us</button></li>
+                <li><button class="nav-btn" data-target="members">Team Members</button></li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
                 <li><button class="nav-btn" data-target="gallery">Gallery</button></li>
-                <li><button class="nav-btn" data-target="members">Team Members</button></li>
                 <li><button class="nav-btn" data-target="robot">Robot & CAD</button></li>
                 <li><button class="nav-btn" data-target="stats">Stats & Scout Data</button></li>
                 <li><button class="nav-btn" data-target="contact">Contact</button></li>
@@ -40,6 +39,19 @@
                 <i class="ph ph-list"></i>
             </button>
         </nav>
+        <!-- Season sub-bar: shown only when Team Members tab is active -->
+        <div id="season-sub-bar" class="season-sub-bar" style="display: none;">
+            <div class="season-select-wrapper">
+                <select id="season-select" class="season-select">
+                    <option value="2025-2026" selected>2025–2026 (INTO THE DEEP)</option>
+                    <option value="2024-2025">2024–2025 (CENTERSTAGE)</option>
+                    <option value="2023-2024">2023–2024 (POWERPLAY)</option>
+                    <option value="2022-2023">2022–2023 (FREIGHT FRENZY)</option>
+                    <option value="2021-2022">2021–2022 (ULTIMATE GOAL)</option>
+                </select>
+                <i class="ph ph-caret-down season-select-icon"></i>
+            </div>
+        </div>
     </header>
 
     <main class="content-container">
@@ -64,34 +76,6 @@
                 <div class="hero-visual reveal delay-2">
                     <div class="premium-card p-1" style="padding: 1rem;">
                         <img src="bot.jpg" alt="Alphabots Robot" style="width: 100%; height: auto; border-radius: calc(var(--border-radius-2xl) - 4px); object-fit: cover; aspect-ratio: 4/3;">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TEAM & ABOUT US SECTION -->
-        <section id="team" class="tab-pane fade-in hidden">
-            <div class="section-header reveal">
-                <h2>Our <span class="highlight-text">Mission</span></h2>
-                <div class="header-line"></div>
-            </div>
-
-            <div class="premium-card text-center mission-card reveal delay-1">
-                <i class="ph ph-target text-green" style="font-size: 3.5rem; margin-bottom: 1rem; display: inline-block;"></i>
-                <p class="large-text">Facilitate members of the organization and the community to learn more about math and science, while expanding their knowledge of careers involving computer programming, business, engineering and robotics. Our goal is also to spread STEM awareness by getting young people interested in these fields to get them to pursue their interests further.</p>
-            </div>
-
-            <div class="grid-2-col mt-3">
-                <div class="premium-card flex-col reveal delay-2">
-                    <h3><i class="ph ph-users-three"></i> Who We Are</h3>
-                    <p>We are a group of 13 to 15-year-olds with a passion for robotics. We have the drive to compete, trying to learn and also spread the word about computer science, business, and engineering.</p>
-                    <p>Our robotics team members build and program robots to compete at regional competitions, potentially qualifying for the NorCal State tournament and World Championship.</p>
-                </div>
-                <div class="premium-card flex-col reveal delay-3">
-                    <h3><i class="ph ph-buildings"></i> Organization</h3>
-                    <p>Our team consists of 9 students from multiple middle and high schools in the Fremont Unified School District. We have 2 coaches and 2 mentors on the team.</p>
-                    <div class="org-badge mt-auto">
-                        Alphabots is a 501(c)(3) non-profit organization (EIN: 81-1543325) based in Fremont, California.
                     </div>
                 </div>
             </div>
@@ -151,25 +135,10 @@
         <section id="members" class="tab-pane fade-in hidden">
             <div class="section-header reveal">
                 <h2>Team <span class="highlight-text">Members</span></h2>
-                <p class="text-muted text-center">Select a season to view the roster</p>
                 <div class="header-line"></div>
             </div>
 
-            <div class="reveal delay-1" style="display: flex; justify-content: center; margin-bottom: 2rem;">
-                <div class="season-select-wrapper">
-                    <select id="season-select" class="season-select">
-                        <option value="2025-2026" selected>2025–2026 (DECODE)</option>
-                        <option value="2024-2025">2024–2025 (INTO THE DEEP)</option>
-                        <option value="2023-2024">2023–2024 (CENTERSTAGE)</option>
-                        <option value="2022-2023">2022–2023 (POWERPLAY)</option>
-                        <option value="2021-2022">2021–2022 (FREIGHT FRENZY)</option>
-                    </select>
-                    <i class="ph ph-caret-down season-select-icon"></i>
-                </div>
-            </div>
-
-            <div id="members-grid" class="members-grid reveal delay-2">
-                <!-- Members will be populated by JS based on selected season -->
+            <div id="members-grid" class="members-grid reveal delay-1">
                 <p class="text-muted text-center" style="grid-column: 1/-1;">Select a season above to view team members.</p>
             </div>
         </section>
