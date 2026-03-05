@@ -36,7 +36,6 @@
                         <button class="season-option" data-season="2023-2024">2023–2024 <span>CENTERSTAGE</span></button>
                         <button class="season-option" data-season="2022-2023">2022–2023 <span>POWERPLAY</span></button>
                         <button class="season-option" data-season="2021-2022">2021–2022 <span>FREIGHT FRENZY</span></button>
-                        <button class="season-option" data-season="alumni" style="border-top: 1px solid rgba(13,163,113,0.2); margin-top: 0.25rem; padding-top: 0.75rem;">🎓 <span>Alumni</span></button>
                     </div>
                 </li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
@@ -462,6 +461,18 @@
         </section>
 
 
+        <!-- ALUMNI SECTION -->
+        <section id="alumni" class="tab-pane fade-in hidden">
+            <div class="section-header reveal">
+                <h2>Team <span class="highlight-text">Alumni</span></h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="text-muted text-center reveal delay-1" style="margin-bottom: 2rem;">Honoring the past members who helped build Team 19639 into what it is today.</p>
+            <div id="alumni-grid" class="members-grid reveal delay-2">
+                <p class="text-muted text-center" style="grid-column: 1/-1;">Loading alumni...</p>
+            </div>
+        </section>
+
         <!-- CONTACT SECTION -->
         <section id="contact" class="tab-pane fade-in hidden">
              <div class="section-header reveal">
@@ -515,7 +526,11 @@
             <div class="footer-divider"></div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Alphabots Robotics 19639. A 501(c)(3) Non-Profit Organization.</p>
-                <p class="text-sm mt-05">Designed for the Future.</p>
+                <div style="display: flex; justify-content: center; gap: 8px; align-items: center; margin-top: 0.5rem;" class="text-sm">
+                    <span>Designed for the Future.</span>
+                    <span class="text-muted">|</span>
+                    <button class="cta-nav" data-target="alumni" style="background:none; border:none; color:inherit; text-decoration:underline; font-family:inherit; font-size:inherit; padding:0; cursor:pointer;" aria-label="View Alumni">Alumni</button>
+                </div>
             </div>
         </div>
     </footer>

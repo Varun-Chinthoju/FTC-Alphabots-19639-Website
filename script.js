@@ -151,6 +151,12 @@ document.addEventListener('DOMContentLoaded', () => {
             fetchStats();
         }
 
+        // If 'alumni' tab is clicked, render alumni if we haven't already
+        if (targetId === 'alumni' && !window.alumniRendered) {
+            renderAlumni();
+            window.alumniRendered = true;
+        }
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // Trigger reveal animations manually for the new tab after a tiny delay
@@ -328,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             "name": "Aashi",
-            "role": "Member",
+            "role": "Outreach Member",
             "img": ""
         }
     ],
@@ -650,22 +656,104 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedSeason = e.currentTarget.getAttribute('data-season');
                 seasonDropdown.classList.remove('open');
                 
-                if (selectedSeason === 'alumni') {
-                    // Render alumni in the members grid
-                    renderAlumni();
-                    switchTab('members');
-                    navButtons.forEach(b => b.classList.remove('active'));
-                    membersToggle.classList.add('active');
-                    moveIndicator(membersToggle, true);
-                } else {
-                    renderMembers(selectedSeason);
-                    switchTab('members');
-                    navButtons.forEach(b => b.classList.remove('active'));
-                    membersToggle.classList.add('active');
+                renderMembers(selectedSeason);
+                switchTab('members');
+                navButtons.forEach(b => b.classList.remove('active'));
+                membersToggle.classList.add('active');
+                if (typeof moveIndicator === 'function') {
                     moveIndicator(membersToggle, true);
                 }
             });
         });
+    }
+
+    function renderAlumni() {
+        const grid = document.getElementById('alumni-grid');
+        if (!grid) return;
+
+        // Get current season members
+        const currentSeason = '2025-2026';
+        const currentMembers = new Set(
+            (teamData[currentSeason] || []).map(m => m.name)
+        );
+
+        // Collect all past members not in current season
+        const alumniMap = {};
+        const seasons = Object.keys(teamData);
+        
+        for (const season of seasons) {
+            if (season === currentSeason) continue;
+            for (const m of teamData[season]) {
+                if (currentMembers.has(m.name)) continue; // skip current members
+                
+                if (!alumniMap[m.name]) {
+                    alumniMap[m.name] = {
+                        name: m.name,
+                        seasons: [],
+                        img: '',
+                        bestRole: m.role
+                    };
+                }
+                alumniMap[m.name].seasons.push(season);
+                // Prefer the most recent photo
+                if (m.img && m.img.length > 5) {
+                    alumniMap[m.name].img = m.img;
+                }
+                // Pick the highest role (captain > member)
+                if (m.role.toLowerCase().includes('captain') && !alumniMap[m.name].bestRole.toLowerCase().includes('captain')) {
+                    alumniMap[m.name].bestRole = m.role;
+                }
+            }
+        }
+
+        const alumni = Object.values(alumniMap);
+        
+        if (alumni.length === 0) {
+            grid.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">No alumni data available.</p>';
+            return;
+        }
+
+        // Sort: captains first, then alphabetically
+        alumni.sort((a, b) => {
+            const aIsCap = a.bestRole.toLowerCase().includes('captain') ? 0 : 1;
+            const bIsCap = b.bestRole.toLowerCase().includes('captain') ? 0 : 1;
+            if (aIsCap !== bIsCap) return aIsCap - bIsCap;
+            return a.name.localeCompare(b.name);
+        });
+
+        grid.innerHTML = alumni.map((m, i) => {
+            let avatarHTML = '';
+            if (m.img && m.img.length > 5) {
+                avatarHTML = `<img src="${m.img}" alt="${m.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+            } else {
+                avatarHTML = `<span>${getInitials(m.name)}</span>`;
+            }
+
+            const yearsStr = m.seasons.length === 1
+                ? m.seasons[0]
+                : `${m.seasons[m.seasons.length - 1]} – ${m.seasons[0]}`;
+
+            let roleClass = 'role-member';
+            const r = m.bestRole.toLowerCase();
+            if ((r.includes('captain') || r === 'captain') && !r.includes('software') && !r.includes('hardware') && !r.includes('outreach')) {
+                roleClass = 'role-captain';
+            } else if (r.includes('software')) {
+                roleClass = 'role-software';
+            } else if (r.includes('hardware')) {
+                roleClass = 'role-hardware';
+            } else if (r.includes('outreach')) {
+                roleClass = 'role-outreach';
+            }
+
+            return `
+            <div class="member-card" style="animation: fadeInUp 0.4s ease ${i * 0.07}s both;">
+                <div class="member-avatar ${roleClass}">${avatarHTML}</div>
+                <div class="member-name">${m.name}</div>
+                <div class="member-role">${m.bestRole}</div>
+                <div class="member-role" style="font-size: 0.7rem; margin-top: 0.25rem; opacity: 0.5;">${yearsStr}</div>
+            </div>
+            `;
+        }).join('');
     }
 
     // =========================================
