@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             "name": "Aadit Verma",
-            "role": "Hardware Member",
+            "role": "Outreach Member",
             "img": "images/team/2024_2025_aadit_verma.jpg"
         },
         {
