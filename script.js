@@ -291,11 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "img": ""
         },
         {
-            "name": "Renu Mandala",
-            "role": "Software Member",
-            "img": ""
-        },
-        {
             "name": "Saket Sandru",
             "role": "Hardware Captain",
             "img": "images/team/2025_2026_saket_sandru.jpg"
@@ -324,6 +319,11 @@ document.addEventListener('DOMContentLoaded', () => {
             "name": "Rushil Shah",
             "role": "Outreach Captain",
             "img": "images/team/2025_2026_rushil_shah.jpg"
+        },
+        {
+            "name": "Renu Mandala",
+            "role": "Outreach Member",
+            "img": ""
         },
         {
             "name": "Vihaan Sanghvi",
@@ -694,7 +694,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameId === 'penalty') initPenalty();
         if (gameId === 'hangman') initHangman();
         if (gameId === 'memory') initMemory();
-        if (gameId === 'calculator') initCalculator();
     }
 
     // --- 1. FTC WORDLE ---
@@ -1574,70 +1573,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('memory-restart').addEventListener('click', initMemory);
-
-    // --- 9. SCORE CALCULATOR (Into The Deep) ---
-    // Rules: High Basket=8, Low Basket=4, High Chamber=10, Low Chamber=6, Level 1 Ascent=3, Level 2 Ascent=15, Level 3 Ascent=30, Park=3
-    let calcCorrectScore = 0;
-
-    function initCalculator() {
-        document.getElementById('calc-feedback').textContent = '';
-        document.getElementById('calc-input').value = '';
-        document.getElementById('calc-next').classList.add('hidden');
-        document.getElementById('calc-submit').classList.remove('hidden');
-        
-        const hBasket = Math.floor(Math.random() * 5);
-        const lBasket = Math.floor(Math.random() * 3);
-        const hChamber = Math.floor(Math.random() * 4);
-        const lChamber = Math.floor(Math.random() * 2);
-        
-        const ascents = ["None", "Level 1 (3 pt)", "Level 2 (15 pt)", "Level 3 (30 pt)", "Park (3 pt)"];
-        const ascentIdx = Math.floor(Math.random() * ascents.length);
-        const ascentStr = ascents[ascentIdx];
-        
-        let ascPts = 0;
-        if(ascentIdx===1) ascPts=3;
-        else if(ascentIdx===2) ascPts=15;
-        else if(ascentIdx===3) ascPts=30;
-        else if(ascentIdx===4) ascPts=3;
-
-        calcCorrectScore = (hBasket*8) + (lBasket*4) + (hChamber*10) + (lChamber*6) + ascPts;
-        
-        const desc = `
-            <ul style="list-style-type:disc; padding-left:20px; color:var(--text)">
-                <li>High Basket Samples (8pt): ${hBasket}</li>
-                <li>Low Basket Samples (4pt): ${lBasket}</li>
-                <li>High Chamber Specimens (10pt): ${hChamber}</li>
-                <li>Low Chamber Specimens (6pt): ${lChamber}</li>
-                <li>Robot Status: ${ascentStr}</li>
-            </ul>
-        `;
-        document.getElementById('calc-scenario').innerHTML = desc;
-    }
-
-    document.getElementById('calc-submit').addEventListener('click', () => {
-        const input = parseInt(document.getElementById('calc-input').value);
-        const fb = document.getElementById('calc-feedback');
-        
-        if (isNaN(input)) {
-            fb.textContent = "Please enter a number.";
-            fb.style.color = "#ef4444";
-            return;
-        }
-        
-        if (input === calcCorrectScore) {
-            fb.textContent = "Correct! Great job Ref!";
-            fb.style.color = "var(--brand-green)";
-            document.getElementById('calc-submit').classList.add('hidden');
-            document.getElementById('calc-next').classList.remove('hidden');
-        } else {
-            fb.textContent = `Incorrect! The actual score is ${calcCorrectScore}.`;
-            fb.style.color = "#ef4444";
-            document.getElementById('calc-submit').classList.add('hidden');
-            document.getElementById('calc-next').classList.remove('hidden');
-        }
-    });
-
-    document.getElementById('calc-next').addEventListener('click', initCalculator);
 
 
 });
