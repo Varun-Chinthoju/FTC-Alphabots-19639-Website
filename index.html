@@ -41,6 +41,7 @@
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
                 <li><button class="nav-btn" data-target="gallery">Gallery</button></li>
                 <li><button class="nav-btn" data-target="stats">Stats & Scout Data</button></li>
+                <li><button class="nav-btn" data-target="alumni">Alumni</button></li>
                 <li><button class="nav-btn" data-target="training">Training</button></li>
                 <li><button class="nav-btn" data-target="contact">Contact</button></li>
             </ul>
@@ -77,26 +78,6 @@
                 </div>
             </div>
 
-            <!-- INTERACTIVE GREEN FLUID LAB -->
-            <div class="fluid-lab-section reveal delay-3" style="margin-top: 4rem;">
-                <div class="section-header">
-                    <h2>Interactive <span class="highlight-text">Slime Lab</span></h2>
-                    <p class="text-muted text-center" style="margin-bottom: 2rem;">Tilt your device or move your mouse to play with the fluid!</p>
-                </div>
-                <!-- SVG Filter for Gooey Effect -->
-                <svg width="0" height="0" style="position:absolute; visibility:hidden;">
-                  <defs>
-                    <filter id="goo">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
-                      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10" result="goo" />
-                      <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                  </defs>
-                </svg>
-                <div class="fluid-container premium-card p-0" style="padding:0; overflow:hidden;">
-                    <canvas id="fluid-canvas"></canvas>
-                </div>
-            </div>
         </section>
 
         <!-- OUTREACH SECTION -->
@@ -471,6 +452,18 @@
                     <h4 class="text-2xl font-bold text-green">Board Cleared!</h4>
                     <button id="memory-restart" class="btn btn-primary mt-4">Play Again</button>
                 </div>
+            </div>
+        </section>
+
+        <!-- ALUMNI SECTION -->
+        <section id="alumni" class="tab-pane fade-in hidden">
+            <div class="section-header reveal">
+                <h2>Team <span class="highlight-text">Alumni</span></h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="text-muted text-center reveal delay-1" style="margin-bottom: 2rem;">Honoring the past members who helped build Team 19639 into what it is today.</p>
+            <div id="alumni-grid" class="members-grid reveal delay-2">
+                <p class="text-muted text-center" style="grid-column: 1/-1;">Loading alumni...</p>
             </div>
         </section>
 
