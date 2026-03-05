@@ -728,13 +728,23 @@ document.addEventListener('DOMContentLoaded', () => {
             option.addEventListener('click', (e) => {
                 selectedSeason = e.currentTarget.getAttribute('data-season');
                 seasonDropdown.classList.remove('open');
-                renderMembers(selectedSeason);
-                // Now switch to the members tab
-                switchTab('members');
-                // Also activate the members-toggle button visually
-                navButtons.forEach(b => b.classList.remove('active'));
-                membersToggle.classList.add('active');
-                moveIndicator(membersToggle, true);
+                
+                if (selectedSeason === 'alumni') {
+                    // Switch to the Alumni tab
+                    switchTab('alumni');
+                    navButtons.forEach(b => b.classList.remove('active'));
+                    const alumniBtn = document.querySelector('[data-target="alumni"]');
+                    if (alumniBtn) {
+                        alumniBtn.classList.add('active');
+                        moveIndicator(alumniBtn, true);
+                    }
+                } else {
+                    renderMembers(selectedSeason);
+                    switchTab('members');
+                    navButtons.forEach(b => b.classList.remove('active'));
+                    membersToggle.classList.add('active');
+                    moveIndicator(membersToggle, true);
+                }
             });
         });
     }
