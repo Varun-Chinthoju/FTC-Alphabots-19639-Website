@@ -47,9 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const curLeft = parseFloat(liquidIndicator.style.left) || targetLeft;
         const curWidth = parseFloat(liquidIndicator.style.width) || btnRect.width;
 
-        // Phase 1: Stretch to bridge old and new positions (gooey pull)
-        const stretchL = Math.min(curLeft, targetLeft);
-        const stretchW = Math.max(curLeft + curWidth, targetLeft + btnRect.width) - stretchL;
+        // Phase 1: Stretch only 25% of the distance (short slime trail)
+        const fullStretchL = Math.min(curLeft, targetLeft);
+        const fullStretchR = Math.max(curLeft + curWidth, targetLeft + btnRect.width);
+        const fullStretchW = fullStretchR - fullStretchL;
+
+        // Lerp from current size toward the full stretch by 25%
+        const curCenter = curLeft + curWidth / 2;
+        const stretchCenter = fullStretchL + fullStretchW / 2;
+        const lerpCenter = curCenter + (stretchCenter - curCenter) * 0.25;
+        const lerpWidth = curWidth + (fullStretchW - curWidth) * 0.25;
+        const stretchL = lerpCenter - lerpWidth / 2;
+        const stretchW = lerpWidth;
 
         liquidIndicator.classList.add('stretching');
         liquidIndicator.style.left = stretchL + 'px';
