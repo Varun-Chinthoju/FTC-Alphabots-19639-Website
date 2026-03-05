@@ -610,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ======= Alumni: Compute and Render =======
     function renderAlumni() {
-        const grid = document.getElementById('alumni-grid');
+        const grid = document.getElementById('members-grid');
         if (!grid) return;
 
         // Get current season members
@@ -686,8 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
 
-    // Render alumni on load
-    renderAlumni();
+
 
     // ======= Team Members Dropdown =======
     const membersToggle = document.getElementById('members-toggle');
@@ -730,14 +729,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 seasonDropdown.classList.remove('open');
                 
                 if (selectedSeason === 'alumni') {
-                    // Switch to the Alumni tab
-                    switchTab('alumni');
+                    // Render alumni in the members grid
+                    renderAlumni();
+                    switchTab('members');
                     navButtons.forEach(b => b.classList.remove('active'));
-                    const alumniBtn = document.querySelector('[data-target="alumni"]');
-                    if (alumniBtn) {
-                        alumniBtn.classList.add('active');
-                        moveIndicator(alumniBtn, true);
-                    }
+                    membersToggle.classList.add('active');
+                    moveIndicator(membersToggle, true);
                 } else {
                     renderMembers(selectedSeason);
                     switchTab('members');
