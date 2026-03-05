@@ -916,10 +916,39 @@ header {
 }
 
 .game-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(13, 163, 113, 0.5);
-    box-shadow: 0 10px 30px rgba(13, 163, 113, 0.15);
-    background: linear-gradient(135deg, rgba(13, 163, 113, 0.2) 0%, rgba(5, 5, 5, 0.5) 100%);
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(13, 163, 113, 0.6);
+    box-shadow: 0 15px 35px rgba(13, 163, 113, 0.25), inset 0 0 20px rgba(13, 163, 113, 0.2);
+    background: linear-gradient(135deg, rgba(13, 163, 113, 0.3) 0%, rgba(5, 5, 5, 0.7) 100%);
+    animation: slimeJiggle 0.4s ease-in-out, gameCardWobble 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes gameCardWobble {
+    0%, 100% { border-radius: var(--border-radius-xl); }
+    33% { border-radius: 40px 20px 50px 30px / 30px 50px 20px 40px; }
+    66% { border-radius: 20px 50px 30px 40px / 50px 20px 40px 30px; }
+}
+
+.game-card::after {
+    content: '';
+    position: absolute;
+    top: -50%; width: 200%; height: 200%; left: -50%;
+    background: radial-gradient(circle, rgba(13, 163, 113, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.game-card:hover::after {
+    opacity: 1;
+    animation: rotateSlime 4s linear infinite;
+}
+
+@keyframes rotateSlime {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .game-card-icon {
