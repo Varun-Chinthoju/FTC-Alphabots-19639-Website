@@ -1109,6 +1109,26 @@ header {
     border-radius: var(--border-radius-xl);
     border: 1px solid rgba(255,255,255,0.05);
 }
+
+@keyframes shakeRow {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+.wordle-row.shake {
+    animation: shakeRow 0.4s ease;
+}
+
+@keyframes jiggleRow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+.wordle-row.jiggle {
+    animation: jiggleRow 0.3s ease;
+}
+
 .wordle-key-row {
     display: flex;
     gap: 6px;

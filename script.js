@@ -275,71 +275,71 @@ document.addEventListener('DOMContentLoaded', () => {
     // ======= Team Members Season Selector =======
     const teamData = {
         '2025-2026': [
-            { name: 'Suhas Bathini', role: 'Team Captain' },
-            { name: 'Akshay Shoroff', role: 'Team Captain' },
-            { name: 'Rushil Shah', role: 'Outreach Captain' },
-            { name: 'Saket Sandru', role: 'Hardware Captain' },
-            { name: 'Aadit Verma', role: 'Outreach Captain' },
-            { name: 'Varun Chinthoju', role: 'Hardware Member' },
-            { name: 'Srithan Deverashetty', role: 'Hardware Member' },
-            { name: 'Shiv Gurjar', role: 'Hardware Member' },
-            { name: 'Vihaan Sanghvi', role: 'Outreach Member' },
-            { name: 'Dhruv Mandala', role: 'Software Member' },
-            { name: 'Renu Mandala', role: 'Outreach Member' },
-            { name: 'Aashi', role: 'Outreach Member' },
+            { name: 'Akshay Shoroff', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSTfP8Mi_okxxi6VjwFN_2yFWvVZAo_LX64VAnf1MA872EvqhwjPSYSAvNd_8gGfE1pWfQ7PuZ_7ZIVpIZtPiJ4NLJsFsjhbFWdP6Bm6g7Iw-t3vgyELztjI6FODMs0wA3lCU9_AMDd5YvwBLny48UlfygzLiUZcoSRzajSUknuxNwiYO1tPiasZjC_PdEVNfsLVV-JF4R6ObR_7KQCeDcWkucD4Uo9027Lpv8=w1280' },
+            { name: 'Suhas Bathini', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SR2mda6zeZ7YJwN9f8QVma0vzCJB8t5UDbA2tLf1cDpMJ3uHh_dp8IrSyJJm-1kZeK4e9pggkimVjgKjmJOpH7vxSBhbrvLh829tJ4kui6sxxgfHUn9W6MwtdbG01u0r9uy2lwGZdIRcdA9T8OUnqu4B2oeb-bHcSU1LTbHuBg3CtwrmXa4QxCV0B_QvHkicKu6-o7udvWCz49vETWlnC4oSvOEaGBRsaAMXNs=w1280' },
+            { name: 'Dhruv Mandala', role: 'Software Member', img: '' },
+            { name: 'Renu Mandala', role: 'Software Member', img: '' },
+            { name: 'Saket Sandru', role: 'Hardware Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQMMpDXKugsxnr-hrBcs6GZ4xzAxl_Q4dwIpAeRlAxfqflbzAyE-8zN1dYimK0ImbULS-ugHlA6tFNXt8CqjdWbQ_Ux6oNwuRS43vs6EAHWTe42S0CfiMGOvJ9tjmgoH4eL185jpmXBmaXZJbElBCSCc-IZP5cJdBFrbLVysCR1TuDPlxoLRAbjPRoeU7owLGzKsatv5QL9DIS4LkzHbOTk_aYF8FznQTgZQkA=w1280' },
+            { name: 'Aadit Verma', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STK6zD59tii0xyD_Tyg4bXqyWzRlxwQgUL1nPJP1Ojiy8OjLPSFHODr02_CUUuilp52mxSAGBkyK40Db28dNsYmgH8U0ROdDvd_NuAg1_yTIZgaHTwoB4J0nDybXNcrXYjvRy1qWuivKgoZLWLXVJp8chStAeY66LZFL1qbgp6-Eu2yeOgMMx1X07j_r2klPKm-BRQ6u0nhUTlOtXYAQxOicyd3U1b5DEiN=w1280' },
+            { name: 'Shiv Gurjar', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRfQIOKxo4yyROfBQ5Eue8vjhW0eUZV2EzbpeMJL35ho1uxok9e4te1oL8Xzwhc8ZpxhP4Jwi5AIEf7cerXB4-zRaSGDpvwzOdjY8JDnrI2Sk9eFW0jxL27DcNXu1YYHdY3_GSvZ74bdgVmxAU3rz2xus09bPksN0uBmOMM_iAqsoTgoejTqZtmF6HlKXXyLUNMblEEwC_yR2ehYoBtfKx1zlU6Ju0zW4jhh7c=w1280' },
+            { name: 'Srithan Deverashetty', role: 'Hardware Member', img: '' },
+            { name: 'Varun Chinthoju', role: 'Hardware Member', img: '' },
+            { name: 'Rushil Shah', role: 'Outreach Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSyuqZeiikJqw0YSK_7ksiJ4wXDGDOesJUgc19raj8fq0ZGQTxnq_fzqYrU-cIgsvVEFeQI3U50S22ZmqvWLTd8d0gYHPTuXtjHHJq1meqG4TGMPW4SKm443cYAfoKm7lToFvbYsRpGF3r2W9w6gA4K-7n9ZE40ljvBbjZ0ZaaWlhCvGqwORloLRFkF6jxOtMus4J1zoOp0g2pDUmRHwaKvhHMrafgk403z=w1280' },
+            { name: 'Vihaan Sanghvi', role: 'Outreach Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRVXqa_0AXUSHv343BL5PyR3wI-T_MAv9GQX1v40_GgfBtJfKKbZlsQeLY4uPp6ZdvHqM1GIx5hsfw0Z_ewewh9zGculuPHEP2itWrqgp2NBwvkpbAE3TaLOUb_wmpTxYQGFt0fqWsnB-EMZkET-pBLZFCQWkIpIQxMntqMR4Bn1i_XAadggRwm-7jwIzQYY4OpH7D1h8xViIA_HXy1S-4K0hoyiKzGQ-x7=w1280' },
+            { name: 'Aashi', role: 'Member', img: '' }
         ],
         '2024-2025': [
-            { name: 'Suhas Bathini', role: 'Team Captain' },
-            { name: 'Akshay Shoroff', role: 'Team Captain' },
-            { name: 'Rushil Shah', role: 'Outreach Captain' },
-            { name: 'Shiv Gurjar', role: 'Hardware Captain' },
-            { name: 'Aadit Verma', role: 'Outreach Captain' },
-            { name: 'Trisha Bhuwania', role: 'Software Member' },
-            { name: 'Ronit Parikh', role: 'Software Member' },
-            { name: 'Rishaan Jain', role: 'Software Member' },
-            { name: 'Saket Sandru', role: 'Hardware Member' },
-            { name: 'Vihaan Sanghvi', role: 'Outreach Member' },
-            { name: 'Simran Chhabria', role: 'Hardware Member' },
-            { name: 'Saanvi Shah', role: 'Outreach Member' },
+            { name: 'Akshay Shoroff', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSTfP8Mi_okxxi6VjwFN_2yFWvVZAo_LX64VAnf1MA872EvqhwjPSYSAvNd_8gGfE1pWfQ7PuZ_7ZIVpIZtPiJ4NLJsFsjhbFWdP6Bm6g7Iw-t3vgyELztjI6FODMs0wA3lCU9_AMDd5YvwBLny48UlfygzLiUZcoSRzajSUknuxNwiYO1tPiasZjC_PdEVNfsLVV-JF4R6ObR_7KQCeDcWkucD4Uo9027Lpv8=w1280' },
+            { name: 'Suhas Bathini', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SR2mda6zeZ7YJwN9f8QVma0vzCJB8t5UDbA2tLf1cDpMJ3uHh_dp8IrSyJJm-1kZeK4e9pggkimVjgKjmJOpH7vxSBhbrvLh829tJ4kui6sxxgfHUn9W6MwtdbG01u0r9uy2lwGZdIRcdA9T8OUnqu4B2oeb-bHcSU1LTbHuBg3CtwrmXa4QxCV0B_QvHkicKu6-o7udvWCz49vETWlnC4oSvOEaGBRsaAMXNs=w1280' },
+            { name: 'Rishaan Jain', role: 'Software Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STVG9MAbbAaCpRe_rwqFMWxIzClytbgbZqwI2oWEPY-4w5iQZyxnlfJjIf7q7k5o8DuL_unfPSeCqbW5YFM8WJx0yjJuyUcFgQM6q7PTPbh4n8aACe229x4Houbihiy_54oXZnItErcGwtaq_IW2DCkHQNmINB1VtTvOs53tv7NtwRO8hhpsD3doXedNCmxEwcY6P_6QwTEaXDMpRmn8vvz27h_6wx7uPu1=w1280' },
+            { name: 'Ronit Parikh', role: 'Software Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRrXc4oJHQe37Bw80L-8Hq_L9dca5VT5HJS3wR-TROA4fRlnVyAQYHf-kWdpmJfk2VZ2p8lOn8Bcrf_qFYUNvsUcv5NnkgWRc5d_A3T2QGPMF-pTW64d-FJYDL99MqpohK8XYZy-z-BtAVXoyQ30W5PjON945tdpvZhmE4ThW1bLg7lZdedM-FYzW2HzmojgbS-62bOQQ6uNdV1IAnQYHurJzknUFEh7yrpN2A=w1280' },
+            { name: 'Trisha Bhuwania', role: 'Software Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STBT0OTrPdqRZZvXJqa4dGlE9PzzEKDqN3tq4EafctT5Vh75nP7BjCI-SPLuXJjzDPoqoB2sDJj4MZr8LQyL2ZEKsxaTPlIPK_tDrHArZ1zejUjsg2fav48-9QPvcofh4T1vl7o3lK4imlLjiWrpboGDYpgAfs_3hzTnna59W8qQWn-80FTk7ygEI7MSHzVRGYl6xJ5lSsLF_rOQ-Retbb5SjmB_vk8OQVA3Sg=w1280' },
+            { name: 'Shiv Gurjar', role: 'Hardware Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRfQIOKxo4yyROfBQ5Eue8vjhW0eUZV2EzbpeMJL35ho1uxok9e4te1oL8Xzwhc8ZpxhP4Jwi5AIEf7cerXB4-zRaSGDpvwzOdjY8JDnrI2Sk9eFW0jxL27DcNXu1YYHdY3_GSvZ74bdgVmxAU3rz2xus09bPksN0uBmOMM_iAqsoTgoejTqZtmF6HlKXXyLUNMblEEwC_yR2ehYoBtfKx1zlU6Ju0zW4jhh7c=w1280' },
+            { name: 'Aadit Verma', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STK6zD59tii0xyD_Tyg4bXqyWzRlxwQgUL1nPJP1Ojiy8OjLPSFHODr02_CUUuilp52mxSAGBkyK40Db28dNsYmgH8U0ROdDvd_NuAg1_yTIZgaHTwoB4J0nDybXNcrXYjvRy1qWuivKgoZLWLXVJp8chStAeY66LZFL1qbgp6-Eu2yeOgMMx1X07j_r2klPKm-BRQ6u0nhUTlOtXYAQxOicyd3U1b5DEiN=w1280' },
+            { name: 'Saket Sandru', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQMMpDXKugsxnr-hrBcs6GZ4xzAxl_Q4dwIpAeRlAxfqflbzAyE-8zN1dYimK0ImbULS-ugHlA6tFNXt8CqjdWbQ_Ux6oNwuRS43vs6EAHWTe42S0CfiMGOvJ9tjmgoH4eL185jpmXBmaXZJbElBCSCc-IZP5cJdBFrbLVysCR1TuDPlxoLRAbjPRoeU7owLGzKsatv5QL9DIS4LkzHbOTk_aYF8FznQTgZQkA=w1280' },
+            { name: 'Simran Chhabria', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STpGRhuKsNFF57rozp3hsTy2-WPlQowYCuEgN2L8vKaHvPfa2zap5c1HUp4LcSxIQUAwnaqzTfSwBwWsfpMivHoKXIVFnDg9OWAMassyxNIzf6kDYDwmv_VgMO2TnjCNtUkq1UO1zYtDGk6484rA5elL5_yncvZ02wcpnu_fWb3qjHms84hjVMXtxaL66ylLfdHEVyJ_4_oVmc6uk4YXketBS49W05fKEbJOe4=w1280' },
+            { name: 'Rushil Shah', role: 'Outreach Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSyuqZeiikJqw0YSK_7ksiJ4wXDGDOesJUgc19raj8fq0ZGQTxnq_fzqYrU-cIgsvVEFeQI3U50S22ZmqvWLTd8d0gYHPTuXtjHHJq1meqG4TGMPW4SKm443cYAfoKm7lToFvbYsRpGF3r2W9w6gA4K-7n9ZE40ljvBbjZ0ZaaWlhCvGqwORloLRFkF6jxOtMus4J1zoOp0g2pDUmRHwaKvhHMrafgk403z=w1280' },
+            { name: 'Saanvi Shah', role: 'Outreach Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQgfJsrlj4EwJxRfp-6qkeIIf3ud9aWt8kKDejvF7dd2DtN-gTvQqqiB7xdMbCJOEf-BdPs-giQikqi9wk_vaWHmChlK5VJpNGuFfwBlWDZs3et_CripOlZywBIwIelyCPYY9Fny1ua6ZOP9NacTCNTcBkOXucTdD1mFH9jRnX1Hd1NTcJbWy6YZfmX6ywWMj3oBZKvkpLdhnzSPxlaTQyXs5yzkoprYube=w1280' },
+            { name: 'Vihaan Sanghvi', role: 'Outreach Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRVXqa_0AXUSHv343BL5PyR3wI-T_MAv9GQX1v40_GgfBtJfKKbZlsQeLY4uPp6ZdvHqM1GIx5hsfw0Z_ewewh9zGculuPHEP2itWrqgp2NBwvkpbAE3TaLOUb_wmpTxYQGFt0fqWsnB-EMZkET-pBLZFCQWkIpIQxMntqMR4Bn1i_XAadggRwm-7jwIzQYY4OpH7D1h8xViIA_HXy1S-4K0hoyiKzGQ-x7=w1280' }
         ],
         '2023-2024': [
-            { name: 'Suhas Bathini', role: 'Team Captain' },
-            { name: 'Maanav Shah', role: 'Hardware Engineering Captain' },
-            { name: 'Gabriel Hwang', role: 'Outreach Captain' },
-            { name: 'Parsh Gandhi', role: 'Team Advisor' },
-            { name: 'Anand Raghunath', role: 'Software Engineering Captain' },
-            { name: 'Simran Chhabria', role: 'Hardware Engineering Vice Captain' },
-            { name: 'Rushil Shah', role: 'Game Strategy & Hardware' },
-            { name: 'Shakil Musthafa', role: 'Fundraising & Outreach' },
-            { name: 'Shiv Gurjar', role: 'Hardware & Outreach' },
-            { name: 'Akshay Shoroff', role: 'CAD Lead' },
-            { name: 'Rishaan Jain', role: 'Software & Documentation Lead' },
-            { name: 'Saanvi Shah', role: 'Outreach Member' },
-            { name: 'Trisha Bhuwania', role: 'Software Member' },
+            { name: 'Maanav Shah', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSO_ygfuwhRXG_1D0cmlxzBUowFDLuocG5HmnLe5rTxCzMMPHuPAYxmq-2XXABG06AVIjqluucLCJMe3uZ_AqeeS7ViqOaTnyZYTGI9o5C9eyEQZHBSjJ3oWDmsd8n40X4V-casYXUSyjv1nzyNPLSc6NfhggplvBPf3utPHJhzyH849NXo-UNdHpp49gDLiQZNJanBGtXvZvjF0_HvwxjU5_jruON7_JhvFrk=w1280' },
+            { name: 'Parsh Gandhi', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRLpyQThim4EqyQWJft4oVIR-epzXy8ptMVHy5qB-kev9Ey1063QQJqoyDDp9_bmGkY1WZy_D887IrjYSsauJ3hXg1mm8YWYnIGWeNvZT-w8vREa7AFykCg-FjZ50fpQyxraS5zSiI1YjC9K_TOOxKwEFXVSAD6UvK1IwmFZ-c9CLdwWPlXIH9TOHh7C1LUtnK_5xr1_RVkxlWkEF0vch96Vn0Gsy6R-SuucLw=w1280' },
+            { name: 'Suhas Bathini', role: 'Software Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SR2mda6zeZ7YJwN9f8QVma0vzCJB8t5UDbA2tLf1cDpMJ3uHh_dp8IrSyJJm-1kZeK4e9pggkimVjgKjmJOpH7vxSBhbrvLh829tJ4kui6sxxgfHUn9W6MwtdbG01u0r9uy2lwGZdIRcdA9T8OUnqu4B2oeb-bHcSU1LTbHuBg3CtwrmXa4QxCV0B_QvHkicKu6-o7udvWCz49vETWlnC4oSvOEaGBRsaAMXNs=w1280' },
+            { name: 'Rishaan Jain', role: 'Software Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STVG9MAbbAaCpRe_rwqFMWxIzClytbgbZqwI2oWEPY-4w5iQZyxnlfJjIf7q7k5o8DuL_unfPSeCqbW5YFM8WJx0yjJuyUcFgQM6q7PTPbh4n8aACe229x4Houbihiy_54oXZnItErcGwtaq_IW2DCkHQNmINB1VtTvOs53tv7NtwRO8hhpsD3doXedNCmxEwcY6P_6QwTEaXDMpRmn8vvz27h_6wx7uPu1=w1280' },
+            { name: 'Trisha Bhuwania', role: 'Software Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STBT0OTrPdqRZZvXJqa4dGlE9PzzEKDqN3tq4EafctT5Vh75nP7BjCI-SPLuXJjzDPoqoB2sDJj4MZr8LQyL2ZEKsxaTPlIPK_tDrHArZ1zejUjsg2fav48-9QPvcofh4T1vl7o3lK4imlLjiWrpboGDYpgAfs_3hzTnna59W8qQWn-80FTk7ygEI7MSHzVRGYl6xJ5lSsLF_rOQ-Retbb5SjmB_vk8OQVA3Sg=w1280' },
+            { name: 'Gabriel Hwang', role: 'Hardware Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQQJ91fLPTkt_wVpjN4sWNwpjpOoUSndouBOEAX_JVxMISGIRhT5nJFlwHFpJK9ApOF5_IjtV-kVWhWb5b1WptrwNOaeGa44nDwCkpLqkQtNwWOCOIr5yjB4em6p-PkYOxvH6IIwhxaIu8D8VtdsQVagMmDhSZxSwO5-0BNvuUO6b3Qy8PGkyj0ms6Ny0THouuA9YwmH9fQXoCVXl93J94Apg1giEbb_VEI4Hk=w1280' },
+            { name: 'Saket Sandru', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQMMpDXKugsxnr-hrBcs6GZ4xzAxl_Q4dwIpAeRlAxfqflbzAyE-8zN1dYimK0ImbULS-ugHlA6tFNXt8CqjdWbQ_Ux6oNwuRS43vs6EAHWTe42S0CfiMGOvJ9tjmgoH4eL185jpmXBmaXZJbElBCSCc-IZP5cJdBFrbLVysCR1TuDPlxoLRAbjPRoeU7owLGzKsatv5QL9DIS4LkzHbOTk_aYF8FznQTgZQkA=w1280' },
+            { name: 'Shakil Musthafa', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSGqrQNqGxYFuShLXpBTWtJNHlWvAVkxS6jTnOsaigvKr3gnT9O8WKvZPgvHmRxnF6SEIPUm01Zs1EYpo57oFBgoFHD4JFzJOwN_WJtbkR9hQLdJG-GohcPUrne1crxahozbC_261w88dCZB0HLuZn-T3EsY-lEFJ-x_nY77SI757FsqDIAxNqpRLPJVD_Bbgku2K-CCwulGbhkuMnsltAEnl8Hnaw-JbFpTzs=w1280' },
+            { name: 'Shiv Gurjar', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRfQIOKxo4yyROfBQ5Eue8vjhW0eUZV2EzbpeMJL35ho1uxok9e4te1oL8Xzwhc8ZpxhP4Jwi5AIEf7cerXB4-zRaSGDpvwzOdjY8JDnrI2Sk9eFW0jxL27DcNXu1YYHdY3_GSvZ74bdgVmxAU3rz2xus09bPksN0uBmOMM_iAqsoTgoejTqZtmF6HlKXXyLUNMblEEwC_yR2ehYoBtfKx1zlU6Ju0zW4jhh7c=w1280' },
+            { name: 'Simran Chhabria', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STpGRhuKsNFF57rozp3hsTy2-WPlQowYCuEgN2L8vKaHvPfa2zap5c1HUp4LcSxIQUAwnaqzTfSwBwWsfpMivHoKXIVFnDg9OWAMassyxNIzf6kDYDwmv_VgMO2TnjCNtUkq1UO1zYtDGk6484rA5elL5_yncvZ02wcpnu_fWb3qjHms84hjVMXtxaL66ylLfdHEVyJ_4_oVmc6uk4YXketBS49W05fKEbJOe4=w1280' },
+            { name: 'Anand Raghunath', role: 'Outreach Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0ST_ZDQ4b7ZQFd6TxLzbr-jeCAN3R0_ZSa3B5CS7WFi4tSN5NUOpjoSX6SnjhZo7WpiMs7vhT1IYSky0G-YbjeqX-EoVeM7iQiwirofLEU0rjXL9oODe0DHv5bWVNmpfOEp9PfQs9pzhZBaATlzCM4vC5-fBY8UZpFmaUbQ14minZccN_2NW35JBZq8dnG2TVY-xz6tQCzTZZ1SNWQl711rOYtqUZNdnGbOkvg0=w1280' },
+            { name: 'Rushil Shah', role: 'Outreach Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSyuqZeiikJqw0YSK_7ksiJ4wXDGDOesJUgc19raj8fq0ZGQTxnq_fzqYrU-cIgsvVEFeQI3U50S22ZmqvWLTd8d0gYHPTuXtjHHJq1meqG4TGMPW4SKm443cYAfoKm7lToFvbYsRpGF3r2W9w6gA4K-7n9ZE40ljvBbjZ0ZaaWlhCvGqwORloLRFkF6jxOtMus4J1zoOp0g2pDUmRHwaKvhHMrafgk403z=w1280' },
+            { name: 'Saanvi Shah', role: 'Outreach Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQgfJsrlj4EwJxRfp-6qkeIIf3ud9aWt8kKDejvF7dd2DtN-gTvQqqiB7xdMbCJOEf-BdPs-giQikqi9wk_vaWHmChlK5VJpNGuFfwBlWDZs3et_CripOlZywBIwIelyCPYY9Fny1ua6ZOP9NacTCNTcBkOXucTdD1mFH9jRnX1Hd1NTcJbWy6YZfmX6ywWMj3oBZKvkpLdhnzSPxlaTQyXs5yzkoprYube=w1280' }
         ],
         '2022-2023': [
-            { name: 'Parsh Gandhi', role: 'Team Captain' },
-            { name: 'Maanav Shah', role: 'Hardware Engineering Captain' },
-            { name: 'Suhas Bathini', role: 'Software Engineering Captain' },
-            { name: 'Gabriel Hwang', role: 'Outreach Captain' },
-            { name: 'Tarun Iyer', role: 'Hardware Engineering Vice Captain' },
-            { name: 'Anand Raghunath', role: 'Software Engineering Vice Captain' },
-            { name: 'Rushil Shah', role: 'Game Strategy & Hardware' },
-            { name: 'Pranav Kunisetty', role: 'CAD Lead' },
-            { name: 'Amogh Khandkar', role: 'Documentation Lead & Outreach' },
-            { name: 'Shakil Musthafa', role: 'Fundraising & Outreach' },
-            { name: 'Shiv Gurjar', role: 'Hardware & Outreach' },
+            { name: 'Parsh Gandhi', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRLpyQThim4EqyQWJft4oVIR-epzXy8ptMVHy5qB-kev9Ey1063QQJqoyDDp9_bmGkY1WZy_D887IrjYSsauJ3hXg1mm8YWYnIGWeNvZT-w8vREa7AFykCg-FjZ50fpQyxraS5zSiI1YjC9K_TOOxKwEFXVSAD6UvK1IwmFZ-c9CLdwWPlXIH9TOHh7C1LUtnK_5xr1_RVkxlWkEF0vch96Vn0Gsy6R-SuucLw=w1280' },
+            { name: 'Tarun Iyer', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRCzBEyOsbpD28rDwjUX1f72RKzVEH9jN2HeTWCa-aEoBx1Qgff_upEcbhqQMWoiv19EGwFadLeofa7OF1xZD9zm-vgjxYpymYcmYE8_qNi7_JilZFfaAJqbsmZECTqnnhcGOp9FdTlqJMRd9WaKwQNo_YcBQEwPtHeVjHM70Cv-HIGvjsFAnurNYEAfJkv5auqND28H4Bti0HfSdsLv3BjHbcoYWzj5Ud5ri8=w1280' },
+            { name: 'Suhas Bathini', role: 'Software Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SR2mda6zeZ7YJwN9f8QVma0vzCJB8t5UDbA2tLf1cDpMJ3uHh_dp8IrSyJJm-1kZeK4e9pggkimVjgKjmJOpH7vxSBhbrvLh829tJ4kui6sxxgfHUn9W6MwtdbG01u0r9uy2lwGZdIRcdA9T8OUnqu4B2oeb-bHcSU1LTbHuBg3CtwrmXa4QxCV0B_QvHkicKu6-o7udvWCz49vETWlnC4oSvOEaGBRsaAMXNs=w1280' },
+            { name: 'Maanav Shah', role: 'Hardware Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSO_ygfuwhRXG_1D0cmlxzBUowFDLuocG5HmnLe5rTxCzMMPHuPAYxmq-2XXABG06AVIjqluucLCJMe3uZ_AqeeS7ViqOaTnyZYTGI9o5C9eyEQZHBSjJ3oWDmsd8n40X4V-casYXUSyjv1nzyNPLSc6NfhggplvBPf3utPHJhzyH849NXo-UNdHpp49gDLiQZNJanBGtXvZvjF0_HvwxjU5_jruON7_JhvFrk=w1280' },
+            { name: 'Amogh Khandkar', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STYalBxqxjJgZgH7pylySFF-PMnpj3KtACgh1cvxa_JsxKcmTldQrRCxiHb7JF9aCad6f3RKhCnpKiWwdD5nFAGM88OfSDI7jtgVE8oZXv6Krcls_SjRUHBzm_QxKBTRfxGgATiaq-RbLESvCjWo4mpdf2c9nc6lm-6GvAE-7qqdjnC7WbuwBQYTDDEzPE77bbkqMScUmuQarjKATZHDtZvkwQiKQ8rr8rnHks=w1280' },
+            { name: 'Anand Raghunath', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0ST_ZDQ4b7ZQFd6TxLzbr-jeCAN3R0_ZSa3B5CS7WFi4tSN5NUOpjoSX6SnjhZo7WpiMs7vhT1IYSky0G-YbjeqX-EoVeM7iQiwirofLEU0rjXL9oODe0DHv5bWVNmpfOEp9PfQs9pzhZBaATlzCM4vC5-fBY8UZpFmaUbQ14minZccN_2NW35JBZq8dnG2TVY-xz6tQCzTZZ1SNWQl711rOYtqUZNdnGbOkvg0=w1280' },
+            { name: 'Gabriel Hwang', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQQJ91fLPTkt_wVpjN4sWNwpjpOoUSndouBOEAX_JVxMISGIRhT5nJFlwHFpJK9ApOF5_IjtV-kVWhWb5b1WptrwNOaeGa44nDwCkpLqkQtNwWOCOIr5yjB4em6p-PkYOxvH6IIwhxaIu8D8VtdsQVagMmDhSZxSwO5-0BNvuUO6b3Qy8PGkyj0ms6Ny0THouuA9YwmH9fQXoCVXl93J94Apg1giEbb_VEI4Hk=w1280' },
+            { name: 'Pranav Kunisetty', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSwRMeL0RaPWkDavOSFmrKC0kZdaEeIdqWJFQm80Pt5v3eFJeJg-aPNqmLg3GcIJfkZpRR3ytTqUUuA5_d7BDrnQqntUQMX0cKSMyAg8v-9NysjTf0QaMJIDLDTjoGUwbOVzbMjnc5hL1gxNu_vi4kQY90z7G1M8Qg_7LRkiKbiBKuoA2WMmfuCSvmiVMm1HIjC4uKBfXG_JtR4dj762bVh3oWieI3Cl3Cjmk8=w1280' },
+            { name: 'Rushil Shah', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSyuqZeiikJqw0YSK_7ksiJ4wXDGDOesJUgc19raj8fq0ZGQTxnq_fzqYrU-cIgsvVEFeQI3U50S22ZmqvWLTd8d0gYHPTuXtjHHJq1meqG4TGMPW4SKm443cYAfoKm7lToFvbYsRpGF3r2W9w6gA4K-7n9ZE40ljvBbjZ0ZaaWlhCvGqwORloLRFkF6jxOtMus4J1zoOp0g2pDUmRHwaKvhHMrafgk403z=w1280' },
+            { name: 'Shakil Musthafa', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSGqrQNqGxYFuShLXpBTWtJNHlWvAVkxS6jTnOsaigvKr3gnT9O8WKvZPgvHmRxnF6SEIPUm01Zs1EYpo57oFBgoFHD4JFzJOwN_WJtbkR9hQLdJG-GohcPUrne1crxahozbC_261w88dCZB0HLuZn-T3EsY-lEFJ-x_nY77SI757FsqDIAxNqpRLPJVD_Bbgku2K-CCwulGbhkuMnsltAEnl8Hnaw-JbFpTzs=w1280' },
+            { name: 'Shiv Gurjar', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRfQIOKxo4yyROfBQ5Eue8vjhW0eUZV2EzbpeMJL35ho1uxok9e4te1oL8Xzwhc8ZpxhP4Jwi5AIEf7cerXB4-zRaSGDpvwzOdjY8JDnrI2Sk9eFW0jxL27DcNXu1YYHdY3_GSvZ74bdgVmxAU3rz2xus09bPksN0uBmOMM_iAqsoTgoejTqZtmF6HlKXXyLUNMblEEwC_yR2ehYoBtfKx1zlU6Ju0zW4jhh7c=w1280' }
         ],
         '2021-2022': [
-            { name: 'Parsh Gandhi', role: 'Team Captain' },
-            { name: 'Maanav Shah', role: 'Hardware Engineering Captain' },
-            { name: 'Anand Raghunath', role: 'Software Engineering Captain' },
-            { name: 'Gabriel Hwang', role: 'Outreach Captain' },
-            { name: 'Tarun Iyer', role: 'Hardware Engineering Vice Captain' },
-            { name: 'Suhas Bathini', role: 'Software Engineering Vice Captain' },
-            { name: 'Rushil Shah', role: 'Game Strategy Lead' },
-            { name: 'Pranav Kunisetty', role: 'CAD Lead' },
-            { name: 'Amogh Khandkar', role: 'Documentation Lead' },
+            { name: 'Parsh Gandhi', role: 'Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRLpyQThim4EqyQWJft4oVIR-epzXy8ptMVHy5qB-kev9Ey1063QQJqoyDDp9_bmGkY1WZy_D887IrjYSsauJ3hXg1mm8YWYnIGWeNvZT-w8vREa7AFykCg-FjZ50fpQyxraS5zSiI1YjC9K_TOOxKwEFXVSAD6UvK1IwmFZ-c9CLdwWPlXIH9TOHh7C1LUtnK_5xr1_RVkxlWkEF0vch96Vn0Gsy6R-SuucLw=w1280' },
+            { name: 'Tarun Iyer', role: 'Team Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRCzBEyOsbpD28rDwjUX1f72RKzVEH9jN2HeTWCa-aEoBx1Qgff_upEcbhqQMWoiv19EGwFadLeofa7OF1xZD9zm-vgjxYpymYcmYE8_qNi7_JilZFfaAJqbsmZECTqnnhcGOp9FdTlqJMRd9WaKwQNo_YcBQEwPtHeVjHM70Cv-HIGvjsFAnurNYEAfJkv5auqND28H4Bti0HfSdsLv3BjHbcoYWzj5Ud5ri8=w1280' },
+            { name: 'Suhas Bathini', role: 'Software Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SR2mda6zeZ7YJwN9f8QVma0vzCJB8t5UDbA2tLf1cDpMJ3uHh_dp8IrSyJJm-1kZeK4e9pggkimVjgKjmJOpH7vxSBhbrvLh829tJ4kui6sxxgfHUn9W6MwtdbG01u0r9uy2lwGZdIRcdA9T8OUnqu4B2oeb-bHcSU1LTbHuBg3CtwrmXa4QxCV0B_QvHkicKu6-o7udvWCz49vETWlnC4oSvOEaGBRsaAMXNs=w1280' },
+            { name: 'Maanav Shah', role: 'Hardware Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSO_ygfuwhRXG_1D0cmlxzBUowFDLuocG5HmnLe5rTxCzMMPHuPAYxmq-2XXABG06AVIjqluucLCJMe3uZ_AqeeS7ViqOaTnyZYTGI9o5C9eyEQZHBSjJ3oWDmsd8n40X4V-casYXUSyjv1nzyNPLSc6NfhggplvBPf3utPHJhzyH849NXo-UNdHpp49gDLiQZNJanBGtXvZvjF0_HvwxjU5_jruON7_JhvFrk=w1280' },
+            { name: 'Amogh Khandkar', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0STYalBxqxjJgZgH7pylySFF-PMnpj3KtACgh1cvxa_JsxKcmTldQrRCxiHb7JF9aCad6f3RKhCnpKiWwdD5nFAGM88OfSDI7jtgVE8oZXv6Krcls_SjRUHBzm_QxKBTRfxGgATiaq-RbLESvCjWo4mpdf2c9nc6lm-6GvAE-7qqdjnC7WbuwBQYTDDEzPE77bbkqMScUmuQarjKATZHDtZvkwQiKQ8rr8rnHks=w1280' },
+            { name: 'Gabriel Hwang', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SQQJ91fLPTkt_wVpjN4sWNwpjpOoUSndouBOEAX_JVxMISGIRhT5nJFlwHFpJK9ApOF5_IjtV-kVWhWb5b1WptrwNOaeGa44nDwCkpLqkQtNwWOCOIr5yjB4em6p-PkYOxvH6IIwhxaIu8D8VtdsQVagMmDhSZxSwO5-0BNvuUO6b3Qy8PGkyj0ms6Ny0THouuA9YwmH9fQXoCVXl93J94Apg1giEbb_VEI4Hk=w1280' },
+            { name: 'Pranav Kunisetty', role: 'Hardware Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSwRMeL0RaPWkDavOSFmrKC0kZdaEeIdqWJFQm80Pt5v3eFJeJg-aPNqmLg3GcIJfkZpRR3ytTqUUuA5_d7BDrnQqntUQMX0cKSMyAg8v-9NysjTf0QaMJIDLDTjoGUwbOVzbMjnc5hL1gxNu_vi4kQY90z7G1M8Qg_7LRkiKbiBKuoA2WMmfuCSvmiVMm1HIjC4uKBfXG_JtR4dj762bVh3oWieI3Cl3Cjmk8=w1280' },
+            { name: 'Anand Raghunath', role: 'Outreach Captain', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0ST_ZDQ4b7ZQFd6TxLzbr-jeCAN3R0_ZSa3B5CS7WFi4tSN5NUOpjoSX6SnjhZo7WpiMs7vhT1IYSky0G-YbjeqX-EoVeM7iQiwirofLEU0rjXL9oODe0DHv5bWVNmpfOEp9PfQs9pzhZBaATlzCM4vC5-fBY8UZpFmaUbQ14minZccN_2NW35JBZq8dnG2TVY-xz6tQCzTZZ1SNWQl711rOYtqUZNdnGbOkvg0=w1280' },
+            { name: 'Rushil Shah', role: 'Member', img: 'https://lh3.googleusercontent.com/sitesv/APaQ0SSyuqZeiikJqw0YSK_7ksiJ4wXDGDOesJUgc19raj8fq0ZGQTxnq_fzqYrU-cIgsvVEFeQI3U50S22ZmqvWLTd8d0gYHPTuXtjHHJq1meqG4TGMPW4SKm443cYAfoKm7lToFvbYsRpGF3r2W9w6gA4K-7n9ZE40ljvBbjZ0ZaaWlhCvGqwORloLRFkF6jxOtMus4J1zoOp0g2pDUmRHwaKvhHMrafgk403z=w1280' }
         ],
     };
 
@@ -354,13 +354,22 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">No roster data for this season.</p>';
             return;
         }
-        grid.innerHTML = members.map((m, i) => `
+        grid.innerHTML = members.map((m, i) => {
+            let avatarHTML = '';
+            if (m.img && m.img.length > 5) {
+                avatarHTML = `<img src="${m.img}" alt="${m.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+            } else {
+                avatarHTML = `<span>${getInitials(m.name)}</span>`;
+            }
+
+            return `
             <div class="member-card" style="animation: fadeInUp 0.4s ease ${i * 0.07}s both;">
-                <div class="member-avatar">${getInitials(m.name)}</div>
+                <div class="member-avatar">${avatarHTML}</div>
                 <div class="member-name">${m.name}</div>
                 <div class="member-role">${m.role}</div>
             </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     // ======= Team Members Dropdown =======
@@ -553,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (key === 'ENTER' || key === 'Enter') {
             if (wordleCurrentGuess.length !== 5) {
                 showMessage("Word must be 5 letters");
+                shakeCurrentRow();
                 return;
             }
             wordleGuesses.push(wordleCurrentGuess);
@@ -561,10 +571,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMessage("Great job!", "correct");
                 wordleGameOver = true;
                 document.getElementById('wordle-restart').classList.remove('hidden');
+                jiggleLastRow();
             } else if (wordleGuesses.length === 6) {
-                showMessage(`Game over! Word was ${wordleAnswer}`);
+                showMessage(`Game over! Word was ${wordleAnswer}`); // ALREADY SHOWS CORRECT WORD
                 wordleGameOver = true;
                 document.getElementById('wordle-restart').classList.remove('hidden');
+                shakeLastRow();
+            } else {
+                shakeLastRow();
             }
             
             wordleCurrentGuess = "";
@@ -574,6 +588,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         renderWordleGrid();
+    }
+    
+    function shakeCurrentRow() {
+        const rows = document.querySelectorAll('.wordle-row');
+        if (rows[wordleGuesses.length]) {
+            rows[wordleGuesses.length].classList.add('shake');
+            setTimeout(() => rows[wordleGuesses.length].classList.remove('shake'), 400);
+        }
+    }
+    
+    function shakeLastRow() {
+        const rows = document.querySelectorAll('.wordle-row');
+        if (rows[wordleGuesses.length - 1]) {
+            rows[wordleGuesses.length - 1].classList.add('shake');
+            setTimeout(() => {
+                if (rows[wordleGuesses.length - 1]) rows[wordleGuesses.length - 1].classList.remove('shake');
+            }, 400);
+        }
+    }
+    
+    function jiggleLastRow() {
+        const rows = document.querySelectorAll('.wordle-row');
+        if (rows[wordleGuesses.length - 1]) {
+            rows[wordleGuesses.length - 1].classList.add('jiggle');
+        }
     }
     
     // Add global keyboard support for Wordle
@@ -783,6 +822,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('scramble-submit').classList.add('hidden');
         document.getElementById('scramble-skip').classList.add('hidden');
         
+        // Output the missed word
+        if (scrambleCurrentWord) {
+            const fb = document.getElementById('scramble-feedback');
+            fb.textContent = `Time's up! The word was: ${scrambleCurrentWord.word}`;
+            fb.className = "scramble-feedback wrong";
+        }
+        
         document.getElementById('scramble-over').classList.remove('hidden');
         document.getElementById('scramble-final').textContent = scrambleScore;
     }
@@ -924,7 +970,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function endSpeedMatch() {
         document.getElementById('sm-term').style.display = 'none';
         document.getElementById('sm-options').style.display = 'none';
-        document.getElementById('sm-feedback').textContent = "";
+        
+        if (currentMatchTerm) {
+            const fb = document.getElementById('sm-feedback');
+            fb.textContent = `Time's up! Missed: ${currentMatchTerm.term} = ${currentMatchTerm.def}`;
+            fb.className = "sm-feedback wrong";
+        } else {
+            document.getElementById('sm-feedback').textContent = "";
+        }
         
         document.getElementById('sm-gameover').classList.remove('hidden');
         document.getElementById('sm-final').textContent = smScore;
