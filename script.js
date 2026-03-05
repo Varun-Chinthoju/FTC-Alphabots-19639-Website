@@ -687,10 +687,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initGame(gameId) {
         if (gameId === 'wordle') initWordle();
-        if (gameId === 'trivia') initTrivia();
+        if (gameId === 'trivia') resetTriviaTopics();
         if (gameId === 'scramble') initScramble();
         if (gameId === 'flashcards') initFlashcards();
         if (gameId === 'speedmatch') initSpeedMatch();
+        if (gameId === 'penalty') initPenalty();
+        if (gameId === 'hangman') initHangman();
+        if (gameId === 'memory') initMemory();
+        if (gameId === 'calculator') initCalculator();
     }
 
     // --- 1. FTC WORDLE ---
@@ -866,69 +870,94 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. FTC TRIVIA ---
     const allTriviaQuestions = [
         // Rules & Basics
-        { q: "What does FTC stand for?", opts: ["First Technology Challenge", "FIRST Tech Challenge", "For The Coding", "FIRST Team Competition"], a: 1 },
-        { q: "How long is the autonomous period?", opts: ["15 seconds", "30 seconds", "45 seconds", "60 seconds"], a: 1 },
-        { q: "How long is the teleop period?", opts: ["1 minute", "2 minutes", "2.5 minutes", "3 minutes"], a: 1 },
-        { q: "When does the End Game start?", opts: ["Last 15 seconds", "Last 30 seconds", "Last 45 seconds", "Last minute"], a: 1 },
-        { q: "What is the maximum size of a robot at the start of a match?", opts: ["16x16x16 inches", "18x18x18 inches", "20x20x20 inches", "24x24x24 inches"], a: 1 },
-        { q: "What is the maximum weight for an FTC robot?", opts: ["40 lbs", "42 lbs", "120 lbs", "There is no weight limit"], a: 1 },
-        { q: "How many alliances are there in a standard FTC match?", opts: ["1", "2", "3", "4"], a: 1 },
-        { q: "How many teams make up a single alliance in a match?", opts: ["1", "2", "3", "4"], a: 1 },
-        { q: "What is the maximum allowed battery voltage nominally?", opts: ["9V", "12V", "14V", "18V"], a: 1 },
-        { q: "Which core philosophy coined by Woodie Flowers emphasizes high-quality work and respect?", opts: ["Coopertition", "Gracious Professionalism", "STEM Spirit", "FIRST Principles"], a: 1 },
-        { q: "What is 'Coopertition'?", opts: ["Cooperating with your own alliance", "Displaying fierce but friendly competition", "Competing always, but assisting and enabling others", "Winning at all costs"], a: 2 },
-        { q: "If your robot breaks a rule and receives a Major Penalty, how many points go to the opposing alliance?", opts: ["10 points", "15 points", "30 points", "45 points"], a: 2 },
-        { q: "If your robot breaks a rule and receives a Minor Penalty, how many points go to the opposing alliance?", opts: ["5 points", "10 points", "15 points", "30 points"], a: 1 },
+        { t: "General", q: "What does FTC stand for?", opts: ["First Technology Challenge", "FIRST Tech Challenge", "For The Coding", "FIRST Team Competition"], a: 1 },
+        { t: "General", q: "How long is the autonomous period?", opts: ["15 seconds", "30 seconds", "45 seconds", "60 seconds"], a: 1 },
+        { t: "General", q: "How long is the teleop period?", opts: ["1 minute", "2 minutes", "2.5 minutes", "3 minutes"], a: 1 },
+        { t: "General", q: "When does the End Game start?", opts: ["Last 15 seconds", "Last 30 seconds", "Last 45 seconds", "Last minute"], a: 1 },
+        { t: "General", q: "What is the maximum size of a robot at the start of a match?", opts: ["16x16x16 inches", "18x18x18 inches", "20x20x20 inches", "24x24x24 inches"], a: 1 },
+        { t: "General", q: "What is the maximum weight for an FTC robot?", opts: ["40 lbs", "42 lbs", "120 lbs", "There is no weight limit"], a: 1 },
+        { t: "General", q: "How many alliances are there in a standard FTC match?", opts: ["1", "2", "3", "4"], a: 1 },
+        { t: "General", q: "How many teams make up a single alliance in a match?", opts: ["1", "2", "3", "4"], a: 1 },
+        { t: "Hardware", q: "What is the maximum allowed battery voltage nominally?", opts: ["9V", "12V", "14V", "18V"], a: 1 },
+        { t: "General", q: "Which core philosophy coined by Woodie Flowers emphasizes high-quality work and respect?", opts: ["Coopertition", "Gracious Professionalism", "STEM Spirit", "FIRST Principles"], a: 1 },
+        { t: "General", q: "What is 'Coopertition'?", opts: ["Cooperating with your own alliance", "Displaying fierce but friendly competition", "Competing always, but assisting and enabling others", "Winning at all costs"], a: 2 },
+        { t: "General", q: "If your robot breaks a rule and receives a Major Penalty, how many points go to the opposing alliance?", opts: ["10 points", "15 points", "30 points", "45 points"], a: 2 },
+        { t: "General", q: "If your robot breaks a rule and receives a Minor Penalty, how many points go to the opposing alliance?", opts: ["5 points", "10 points", "15 points", "30 points"], a: 1 },
         // Hardware & Components
-        { q: "Which control system connects the phones/control hub to motors?", opts: ["REV Expansion Hub", "Arduino Uno", "Raspberry Pi", "VEX Cortex"], a: 0 },
-        { q: "What is the primary brain of the robot called if using the modern system?", opts: ["Driver Hub", "RC Phone", "Control Hub", "Expansion Hub"], a: 2 },
-        { q: "What type of wheel allows a robot to translate in any direction (drive sideways)?", opts: ["Traction Wheel", "Omni Wheel", "Mecanum Wheel", "Colson Wheel"], a: 2 },
-        { q: "What is a 'dead wheel' used for in odometry?", opts: ["Providing extra traction", "Free-spinning to accurately measure distance without slip", "Balancing the robot's weight", "A backup wheel in case one breaks"], a: 1 },
-        { q: "What does an encoder do?", opts: ["Powers the motor", "Provides the motor with cooling", "Measures the rotation of an axle/motor", "Translates code to the hub"], a: 2 },
-        { q: "What is the typical maximum stall current of an FTC battery?", opts: ["10 Amps", "20 Amps", "40 Amps", "Over 100 Amps"], a: 1 },
-        { q: "Which type of motor is used for continuous, high-torque rotation?", opts: ["Servo Motor", "DC Motor", "Stepper Motor", "Micro Servo"], a: 1 },
-        { q: "Which type of motor is typically used for precise angular positioning (e.g. 180 degrees)?", opts: ["DC Motor", "Servo Motor", "Brushless Motor", "Coreless Motor"], a: 1 },
-        { q: "What does the Driver Hub directly connect to?", opts: ["The motors", "The Expansion Hub", "The Control Hub via Wi-Fi", "The gamepads directly"], a: 2 },
-        { q: "What does an IMU measure?", opts: ["Voltage", "Distance to objects", "Acceleration and Rotation", "Light intensity"], a: 2 },
+        { t: "Hardware", q: "Which control system connects the phones/control hub to motors?", opts: ["REV Expansion Hub", "Arduino Uno", "Raspberry Pi", "VEX Cortex"], a: 0 },
+        { t: "Hardware", q: "What is the primary brain of the robot called if using the modern system?", opts: ["Driver Hub", "RC Phone", "Control Hub", "Expansion Hub"], a: 2 },
+        { t: "Hardware", q: "What type of wheel allows a robot to translate in any direction (drive sideways)?", opts: ["Traction Wheel", "Omni Wheel", "Mecanum Wheel", "Colson Wheel"], a: 2 },
+        { t: "Hardware", q: "What is a 'dead wheel' used for in odometry?", opts: ["Providing extra traction", "Free-spinning to accurately measure distance without slip", "Balancing the robot's weight", "A backup wheel in case one breaks"], a: 1 },
+        { t: "Hardware", q: "What does an encoder do?", opts: ["Powers the motor", "Provides the motor with cooling", "Measures the rotation of an axle/motor", "Translates code to the hub"], a: 2 },
+        { t: "Hardware", q: "What is the typical maximum stall current of an FTC battery?", opts: ["10 Amps", "20 Amps", "40 Amps", "Over 100 Amps"], a: 1 },
+        { t: "Hardware", q: "Which type of motor is used for continuous, high-torque rotation?", opts: ["Servo Motor", "DC Motor", "Stepper Motor", "Micro Servo"], a: 1 },
+        { t: "Hardware", q: "Which type of motor is typically used for precise angular positioning (e.g. 180 degrees)?", opts: ["DC Motor", "Servo Motor", "Brushless Motor", "Coreless Motor"], a: 1 },
+        { t: "Software", q: "What does the Driver Hub directly connect to?", opts: ["The motors", "The Expansion Hub", "The Control Hub via Wi-Fi", "The gamepads directly"], a: 2 },
+        { t: "Hardware", q: "What does an IMU measure?", opts: ["Voltage", "Distance to objects", "Acceleration and Rotation", "Light intensity"], a: 2 },
         // Software & Control
-        { q: "What programming languages are officially supported by FIRST for FTC?", opts: ["Java & Blocks", "Python & C++", "Blocks & Python", "C++ & Java"], a: 0 },
-        { q: "What does PID stand for in control theory?", opts: ["Proportional, Integral, Derivative", "Position, Inertia, Distance", "Power, Instinct, Drive", "Pulse, Input, Data"], a: 0 },
-        { q: "What does Telemetry do?", opts: ["Drives the robot", "Sends data from the robot back to the Driver Station", "Moves servos", "Connects controllers"], a: 1 },
-        { q: "Which vision system uses QR-code-like markers for localization on the field?", opts: ["Vuforia", "TensorFlow", "AprilTags", "OpenCV"], a: 2 },
-        { q: "What is 'Android Studio'?", opts: ["A game engine", "The visual blocks editor", "The officially recommended IDE for Java programming", "A CAD software"], a: 2 },
-        { q: "What class is the base class for all standard TeleOp programs?", opts: ["OpMode", "LinearOpMode", "RobotController", "HardwareMap"], a: 0 },
-        { q: "What class is usually preferred for Autonomous programs because it allows waiting/sleeping?", opts: ["OpMode", "LinearOpMode", "ActionLoop", "AutoMode"], a: 1 },
-        { q: "What object is used to link software variables to physical hardware parts?", opts: ["robotMap", "hardwareMap", "deviceMap", "configMap"], a: 1 },
-        { q: "What is the typical tick-per-revolution count for a REV Through Bore Encoder?", opts: ["8192", "4096", "1440", "360"], a: 0 },
+        { t: "Software", q: "What programming languages are officially supported by FIRST for FTC?", opts: ["Java & Blocks", "Python & C++", "Blocks & Python", "C++ & Java"], a: 0 },
+        { t: "Software", q: "What does PID stand for in control theory?", opts: ["Proportional, Integral, Derivative", "Position, Inertia, Distance", "Power, Instinct, Drive", "Pulse, Input, Data"], a: 0 },
+        { t: "Software", q: "What does Telemetry do?", opts: ["Drives the robot", "Sends data from the robot back to the Driver Station", "Moves servos", "Connects controllers"], a: 1 },
+        { t: "Software", q: "Which vision system uses QR-code-like markers for localization on the field?", opts: ["Vuforia", "TensorFlow", "AprilTags", "OpenCV"], a: 2 },
+        { t: "Software", q: "What is 'Android Studio'?", opts: ["A game engine", "The visual blocks editor", "The officially recommended IDE for Java programming", "A CAD software"], a: 2 },
+        { t: "Software", q: "What class is the base class for all standard TeleOp programs?", opts: ["OpMode", "LinearOpMode", "RobotController", "HardwareMap"], a: 0 },
+        { t: "Software", q: "What class is usually preferred for Autonomous programs because it allows waiting/sleeping?", opts: ["OpMode", "LinearOpMode", "ActionLoop", "AutoMode"], a: 1 },
+        { t: "Software", q: "What object is used to link software variables to physical hardware parts?", opts: ["robotMap", "hardwareMap", "deviceMap", "configMap"], a: 1 },
+        { t: "Hardware", q: "What is the typical tick-per-revolution count for a REV Through Bore Encoder?", opts: ["8192", "4096", "1440", "360"], a: 0 },
         // Game History & General
-        { q: "What was the name of the 2023-2024 FTC game?", opts: ["PowerPlay", "FreightFrenzy", "CenterStage", "UltimateGoal"], a: 2 },
-        { q: "What was the name of the 2022-2023 FTC game?", opts: ["PowerPlay", "FreightFrenzy", "RoverRuckus", "Skystone"], a: 0 },
-        { q: "What was the name of the 2021-2022 FTC game?", opts: ["UltimateGoal", "FreightFrenzy", "RelicRecovery", "VelocityVortex"], a: 1 },
-        { q: "What was the name of the 2024-2025 FTC game?", opts: ["CenterStage", "IntoTheDeep", "Crescendo", "Overdrive"], a: 1 },
-        { q: "What is a 'Bypass'?", opts: ["When a team chooses not to play a match", "A type of electrical short", "A maneuver to get around a defender", "A software exception"], a: 0 },
-        { q: "What is an 'Inspection decal'?", opts: ["A sticker indicating the robot passed hardware/software checks", "A logo sticker for a sponsor", "A barcode for scanning the robot", "A colored tag for your alliance"], a: 0 },
-        { q: "What do teams submit to document their engineering journey for awards?", opts: ["Engineering Portfolio", "Engineering Notebook", "Both Notebook and Portfolio", "A Video Presentation"], a: 0 },
-        { q: "Which award is considered the highest, most prestigious award at an FTC event?", opts: ["Innovate Award", "Inspire Award", "Think Award", "Connect Award"], a: 1 },
-        { q: "Which award is given for outstanding outreach and connecting with the STEM community?", opts: ["Motivate Award", "Think Award", "Connect Award", "Control Award"], a: 2 },
-        { q: "Which award celebrates the engineering design process and documentation?", opts: ["Think Award", "Design Award", "Innovate Award", "Control Award"], a: 0 },
-        { q: "What color are the two alliances in FTC?", opts: ["Red and Blue", "Green and Blue", "Red and Yellow", "Black and White"], a: 0 },
-        { q: "Where does the drive team stand during a match?", opts: ["In the center of the field", "In the Alliance Station", "In the stands", "Next to the robot"], a: 1 },
-        { q: "Who is the 'Drive Coach'?", opts: ["The person driving", "The mentor programming", "The third person permitted in the Alliance Station guiding the drivers", "The referee"], a: 2 },
-        { q: "Can a robot expand outside the 18-inch sizing limit AFTER the match starts?", opts: ["No, never", "Yes, but not in autonomous", "Yes, in most games, after the match begins", "Yes, but only vertically"], a: 2 },
-        { q: "What does CAD stand for?", opts: ["Computer Aided Design", "Calculated Autonomous Driving", "Control And Drive", "Central Algorithm Data"], a: 0 },
-        { q: "Which CAD tool is commonly used by FTC teams because it is cloud-based and collaborative?", opts: ["AutoCAD", "Onshape", "SolidWorks", "Blender"], a: 1 },
-        { q: "What material is typically used for 3D printing custom robot parts in FTC?", opts: ["PLA or PETG", "Steel", "Aluminum 6061", "Carbon Fiber"], a: 0 },
-        { q: "What tool is commonly used to cut flat aluminum or polycarbonate plates?", opts: ["Screwdriver", "CNC Router", "Soldering Iron", "3D Printer"], a: 1 },
-        { q: "What size are typical hex shafts used in modern FTC building systems?", opts: ["5mm Hex", "3/8 inch square", "8mm D-shaft", "1/4 inch round"], a: 0 }
+        { t: "General", q: "What was the name of the 2023-2024 FTC game?", opts: ["PowerPlay", "FreightFrenzy", "CenterStage", "UltimateGoal"], a: 2 },
+        { t: "General", q: "What was the name of the 2022-2023 FTC game?", opts: ["PowerPlay", "FreightFrenzy", "RoverRuckus", "Skystone"], a: 0 },
+        { t: "General", q: "What was the name of the 2021-2022 FTC game?", opts: ["UltimateGoal", "FreightFrenzy", "RelicRecovery", "VelocityVortex"], a: 1 },
+        { t: "General", q: "What was the name of the 2024-2025 FTC game?", opts: ["CenterStage", "IntoTheDeep", "Crescendo", "Overdrive"], a: 1 },
+        { t: "General", q: "What is a 'Bypass'?", opts: ["When a team chooses not to play a match", "A type of electrical short", "A maneuver to get around a defender", "A software exception"], a: 0 },
+        { t: "General", q: "What is an 'Inspection decal'?", opts: ["A sticker indicating the robot passed hardware/software checks", "A logo sticker for a sponsor", "A barcode for scanning the robot", "A colored tag for your alliance"], a: 0 },
+        { t: "Outreach", q: "What do teams submit to document their engineering journey for awards?", opts: ["Engineering Portfolio", "Engineering Notebook", "Both Notebook and Portfolio", "A Video Presentation"], a: 0 },
+        { t: "Outreach", q: "Which award is considered the highest, most prestigious award at an FTC event?", opts: ["Innovate Award", "Inspire Award", "Think Award", "Connect Award"], a: 1 },
+        { t: "Outreach", q: "Which award is given for outstanding outreach and connecting with the STEM community?", opts: ["Motivate Award", "Think Award", "Connect Award", "Control Award"], a: 2 },
+        { t: "Outreach", q: "Which award celebrates the engineering design process and documentation?", opts: ["Think Award", "Design Award", "Innovate Award", "Control Award"], a: 0 },
+        { t: "General", q: "What color are the two alliances in FTC?", opts: ["Red and Blue", "Green and Blue", "Red and Yellow", "Black and White"], a: 0 },
+        { t: "General", q: "Where does the drive team stand during a match?", opts: ["In the center of the field", "In the Alliance Station", "In the stands", "Next to the robot"], a: 1 },
+        { t: "General", q: "Who is the 'Drive Coach'?", opts: ["The person driving", "The mentor programming", "The third person permitted in the Alliance Station guiding the drivers", "The referee"], a: 2 },
+        { t: "General", q: "Can a robot expand outside the 18-inch sizing limit AFTER the match starts?", opts: ["No, never", "Yes, but not in autonomous", "Yes, in most games, after the match begins", "Yes, but only vertically"], a: 2 },
+        { t: "Hardware", q: "What does CAD stand for?", opts: ["Computer Aided Design", "Calculated Autonomous Driving", "Control And Drive", "Central Algorithm Data"], a: 0 },
+        { t: "Hardware", q: "Which CAD tool is commonly used by FTC teams because it is cloud-based and collaborative?", opts: ["AutoCAD", "Onshape", "SolidWorks", "Blender"], a: 1 },
+        { t: "Hardware", q: "What material is typically used for 3D printing custom robot parts in FTC?", opts: ["PLA or PETG", "Steel", "Aluminum 6061", "Carbon Fiber"], a: 0 },
+        { t: "Hardware", q: "What tool is commonly used to cut flat aluminum or polycarbonate plates?", opts: ["Screwdriver", "CNC Router", "Soldering Iron", "3D Printer"], a: 1 },
+        { t: "Hardware", q: "What size are typical hex shafts used in modern FTC building systems?", opts: ["5mm Hex", "3/8 inch square", "8mm D-shaft", "1/4 inch round"], a: 0 }
     ];
     let triviaQuestions = [];
     let triviaCurrentIdx = 0;
     let triviaScore = 0;
+    let currentTriviaTopic = "All";
+    
+    function resetTriviaTopics() {
+        document.getElementById('trivia-topic-screen').classList.remove('hidden');
+        document.getElementById('trivia-progress').classList.add('hidden');
+        document.getElementById('trivia-question-area').classList.add('hidden');
+        document.getElementById('trivia-result').classList.add('hidden');
+    }
+    
+    document.querySelectorAll('.trivia-topic-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            currentTriviaTopic = e.target.getAttribute('data-topic');
+            initTrivia();
+        });
+    });
 
     function initTrivia() {
-        // Shuffle and pick 8
-        let shuffled = [...allTriviaQuestions].sort(() => 0.5 - Math.random());
-        triviaQuestions = shuffled.slice(0, 8);
+        document.getElementById('trivia-topic-screen').classList.add('hidden');
+        
+        let pool = allTriviaQuestions;
+        if (currentTriviaTopic !== "All") {
+            pool = allTriviaQuestions.filter(q => q.t === currentTriviaTopic);
+        }
+        
+        // Ensure we don't request more than exists
+        let maxQs = Math.min(8, pool.length);
+        
+        // Shuffle and pick maxQs
+        let shuffled = [...pool].sort(() => 0.5 - Math.random());
+        triviaQuestions = shuffled.slice(0, maxQs);
         
         triviaCurrentIdx = 0;
         triviaScore = 0;
@@ -1280,5 +1309,335 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('sm-restart').addEventListener('click', initSpeedMatch);
+
+    // --- 6. PENALTY OR LEGAL? ---
+    const penaltyScenarios = [
+        { s: "A robot intentionally tips over an opposing alliance's robot.", a: "Penalty" },
+        { s: "A robot accidentally touches an opponent's robot while both are moving.", a: "Legal" },
+        { s: "A drive team member steps into the playing field before the referee signals it is safe.", a: "Penalty" },
+        { s: "A robot expands to 20 inches wide during the TeleOp period.", a: "Legal" }, // into the deep allows expansion
+        { s: "A robot launches a game element out of the field perimeter.", a: "Penalty" },
+        { s: "A human player introduces a game element through the designated return chute.", a: "Legal" },
+        { s: "A robot pins an opponent against the field wall for 6 seconds.", a: "Penalty" },
+        { s: "A robot's bumper falls off, but the robot continues to operate safely.", a: "Legal" },
+        { s: "A drive coach uses a tablet to show strategy to the drivers during the match.", a: "Penalty" }, // electronics rule usually prohibits this depending on season, let's keep it simple
+        { s: "During autonomous, the robot scores pre-loaded elements into the designated scoring area.", a: "Legal" }
+    ];
+    let penaltyScore = 0;
+    let penaltyIdx = 0;
+    let shuffledScenarios = [];
+
+    function initPenalty() {
+        penaltyScore = 0;
+        penaltyIdx = 0;
+        shuffledScenarios = [...penaltyScenarios].sort(() => Math.random() - 0.5).slice(0, 5); // Play 5 scenarios
+        
+        document.getElementById('penalty-gameover').classList.add('hidden');
+        document.getElementById('penalty-options').classList.remove('hidden');
+        document.getElementById('penalty-scenario').classList.remove('hidden');
+        document.getElementById('penalty-feedback').textContent = '';
+        
+        loadPenaltyScenario();
+    }
+
+    function loadPenaltyScenario() {
+        const scenario = shuffledScenarios[penaltyIdx];
+        document.getElementById('penalty-scenario').textContent = `Scenario ${penaltyIdx+1}: ${scenario.s}`;
+    }
+
+    function handlePenaltyGuess(guess) {
+        const scenario = shuffledScenarios[penaltyIdx];
+        const fb = document.getElementById('penalty-feedback');
+        
+        if (guess === scenario.a) {
+            penaltyScore++;
+            fb.textContent = "Correct!";
+            fb.style.color = "var(--brand-green)";
+        } else {
+            fb.textContent = `Incorrect. It was ${scenario.a}.`;
+            fb.style.color = "#ef4444";
+        }
+        
+        document.getElementById('penalty-options').classList.add('hidden');
+        
+        setTimeout(() => {
+            penaltyIdx++;
+            if (penaltyIdx < shuffledScenarios.length) {
+                document.getElementById('penalty-options').classList.remove('hidden');
+                fb.textContent = '';
+                loadPenaltyScenario();
+            } else {
+                document.getElementById('penalty-scenario').classList.add('hidden');
+                document.getElementById('penalty-options').classList.add('hidden');
+                fb.textContent = '';
+                document.getElementById('penalty-gameover').classList.remove('hidden');
+                document.getElementById('penalty-score').textContent = `${penaltyScore} out of ${shuffledScenarios.length}`;
+            }
+        }, 1500);
+    }
+
+    document.getElementById('btn-penalty').addEventListener('click', () => handlePenaltyGuess("Penalty"));
+    document.getElementById('btn-legal').addEventListener('click', () => handlePenaltyGuess("Legal"));
+    document.getElementById('penalty-restart').addEventListener('click', initPenalty);
+
+    // --- 7. FTC HANGMAN ---
+    const hangmanPhrases = ["GRACIOUS PROFESSIONALISM", "AUTONOMOUS", "TELEMETRY", "REV ROBOTICS", "CONTROL HUB", "ODOMETRY", "PID CONTROLLER"];
+    let hmAnswer = "";
+    let hmGuessed = [];
+    let hmLives = 6;
+    let hmGameOver = false;
+
+    function initHangman() {
+        hmAnswer = hangmanPhrases[Math.floor(Math.random() * hangmanPhrases.length)];
+        hmGuessed = [];
+        hmLives = 6;
+        hmGameOver = false;
+        
+        document.getElementById('hangman-lives').textContent = hmLives;
+        document.getElementById('hangman-gameover').classList.add('hidden');
+        
+        renderHangmanWord();
+        renderHangmanKeyboard();
+    }
+
+    function renderHangmanWord() {
+        const container = document.getElementById('hangman-word');
+        let display = "";
+        for (let char of hmAnswer) {
+            if (char === " ") {
+                display += " \u00A0 "; // spaces
+            } else if (hmGuessed.includes(char)) {
+                display += char;
+            } else {
+                display += "_";
+            }
+        }
+        container.textContent = display;
+    }
+
+    function renderHangmanKeyboard() {
+        const kb = document.getElementById('hangman-keyboard');
+        kb.innerHTML = "";
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        
+        letters.forEach(char => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline';
+            btn.style.padding = '0.5rem';
+            btn.style.width = '40px';
+            btn.textContent = char;
+            
+            if (hmGuessed.includes(char)) {
+                btn.disabled = true;
+                if (hmAnswer.includes(char)) {
+                    btn.classList.add('bg-green'); // could style nicely
+                    btn.style.borderColor = 'var(--brand-green)';
+                    btn.style.color = 'var(--brand-green)';
+                } else {
+                    btn.style.opacity = '0.3';
+                }
+            } else {
+                btn.addEventListener('click', () => handleHangmanGuess(char));
+            }
+            kb.appendChild(btn);
+        });
+    }
+
+    function handleHangmanGuess(char) {
+        if (hmGameOver || hmGuessed.includes(char)) return;
+        
+        hmGuessed.push(char);
+        
+        if (!hmAnswer.includes(char)) {
+            hmLives--;
+            document.getElementById('hangman-lives').textContent = hmLives;
+        }
+        
+        renderHangmanWord();
+        renderHangmanKeyboard();
+        
+        checkHangmanWinLoss();
+    }
+
+    function checkHangmanWinLoss() {
+        let won = true;
+        for (let char of hmAnswer) {
+            if (char !== " " && !hmGuessed.includes(char)) {
+                won = false;
+                break;
+            }
+        }
+        
+        const go = document.getElementById('hangman-gameover');
+        const msg = document.getElementById('hangman-result-msg');
+        
+        if (won) {
+            hmGameOver = true;
+            go.classList.remove('hidden');
+            msg.textContent = "You Win!";
+            msg.style.color = "var(--brand-green)";
+        } else if (hmLives <= 0) {
+            hmGameOver = true;
+            go.classList.remove('hidden');
+            msg.textContent = `Game Over. The phrase was: ${hmAnswer}`;
+            msg.style.color = "#ef4444";
+            
+            // Reveal word completely
+            const container = document.getElementById('hangman-word');
+            container.textContent = hmAnswer;
+        }
+    }
+
+    document.getElementById('hangman-restart').addEventListener('click', initHangman);
+
+    // --- 8. MEMORY MATCH ---
+    const memoryIcons = [
+        "ph-gear", "ph-cpu", "ph-battery-charging", "ph-game-controller",
+        "ph-wrench", "ph-car", "ph-code", "ph-shield-check"
+    ];
+    let memoryCards = [];
+    let memoryFlipped = [];
+    let memoryMatched = 0;
+    let memoryMoves = 0;
+
+    function initMemory() {
+        memoryMoves = 0;
+        memoryMatched = 0;
+        memoryFlipped = [];
+        document.getElementById('memory-moves').textContent = memoryMoves;
+        document.getElementById('memory-gameover').classList.add('hidden');
+        
+        let pairs = [...memoryIcons, ...memoryIcons];
+        pairs.sort(() => Math.random() - 0.5);
+        memoryCards = pairs;
+        
+        const board = document.getElementById('memory-board');
+        board.innerHTML = '';
+        board.style.display = 'grid';
+        board.style.gridTemplateColumns = 'repeat(4, 1fr)';
+        board.style.gap = '10px';
+        board.style.maxWidth = '400px';
+        board.style.margin = '0 auto';
+        
+        memoryCards.forEach((iconName, idx) => {
+            const card = document.createElement('div');
+            card.className = 'memory-card bg-darker flex-center cursor-pointer rounded';
+            card.style.height = '80px';
+            card.style.fontSize = '2rem';
+            card.dataset.icon = iconName;
+            card.dataset.idx = idx;
+            
+            // Initially hidden (show a question mark)
+            card.innerHTML = `<i class="ph ph-question text-muted"></i>`;
+            
+            card.addEventListener('click', () => handleMemoryClick(card));
+            board.appendChild(card);
+        });
+    }
+
+    function handleMemoryClick(cardNode) {
+        let idx = cardNode.dataset.idx;
+        if (memoryFlipped.length === 2) return; // Wait
+        if (cardNode.classList.contains('matched') || memoryFlipped.some(f => f.dataset.idx === idx)) return;
+        
+        // Flip card
+        let iconName = cardNode.dataset.icon;
+        cardNode.innerHTML = `<i class="ph ${iconName} text-green"></i>`;
+        memoryFlipped.push(cardNode);
+        
+        if (memoryFlipped.length === 2) {
+            memoryMoves++;
+            document.getElementById('memory-moves').textContent = memoryMoves;
+            
+            let c1 = memoryFlipped[0];
+            let c2 = memoryFlipped[1];
+            
+            if (c1.dataset.icon === c2.dataset.icon) {
+                c1.classList.add('matched');
+                c2.classList.add('matched');
+                c1.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+                c2.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+                memoryMatched += 2;
+                memoryFlipped = [];
+                
+                if (memoryMatched === memoryCards.length) {
+                    document.getElementById('memory-gameover').classList.remove('hidden');
+                }
+            } else {
+                setTimeout(() => {
+                    c1.innerHTML = `<i class="ph ph-question text-muted"></i>`;
+                    c2.innerHTML = `<i class="ph ph-question text-muted"></i>`;
+                    memoryFlipped = [];
+                }, 1000);
+            }
+        }
+    }
+
+    document.getElementById('memory-restart').addEventListener('click', initMemory);
+
+    // --- 9. SCORE CALCULATOR (Into The Deep) ---
+    // Rules: High Basket=8, Low Basket=4, High Chamber=10, Low Chamber=6, Level 1 Ascent=3, Level 2 Ascent=15, Level 3 Ascent=30, Park=3
+    let calcCorrectScore = 0;
+
+    function initCalculator() {
+        document.getElementById('calc-feedback').textContent = '';
+        document.getElementById('calc-input').value = '';
+        document.getElementById('calc-next').classList.add('hidden');
+        document.getElementById('calc-submit').classList.remove('hidden');
+        
+        const hBasket = Math.floor(Math.random() * 5);
+        const lBasket = Math.floor(Math.random() * 3);
+        const hChamber = Math.floor(Math.random() * 4);
+        const lChamber = Math.floor(Math.random() * 2);
+        
+        const ascents = ["None", "Level 1 (3 pt)", "Level 2 (15 pt)", "Level 3 (30 pt)", "Park (3 pt)"];
+        const ascentIdx = Math.floor(Math.random() * ascents.length);
+        const ascentStr = ascents[ascentIdx];
+        
+        let ascPts = 0;
+        if(ascentIdx===1) ascPts=3;
+        else if(ascentIdx===2) ascPts=15;
+        else if(ascentIdx===3) ascPts=30;
+        else if(ascentIdx===4) ascPts=3;
+
+        calcCorrectScore = (hBasket*8) + (lBasket*4) + (hChamber*10) + (lChamber*6) + ascPts;
+        
+        const desc = `
+            <ul style="list-style-type:disc; padding-left:20px; color:var(--text)">
+                <li>High Basket Samples (8pt): ${hBasket}</li>
+                <li>Low Basket Samples (4pt): ${lBasket}</li>
+                <li>High Chamber Specimens (10pt): ${hChamber}</li>
+                <li>Low Chamber Specimens (6pt): ${lChamber}</li>
+                <li>Robot Status: ${ascentStr}</li>
+            </ul>
+        `;
+        document.getElementById('calc-scenario').innerHTML = desc;
+    }
+
+    document.getElementById('calc-submit').addEventListener('click', () => {
+        const input = parseInt(document.getElementById('calc-input').value);
+        const fb = document.getElementById('calc-feedback');
+        
+        if (isNaN(input)) {
+            fb.textContent = "Please enter a number.";
+            fb.style.color = "#ef4444";
+            return;
+        }
+        
+        if (input === calcCorrectScore) {
+            fb.textContent = "Correct! Great job Ref!";
+            fb.style.color = "var(--brand-green)";
+            document.getElementById('calc-submit').classList.add('hidden');
+            document.getElementById('calc-next').classList.remove('hidden');
+        } else {
+            fb.textContent = `Incorrect! The actual score is ${calcCorrectScore}.`;
+            fb.style.color = "#ef4444";
+            document.getElementById('calc-submit').classList.add('hidden');
+            document.getElementById('calc-next').classList.remove('hidden');
+        }
+    });
+
+    document.getElementById('calc-next').addEventListener('click', initCalculator);
+
 
 });

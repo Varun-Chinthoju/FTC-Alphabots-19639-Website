@@ -256,6 +256,34 @@
                     <p>Match FTC terms to their definitions as fast as you can</p>
                     <span class="game-card-tag">Matching</span>
                 </button>
+
+                <button class="game-card" data-game="penalty" id="launch-penalty">
+                    <div class="game-card-icon"><i class="ph ph-warning-circle"></i></div>
+                    <h3>Penalty or Legal?</h3>
+                    <p>Test your knowledge of the FTC Game Manual rules</p>
+                    <span class="game-card-tag">Rules</span>
+                </button>
+
+                <button class="game-card" data-game="hangman" id="launch-hangman">
+                    <div class="game-card-icon"><i class="ph ph-text-t"></i></div>
+                    <h3>FTC Hangman</h3>
+                    <p>Guess the hidden FTC phrase before time runs out</p>
+                    <span class="game-card-tag">Word Game</span>
+                </button>
+
+                <button class="game-card" data-game="memory" id="launch-memory">
+                    <div class="game-card-icon"><i class="ph ph-squares-four"></i></div>
+                    <h3>Memory Match</h3>
+                    <p>Find the matching pairs of FTC parts and concepts</p>
+                    <span class="game-card-tag">Puzzle</span>
+                </button>
+
+                <button class="game-card" data-game="calculator" id="launch-calculator">
+                    <div class="game-card-icon"><i class="ph ph-calculator"></i></div>
+                    <h3>Score Calculator</h3>
+                    <p>Calculate the score of a match scenario like a real ref</p>
+                    <span class="game-card-tag">Math</span>
+                </button>
             </div>
 
             <!-- ===== GAME: FTC WORDLE ===== -->
@@ -277,10 +305,22 @@
                 <div class="game-header">
                     <h3><i class="ph ph-brain text-green"></i> FTC Trivia</h3>
                 </div>
-                <div id="trivia-progress" class="trivia-progress">
+                
+                <div id="trivia-topic-screen" class="text-center my-4">
+                    <p class="text-muted mb-4">Select a topic to test your knowledge:</p>
+                    <div class="trivia-topic-grid" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                        <button class="btn btn-outline trivia-topic-btn" data-topic="Hardware">Hardware</button>
+                        <button class="btn btn-outline trivia-topic-btn" data-topic="Software">Software</button>
+                        <button class="btn btn-outline trivia-topic-btn" data-topic="Outreach">Outreach</button>
+                        <button class="btn btn-outline trivia-topic-btn" data-topic="General">General</button>
+                        <button class="btn btn-primary trivia-topic-btn" data-topic="All">Mixed (All Rules)</button>
+                    </div>
+                </div>
+
+                <div id="trivia-progress" class="trivia-progress hidden">
                     <div id="trivia-bar" class="trivia-bar"></div>
                 </div>
-                <div id="trivia-question-area" class="trivia-question-area">
+                <div id="trivia-question-area" class="trivia-question-area hidden">
                     <div id="trivia-q-num" class="trivia-q-num"></div>
                     <div id="trivia-question" class="trivia-question"></div>
                     <div id="trivia-options" class="trivia-options"></div>
@@ -358,6 +398,74 @@
                     <p class="text-muted mt-1">You matched <span id="sm-final" class="text-green font-bold">0</span> terms correctly.</p>
                     <button id="sm-restart" class="btn btn-primary mt-2">Play Again</button>
                 </div>
+            </div>
+
+            <!-- ===== GAME: PENALTY OR LEGAL ===== -->
+            <div id="game-penalty" class="game-container hidden">
+                <button class="game-back-btn" data-back><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-warning-circle text-green"></i> Penalty or Legal?</h3>
+                    <p class="text-muted">You are the Referee. Is this scenario a Penalty or Legal?</p>
+                </div>
+                <div id="penalty-scenario" class="penalty-scenario mb-4 text-center mt-4 text-xl"></div>
+                <div id="penalty-options" class="penalty-options flex-center gap-4">
+                    <button id="btn-penalty" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444;">Penalty</button>
+                    <button id="btn-legal" class="btn btn-outline" style="border-color:var(--brand-green); color:var(--brand-green);">Legal</button>
+                </div>
+                <div id="penalty-feedback" class="penalty-feedback text-center mt-4"></div>
+                <div id="penalty-gameover" class="penalty-gameover text-center hidden mt-4">
+                    <h4 class="text-2xl font-bold">Finished!</h4>
+                    <p class="mt-2 text-muted">You correctly ruled <span id="penalty-score" class="text-green">0</span> scenarios.</p>
+                    <button id="penalty-restart" class="btn btn-primary mt-4">Play Again</button>
+                </div>
+            </div>
+
+            <!-- ===== GAME: FTC HANGMAN ===== -->
+            <div id="game-hangman" class="game-container hidden text-center">
+                <button class="game-back-btn" data-back style="text-align:left;"><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-text-t text-green"></i> FTC Hangman</h3>
+                    <p class="text-muted">Guess the letters in the hidden word or phrase</p>
+                </div>
+                <div class="hangman-stats mt-4 mb-2">Lives: <span id="hangman-lives" class="text-green">6</span></div>
+                <div id="hangman-word" class="hangman-word tracking-widest text-3xl font-bold mb-4"></div>
+                <div id="hangman-keyboard" class="hangman-keyboard flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"></div>
+                <div id="hangman-gameover" class="hangman-gameover hidden mt-4">
+                    <p id="hangman-result-msg" class="text-xl font-bold"></p>
+                    <button id="hangman-restart" class="btn btn-primary mt-2">Play Again</button>
+                </div>
+            </div>
+
+            <!-- ===== GAME: MEMORY MATCH ===== -->
+            <div id="game-memory" class="game-container hidden text-center">
+                <button class="game-back-btn" data-back style="text-align:left;"><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-squares-four text-green"></i> Memory Match</h3>
+                    <p class="text-muted">Find matching pairs of FTC concepts</p>
+                </div>
+                <div class="memory-stats mb-4">Moves: <span id="memory-moves">0</span></div>
+                <div id="memory-board" class="memory-board"></div>
+                <div id="memory-gameover" class="memory-gameover hidden mt-4">
+                    <h4 class="text-2xl font-bold text-green">Board Cleared!</h4>
+                    <button id="memory-restart" class="btn btn-primary mt-4">Play Again</button>
+                </div>
+            </div>
+
+            <!-- ===== GAME: SCORE CALCULATOR ===== -->
+            <div id="game-calculator" class="game-container hidden text-center">
+                <button class="game-back-btn" data-back style="text-align:left;"><i class="ph ph-arrow-left"></i> Back to Games</button>
+                <div class="game-header">
+                    <h3><i class="ph ph-calculator text-green"></i> Score Calculator</h3>
+                    <p class="text-muted">Calculate the exact score for the given Into the Deep scenario</p>
+                </div>
+                <div id="calc-scenario" class="bg-darker p-4 rounded mt-4 mb-4 text-left inline-block w-full max-w-md"></div>
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <label for="calc-input">Calculated Score:</label>
+                    <input type="number" id="calc-input" class="modern-input" style="width:100px; padding:0.5rem;" placeholder="Score">
+                    <button id="calc-submit" class="btn btn-primary">Check</button>
+                </div>
+                <div id="calc-feedback" class="font-bold text-xl mb-4"></div>
+                <button id="calc-next" class="btn btn-secondary hidden">Next Scenario</button>
             </div>
         </section>
 
