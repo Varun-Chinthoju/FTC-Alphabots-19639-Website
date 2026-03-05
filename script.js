@@ -796,7 +796,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 1. FTC WORDLE (Daily + Unlimited + Bot) ---
-    const ftcWords = ["SERVO","MOTOR","AUTON","DRIVE","ROBOT","MATCH","BRICK","POWER","WHEEL","GEARS","ALLOY","FIELD","CRANE","CLAW","PIVOT","SLIDE","GRIPS","JOINT","SHAFT","LEVEL","CYCLE","FRAME","STONE","PIXEL","STACK","PLATE","SCREW","LEVER","ANKER","SPARK","ULTRA","LIGHT","LIDAR","PRESS","BLOCK","MOUNT","CHAIN","GUARD","PANEL","BOARD"];
+const ftcWords = [
+  "SERVO", "MOTOR", "AUTON", "DRIVE", "ROBOT", "MATCH", "BRICK", "POWER", 
+  "WHEEL", "GEARS", "ALLOY", "FIELD", "CRANE", "CLAW", "PIVOT", "SLIDE", 
+  "GRIPS", "JOINT", "SHAFT", "LEVEL", "CYCLE", "FRAME", "STONE", "PIXEL", 
+  "STACK", "PLATE", "SCREW", "LEVER", "ANKER", "SPARK", "ULTRA", "LIGHT", 
+  "LIDAR", "PRESS", "BLOCK", "MOUNT", "CHAIN", "GUARD", "PANEL", "BOARD",
+  "ALIGN", "ANGLE", "ARENA", "ARRAY", "AUDIO", "AXLES", "BEAMS", "BELTS", 
+  "BOLTS", "BRACE", "BRAIN", "BRASS", "BUILD", "BYTES", "CABLE", "CARGO", 
+  "CATCH", "CHIPS", "CLAMP", "CLIMB", "CLIPS", "COACH", "CODER", "COLOR", 
+  "CONES", "CRASH", "CRIMP", "DEBUG", "DELAY", "DIODE", "DRILL", "DRONE", 
+  "DUCKS", "EPOXY", "ERROR", "EVENT", "FAULT", "FLASH", "FORCE", "FUSES", 
+  "GATES", "GAUGE", "GLUES", "GLYPH", "GRASP", "GYROS", "HANGS", "HOLES", 
+  "HOOKS", "INDEX", "INPUT", "JEWEL", "JOULE", "JUDGE", "LATCH", "LIFTS", 
+  "LIMIT", "LOGIC", "LOOPS", "MACRO", "METAL", "MICRO", "MODEL", "OMNIS", 
+  "PARTS", "PITCH", "POLES", "PORTS", "PRINT", "PROBE", "RACKS", "RADIO", 
+  "RANGE", "RELAY", "RELIC", "RESET", "RINGS", "ROVER", "RULES", "SCORE", 
+  "SCOUT", "SENSE", "SETUP", "SHOCK", "SHOOT", "SKILL", "SLOTS", "SONAR", 
+  "SPEED", "SPIKE", "STAGE", "START", "TEAMS", "TIMER", "TRACK", "TREAD", 
+  "TRUSS", "VOLTS", "WATTS", "WIRES"
+];
     let wordleAnswer = "";
     let wordleGuesses = [];
     let wordleCurrentGuess = "";
