@@ -285,11 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "role": "Team Captain",
             "img": "images/team/2025_2026_suhas_bathini.jpg"
         },
-        {
-            "name": "Dhruv Mandala",
-            "role": "Software Member",
-            "img": ""
-        },
+
         {
             "name": "Saket Sandru",
             "role": "Hardware Captain",
@@ -312,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             "name": "Varun Chinthoju",
-            "role": "Hardware Member",
+            "role": "Software Member",
             "img": ""
         },
         {
