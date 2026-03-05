@@ -135,16 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             matchingNavBtn.classList.add('active');
         }
 
-        // Show/hide season sub-bar based on active tab
-        const seasonSubBar = document.getElementById('season-sub-bar');
-        if (seasonSubBar) {
-            if (targetId === 'members') {
-                seasonSubBar.style.display = 'flex';
-            } else {
-                seasonSubBar.style.display = 'none';
-            }
-        }
-
         // Show pane
         targetPane.classList.remove('hidden');
         void targetPane.offsetWidth; // Force reflow
@@ -174,10 +164,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    // Add click listeners to nav buttons
+    // Add click listeners to nav buttons (skip buttons without data-target)
     navButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            switchTab(e.currentTarget.getAttribute('data-target'));
+            const target = e.currentTarget.getAttribute('data-target');
+            if (target) {
+                // Close dropdown if open
+                const dropdown = document.getElementById('season-dropdown');
+                if (dropdown) dropdown.classList.remove('open');
+                switchTab(target);
+            }
         });
     });
 
@@ -367,12 +363,38 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    const seasonSelect = document.getElementById('season-select');
-    if (seasonSelect) {
-        seasonSelect.addEventListener('change', (e) => {
-            renderMembers(e.target.value);
+    // ======= Team Members Dropdown =======
+    const membersToggle = document.getElementById('members-toggle');
+    const seasonDropdown = document.getElementById('season-dropdown');
+    let selectedSeason = null;
+
+    if (membersToggle && seasonDropdown) {
+        // Toggle dropdown on Team Members button click
+        membersToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            seasonDropdown.classList.toggle('open');
         });
-        // Render default season
-        renderMembers(seasonSelect.value);
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!seasonDropdown.contains(e.target) && e.target !== membersToggle) {
+                seasonDropdown.classList.remove('open');
+            }
+        });
+
+        // Handle season option clicks
+        seasonDropdown.querySelectorAll('.season-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                selectedSeason = e.currentTarget.getAttribute('data-season');
+                seasonDropdown.classList.remove('open');
+                renderMembers(selectedSeason);
+                // Now switch to the members tab
+                switchTab('members');
+                // Also activate the members-toggle button visually
+                navButtons.forEach(b => b.classList.remove('active'));
+                membersToggle.classList.add('active');
+                moveIndicator(membersToggle, true);
+            });
+        });
     }
 });

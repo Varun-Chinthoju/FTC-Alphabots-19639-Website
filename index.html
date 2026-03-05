@@ -28,7 +28,16 @@
             
             <ul class="nav-links" id="nav-links">
                 <li><button class="nav-btn active" data-target="home">Home</button></li>
-                <li><button class="nav-btn" data-target="members">Team Members</button></li>
+                <li class="nav-item-dropdown">
+                    <button class="nav-btn" id="members-toggle">Team Members</button>
+                    <div id="season-dropdown" class="season-dropdown">
+                        <button class="season-option" data-season="2025-2026">2025–2026 <span>DECODE</span></button>
+                        <button class="season-option" data-season="2024-2025">2024–2025 <span>INTO THE DEEP</span></button>
+                        <button class="season-option" data-season="2023-2024">2023–2024 <span>CENTERSTAGE</span></button>
+                        <button class="season-option" data-season="2022-2023">2022–2023 <span>POWERPLAY</span></button>
+                        <button class="season-option" data-season="2021-2022">2021–2022 <span>FREIGHT FRENZY</span></button>
+                    </div>
+                </li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
                 <li><button class="nav-btn" data-target="gallery">Gallery</button></li>
                 <li><button class="nav-btn" data-target="robot">Robot & CAD</button></li>
@@ -39,19 +48,6 @@
                 <i class="ph ph-list"></i>
             </button>
         </nav>
-        <!-- Season sub-bar: shown only when Team Members tab is active -->
-        <div id="season-sub-bar" class="season-sub-bar" style="display: none;">
-            <div class="season-select-wrapper">
-                <select id="season-select" class="season-select">
-                    <option value="2025-2026" selected>2025–2026 (INTO THE DEEP)</option>
-                    <option value="2024-2025">2024–2025 (CENTERSTAGE)</option>
-                    <option value="2023-2024">2023–2024 (POWERPLAY)</option>
-                    <option value="2022-2023">2022–2023 (FREIGHT FRENZY)</option>
-                    <option value="2021-2022">2021–2022 (ULTIMATE GOAL)</option>
-                </select>
-                <i class="ph ph-caret-down season-select-icon"></i>
-            </div>
-        </div>
     </header>
 
     <main class="content-container">
