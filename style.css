@@ -817,15 +817,15 @@ header {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 2000;
-    display: none;
+    display: none; /* Important: hidden initially */
     opacity: 0;
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.35s ease;
     align-items: center;
     justify-content: center;
 }
 
 .lightbox.open {
-    display: flex;
+    display: flex !important; /* Force flex when open */
     opacity: 1;
 }
 

@@ -151,6 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
             fetchStats();
         }
 
+        // If 'gallery' tab is clicked, init lightbox
+        if (targetId === 'gallery') {
+            initLightbox();
+        }
+
         // If 'alumni' tab is clicked, render alumni if we haven't already
         if (targetId === 'alumni' && !window.alumniRendered) {
             renderAlumni();
@@ -694,6 +699,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 220);
         });
 
+        // Toggle on click for mobile/accessibility
+        membersToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (seasonDropdown.classList.contains('open')) {
+                seasonDropdown.classList.remove('open');
+            } else {
+                seasonDropdown.classList.add('open');
+            }
+        });
+
         // Close when mouse leaves the entire dropdown area
         if (dropdownWrapper) {
             dropdownWrapper.addEventListener('mouseleave', () => {
@@ -713,6 +728,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Keep dropdown open if mouse is over it
         seasonDropdown.addEventListener('mouseenter', () => {
             clearTimeout(dripTimeout);
+        });
+
+        // Close if clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownWrapper.contains(e.target)) {
+                seasonDropdown.classList.remove('open');
+            }
         });
 
         // Handle season option clicks
