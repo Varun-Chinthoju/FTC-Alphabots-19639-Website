@@ -297,11 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "role": "Hardware Captain",
             "img": "images/team/2025_2026_saket_sandru.jpg"
         },
-        {
-            "name": "Aadit Verma",
-            "role": "Outreach Captain",
-            "img": "images/team/2025_2026_aadit_verma.jpg"
-        },
+
         {
             "name": "Shiv Gurjar",
             "role": "Software Captain",
@@ -316,6 +312,11 @@ document.addEventListener('DOMContentLoaded', () => {
             "name": "Varun Chinthoju",
             "role": "Software Member",
             "img": ""
+        },
+        {
+            "name": "Aadit Verma",
+            "role": "Outreach Captain",
+            "img": "images/team/2025_2026_aadit_verma.jpg"
         },
         {
             "name": "Rushil Shah",
@@ -369,11 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "role": "Hardware Captain",
             "img": "images/team/2024_2025_shiv_gurjar.jpg"
         },
-        {
-            "name": "Aadit Verma",
-            "role": "Outreach Captain",
-            "img": "images/team/2024_2025_aadit_verma.jpg"
-        },
+
         {
             "name": "Saket Sandru",
             "role": "Hardware Member",
@@ -383,6 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
             "name": "Simran Chhabria",
             "role": "Hardware Member",
             "img": "images/team/2024_2025_simran_chhabria.jpg"
+        },
+        {
+            "name": "Aadit Verma",
+            "role": "Outreach Captain",
+            "img": "images/team/2024_2025_aadit_verma.jpg"
         },
         {
             "name": "Rushil Shah",
