@@ -181,10 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = e.currentTarget.getAttribute('data-target');
             if (target) {
                 // Close dropdown if open
-                const dropdown = document.getElementById('season-dropdown');
-                if (dropdown) {
-                    dropdown.classList.remove('open');
-                    dropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
+                const dropdownContainer = document.getElementById('nav-dropdown-container');
+                if (dropdownContainer) {
+                    dropdownContainer.classList.remove('open');
                 }
                 switchTab(target);
             }
@@ -682,11 +681,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ======= Team Members Dropdown =======
     const membersToggle = document.getElementById('members-toggle');
     const seasonDropdown = document.getElementById('season-dropdown');
-    const dropdownWrapper = document.querySelector('.nav-item-dropdown');
+    const dropdownWrapper = document.getElementById('nav-dropdown-container');
     let selectedSeason = null;
     let dripTimeout = null;
 
-    if (membersToggle && seasonDropdown) {
+    if (membersToggle && dropdownWrapper) {
         // Open on hover
         membersToggle.addEventListener('mouseenter', () => {
             clearTimeout(dripTimeout);
@@ -698,29 +697,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 2. Wait for the slide animation to finish (220ms), then drip down
             dripTimeout = setTimeout(() => {
-                const animIndex = Math.floor(Math.random() * 5) + 1;
-                seasonDropdown.className = 'season-dropdown open slime-anim-' + animIndex;
+                dropdownWrapper.classList.add('open');
             }, 220);
         });
 
         // Toggle on click for mobile/accessibility
         membersToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (seasonDropdown.classList.contains('open')) {
-                seasonDropdown.classList.remove('open');
-                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
-            } else {
-                const animIndex = Math.floor(Math.random() * 5) + 1;
-                seasonDropdown.className = 'season-dropdown open slime-anim-' + animIndex;
-            }
+            dropdownWrapper.classList.toggle('open');
         });
 
         // Close when mouse leaves the entire dropdown area
         if (dropdownWrapper) {
             dropdownWrapper.addEventListener('mouseleave', () => {
                 clearTimeout(dripTimeout);
-                seasonDropdown.classList.remove('open');
-                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
+                dropdownWrapper.classList.remove('open');
                 
                 // Return indicator to the currently active tab
                 const activeBtn = document.querySelector('.nav-btn.active');
@@ -732,25 +723,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Keep dropdown open if mouse is over it
-        seasonDropdown.addEventListener('mouseenter', () => {
-            clearTimeout(dripTimeout);
-        });
-
         // Close if clicking outside
         document.addEventListener('click', (e) => {
             if (!dropdownWrapper.contains(e.target)) {
-                seasonDropdown.classList.remove('open');
-                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
+                dropdownWrapper.classList.remove('open');
             }
         });
 
         // Handle season option clicks
-        seasonDropdown.querySelectorAll('.season-option').forEach(option => {
+        dropdownWrapper.querySelectorAll('.season-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 selectedSeason = e.currentTarget.getAttribute('data-season');
-                seasonDropdown.classList.remove('open');
-                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
+                dropdownWrapper.classList.remove('open');
                 
                 renderMembers(selectedSeason);
                 switchTab('members');

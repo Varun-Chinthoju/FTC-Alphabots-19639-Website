@@ -28,14 +28,16 @@
             
             <ul class="nav-links" id="nav-links">
                 <li><button class="nav-btn active" data-target="home">Home</button></li>
-                <li class="nav-item-dropdown">
+                <li class="nav-item-dropdown" id="nav-dropdown-container">
                     <button class="nav-btn" id="members-toggle">Team Members</button>
-                    <div id="season-dropdown" class="season-dropdown">
-                        <button class="season-option" data-season="2025-2026">2025–2026 <span>DECODE</span></button>
-                        <button class="season-option" data-season="2024-2025">2024–2025 <span>INTO THE DEEP</span></button>
-                        <button class="season-option" data-season="2023-2024">2023–2024 <span>CENTERSTAGE</span></button>
-                        <button class="season-option" data-season="2022-2023">2022–2023 <span>POWERPLAY</span></button>
-                        <button class="season-option" data-season="2021-2022">2021–2022 <span>FREIGHT FRENZY</span></button>
+                    <div class="gooey-nav-wrapper">
+                        <div id="season-dropdown" class="season-dropdown">
+                            <button class="season-option item-1" data-season="2025-2026">2025–2026 <span>DECODE</span></button>
+                            <button class="season-option item-2" data-season="2024-2025">2024–2025 <span>INTO THE DEEP</span></button>
+                            <button class="season-option item-3" data-season="2023-2024">2023–2024 <span>CENTERSTAGE</span></button>
+                            <button class="season-option item-4" data-season="2022-2023">2022–2023 <span>POWERPLAY</span></button>
+                            <button class="season-option item-5" data-season="2021-2022">2021–2022 <span>FREIGHT FRENZY</span></button>
+                        </div>
                     </div>
                 </li>
                 <li><button class="nav-btn" data-target="outreach">Outreach</button></li>
@@ -551,10 +553,10 @@
     <!-- SVG Gooey Filter for Slime Dropdown -->
     <svg style="visibility: hidden; position: absolute; width: 0; height: 0;" aria-hidden="true">
         <defs>
-            <filter id="slime-goo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            <filter id="extra-goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -12" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
             </filter>
         </defs>
     </svg>
