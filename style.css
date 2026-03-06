@@ -523,11 +523,15 @@ header {
 }
 
 .gooey-nav-wrapper {
-    filter: url('#thick-slime');
+    filter: none;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.nav-item-dropdown.open .gooey-nav-wrapper {
+    filter: url('#thick-slime');
 }
 
 /* Ensure the button is part of the gooey world */
