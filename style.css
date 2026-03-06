@@ -551,8 +551,8 @@ header {
     padding: 0 1.2rem;
     box-shadow: 
         inset 0 3px 4px rgba(255, 255, 255, 0.45),
-        inset 0 -3px 6px rgba(0, 80, 50, 0.4),
-        0 3px 12px rgba(13, 163, 113, 0.6);
+        inset 0 -3px 6px rgba(0, 80, 50, 0.4);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .nav-item-dropdown.open #members-toggle .chevron {
@@ -563,8 +563,7 @@ header {
     box-shadow: 
         inset 0 3px 4px rgba(255, 255, 255, 0.45),
         inset 0 -3px 6px rgba(0, 80, 50, 0.4),
-        0 0 20px rgba(34, 197, 94, 0.8), /* Green glow */
-        0 3px 12px rgba(13, 163, 113, 0.6);
+        0 0 20px rgba(34, 197, 94, 0.8); /* Green glow only on hover */
 }
 
 .season-option {
