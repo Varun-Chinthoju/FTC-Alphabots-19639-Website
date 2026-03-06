@@ -581,11 +581,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderMembers(season) {
         const grid = document.getElementById('members-grid');
-        const members = teamData[season] || [];
+        let members = teamData[season] || [];
         if (members.length === 0) {
             grid.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">No roster data for this season.</p>';
             return;
         }
+
+        const roleOrder = [
+            "Team Captain",
+            "Captain",
+            "Hardware Captain",
+            "Hardware Member",
+            "Software Captain",
+            "Software Member",
+            "Outreach Captain",
+            "Outreach Member",
+            "Member"
+        ];
+
+        members = [...members].sort((a, b) => {
+            let indexA = roleOrder.indexOf(a.role);
+            let indexB = roleOrder.indexOf(b.role);
+            if (indexA === -1) indexA = 99;
+            if (indexB === -1) indexB = 99;
+            return indexA - indexB;
+        });
+
+
         grid.innerHTML = members.map((m, i) => {
             let avatarHTML = '';
             if (m.img && m.img.length > 5) {
