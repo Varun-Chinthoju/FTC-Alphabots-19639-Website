@@ -624,9 +624,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tiers[tierName].length > 0) {
                 // Sort within tier to keep Captains > Members
                 tiers[tierName].sort((a, b) => {
-                    let indexA = roleOrder.indexOf(a.role);
-                    let indexB = roleOrder.indexOf(b.role);
-                    return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
+                    const aIsCap = a.role.toLowerCase().includes('captain');
+                    const bIsCap = b.role.toLowerCase().includes('captain');
+                    if (aIsCap && !bIsCap) return -1;
+                    if (!aIsCap && bIsCap) return 1;
+                    return 0;
                 });
 
                 let tierHTML = '<div class="team-tier"><h3 class="tier-title">' + tierName + '</h3><div class="members-grid">';
