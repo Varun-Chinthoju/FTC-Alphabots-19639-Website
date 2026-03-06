@@ -680,16 +680,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ======= Team Members Dropdown =======
     const membersToggle = document.getElementById('members-toggle');
-    const seasonDropdown = document.getElementById('season-dropdown');
     const dropdownWrapper = document.getElementById('nav-dropdown-container');
     let selectedSeason = null;
     let dripTimeout = null;
+
+    function randomizePattern() {
+        if (!dropdownWrapper) return;
+        const rand = Math.floor(Math.random() * 5) + 1;
+        // Remove all previous patterns
+        for (let i = 1; i <= 5; i++) {
+            dropdownWrapper.classList.remove(`pattern-${i}`);
+        }
+        // Add new random pattern
+        dropdownWrapper.classList.add(`pattern-${rand}`);
+    }
 
     if (membersToggle && dropdownWrapper) {
         // Open on hover
         membersToggle.addEventListener('mouseenter', () => {
             clearTimeout(dripTimeout);
             
+            // Randomize the pattern before opening
+            if (!dropdownWrapper.classList.contains('open')) {
+                randomizePattern();
+            }
+
             // 1. Move the slider over to Team Members immediately
             if (typeof moveIndicator === 'function') {
                 moveIndicator(membersToggle, true);
@@ -704,6 +719,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle on click for mobile/accessibility
         membersToggle.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (!dropdownWrapper.classList.contains('open')) {
+                randomizePattern();
+            }
             dropdownWrapper.classList.toggle('open');
         });
 
