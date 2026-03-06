@@ -2155,9 +2155,17 @@ const ftcWords = [
 
     function openLightbox(index) {
         currentImageIndex = index;
+        
+        // Remove switching class if it was stuck
+        lightboxImg.classList.remove('lightbox-img-switching');
+        
         updateLightboxContent();
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        
+        // Use a tiny delay to allow class removal to settle
+        setTimeout(() => {
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden'; 
+        }, 10);
     }
 
     function closeLightbox() {
@@ -2169,16 +2177,20 @@ const ftcWords = [
         const image = galleryImages[currentImageIndex];
         if (!image) return;
 
-        // Fade out image briefly for transition
-        lightboxImg.style.opacity = '0';
+        // Apply switching class for transition
+        lightboxImg.classList.add('lightbox-img-switching');
         
         setTimeout(() => {
             lightboxImg.src = image.src;
             lightboxImg.alt = image.alt;
             lightboxCaption.textContent = image.alt;
             lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
-            lightboxImg.style.opacity = '1';
-        }, 50);
+            
+            // Wait for image to load or just short delay for smoother fade in
+            setTimeout(() => {
+                lightboxImg.classList.remove('lightbox-img-switching');
+            }, 50);
+        }, 200);
     }
 
     function nextImage() {
