@@ -657,10 +657,12 @@ header {
 }
 
 .members-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .member-card {
@@ -670,6 +672,7 @@ header {
     padding: 1rem 0.5rem;
     text-align: center;
     transition: var(--transition);
+    width: 220px;
 }
 
 .member-card:hover {
