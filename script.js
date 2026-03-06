@@ -746,17 +746,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle season option clicks
         dropdownWrapper.querySelectorAll('.season-option').forEach(option => {
             option.addEventListener('click', (e) => {
-                selectedSeason = e.currentTarget.getAttribute('data-season');
+                const targetTab = e.currentTarget.getAttribute('data-target');
+                const season = e.currentTarget.getAttribute('data-season');
                 dropdownWrapper.classList.remove('open');
-                
-                renderMembers(selectedSeason);
-                switchTab('members');
-                
-                // Explicitly set active state after selection
-                navButtons.forEach(b => b.classList.remove('active'));
-                membersToggle.classList.add('active');
-                if (typeof moveIndicator === 'function') {
-                    moveIndicator(membersToggle, true);
+
+                if (targetTab === 'alumni') {
+                    // Navigate to alumni tab
+                    switchTab('alumni');
+                    navButtons.forEach(b => b.classList.remove('active'));
+                    if (typeof moveIndicator === 'function') {
+                        const alumniBtn = document.querySelector('.nav-btn[data-target="alumni"]');
+                        if (alumniBtn) moveIndicator(alumniBtn, true);
+                    }
+                } else if (season) {
+                    selectedSeason = season;
+                    renderMembers(selectedSeason);
+                    switchTab('members');
+                    
+                    // Explicitly set active state after selection
+                    navButtons.forEach(b => b.classList.remove('active'));
+                    membersToggle.classList.add('active');
+                    if (typeof moveIndicator === 'function') {
+                        moveIndicator(membersToggle, true);
+                    }
                 }
             });
         });

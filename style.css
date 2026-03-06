@@ -524,8 +524,8 @@ header {
 
 /* Extend the hit area when open so cursor can reach the absolute-positioned items */
 .nav-item-dropdown.open {
-    padding-bottom: 210px;
-    margin-bottom: -210px;
+    padding-bottom: 250px;
+    margin-bottom: -250px;
 }
 
 .gooey-nav-wrapper {
@@ -610,6 +610,7 @@ header {
 .nav-item-dropdown.open .item-3 { width: 190px; margin-left: -6px; }
 .nav-item-dropdown.open .item-4 { width: 175px; margin-left: 8px; }
 .nav-item-dropdown.open .item-5 { width: 160px; margin-left: 4px; }
+.nav-item-dropdown.open .item-6 { width: 178px; margin-left: -4px; }
 
 /* --- RANDOM PATTERN LOGIC --- */
 
@@ -654,6 +655,7 @@ header {
 .nav-item-dropdown.open .item-3 { transform: translateY(92px); opacity: 1; pointer-events: auto; animation: gooDrip1 3.8s ease-in-out infinite 0.8s; }
 .nav-item-dropdown.open .item-4 { transform: translateY(122px); opacity: 1; pointer-events: auto; animation: gooDrip2 3.6s ease-in-out infinite 0.2s; }
 .nav-item-dropdown.open .item-5 { transform: translateY(152px); opacity: 1; pointer-events: auto; animation: gooDrip1 4.2s ease-in-out infinite 0.6s; }
+.nav-item-dropdown.open .item-6 { transform: translateY(182px); opacity: 1; pointer-events: auto; animation: gooDrip2 3.9s ease-in-out infinite 0.4s; }
 
 /* Closing - Snappy retraction */
 .nav-item-dropdown:not(.open) .season-option {
