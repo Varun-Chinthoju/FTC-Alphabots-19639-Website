@@ -530,7 +530,7 @@ header {
     margin-top: 0.5rem;
     overflow: visible; /* Changed from hidden to show gooey drips */
     min-width: 250px;
-    background: linear-gradient(180deg, #12d990 0%, var(--brand-green) 40%, #087a52 100%);
+    background: var(--brand-green); /* Solid color works better for gooey filter */
     border: none; /* Removed border to let gooey filter define edges */
     border-radius: 20px;
     z-index: 100;
