@@ -534,33 +534,42 @@ header {
 #members-toggle.main-button {
     position: relative;
     z-index: 10;
-    width: 240px;
-    height: 48px;
-    background-color: var(--brand-green);
-    border-radius: 12px;
+    width: auto;
+    min-width: 140px;
+    height: 36px; /* Matches .nav-btn padding + font height roughly */
+    background: linear-gradient(180deg, #12d990 0%, var(--brand-green) 40%, #087a52 100%);
+    border-radius: 100px; /* Matches .liquid-indicator */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #052e16;
+    color: var(--brand-black);
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     border: none;
     outline: none;
-    box-shadow: 0 10px 30px -5px rgba(34, 197, 94, 0.3);
+    padding: 0 1.2rem;
+    box-shadow: 
+        inset 0 3px 4px rgba(255, 255, 255, 0.45),
+        inset 0 -3px 6px rgba(0, 80, 50, 0.4),
+        0 3px 12px rgba(13, 163, 113, 0.6);
+}
+
+.nav-item-dropdown.open #members-toggle .chevron {
+    transform: rotate(180deg);
 }
 
 .season-option {
     position: absolute;
     top: 5px; 
-    width: 220px;
-    height: 44px;
-    background-color: var(--brand-green);
-    border-radius: 12px;
+    width: 100%;
+    height: 36px;
+    background: linear-gradient(180deg, #12d990 0%, var(--brand-green) 40%, #087a52 100%);
+    border-radius: 100px;
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    color: #052e16;
+    padding: 0 1.2rem;
+    color: var(--brand-black);
     text-decoration: none;
     /* Heavy transition for the drip effect */
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -572,14 +581,17 @@ header {
     pointer-events: none;
     border: none;
     justify-content: space-between;
+    box-shadow: 
+        inset 0 3px 4px rgba(255, 255, 255, 0.45),
+        inset 0 -3px 6px rgba(0, 80, 50, 0.4);
 }
 
 /* Open State Logic */
-.nav-item-dropdown.open .item-1 { transform: translateY(52px); opacity: 1; pointer-events: auto; transition-delay: 0.0s; }
-.nav-item-dropdown.open .item-2 { transform: translateY(100px); opacity: 1; pointer-events: auto; transition-delay: 0.05s; }
-.nav-item-dropdown.open .item-3 { transform: translateY(148px); opacity: 1; pointer-events: auto; transition-delay: 0.1s; }
-.nav-item-dropdown.open .item-4 { transform: translateY(196px); opacity: 1; pointer-events: auto; transition-delay: 0.15s; }
-.nav-item-dropdown.open .item-5 { transform: translateY(244px); opacity: 1; pointer-events: auto; transition-delay: 0.2s; }
+.nav-item-dropdown.open .item-1 { transform: translateY(42px); opacity: 1; pointer-events: auto; transition-delay: 0.0s; }
+.nav-item-dropdown.open .item-2 { transform: translateY(84px); opacity: 1; pointer-events: auto; transition-delay: 0.05s; }
+.nav-item-dropdown.open .item-3 { transform: translateY(126px); opacity: 1; pointer-events: auto; transition-delay: 0.1s; }
+.nav-item-dropdown.open .item-4 { transform: translateY(168px); opacity: 1; pointer-events: auto; transition-delay: 0.15s; }
+.nav-item-dropdown.open .item-5 { transform: translateY(210px); opacity: 1; pointer-events: auto; transition-delay: 0.2s; }
 
 /* Stretching effect when closing (sucked back up) */
 .nav-item-dropdown:not(.open) .season-option {
