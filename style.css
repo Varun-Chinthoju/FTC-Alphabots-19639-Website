@@ -526,13 +526,12 @@ header {
     top: calc(100% - 2px); /* Slight overlap to ensure hover bridge */
     left: 50%;
     transform: translateX(-50%);
-    padding: 0.6rem;
+    padding: 0.8rem;
     margin-top: 0.5rem;
-    overflow: hidden;
-    min-width: 240px;
+    overflow: visible; /* Changed from hidden to show gooey drips */
+    min-width: 250px;
     background: linear-gradient(180deg, #12d990 0%, var(--brand-green) 40%, #087a52 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    border: none; /* Removed border to let gooey filter define edges */
     border-radius: 20px;
     z-index: 100;
     box-shadow:
@@ -542,31 +541,50 @@ header {
         0 12px 30px rgba(0, 0, 0, 0.4),
         0 20px 60px rgba(13, 163, 113, 0.35);
     transform-origin: top center;
+    filter: url('#slime-goo');
 }
 
 .season-dropdown.open {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    animation: slimeDripDown 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    gap: 0.3rem;
+    opacity: 1;
 }
 
-@keyframes slimeDripDown {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) scaleY(0) scaleX(0.6);
-    }
-    60% {
-        opacity: 1;
-        transform: translateX(-50%) scaleY(1.1) scaleX(1.05);
-    }
-    80% {
-        transform: translateX(-50%) scaleY(0.95) scaleX(0.98);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) scaleY(1) scaleX(1);
-    }
+/* 5 Slime Pour Animations */
+.slime-anim-1 { animation: slimePour1 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.slime-anim-2 { animation: slimePour2 0.7s ease-in-out forwards; }
+.slime-anim-3 { animation: slimePour3 0.9s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+.slime-anim-4 { animation: slimePour4 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) forwards; }
+.slime-anim-5 { animation: slimePour5 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+
+@keyframes slimePour1 {
+    0% { transform: translateX(-50%) scaleY(0) scaleX(0.4); opacity: 0; }
+    60% { transform: translateX(-50%) scaleY(1.2) scaleX(1.1); }
+    100% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 1; }
+}
+
+@keyframes slimePour2 {
+    0% { transform: translateX(-50%) translateY(-20px) scaleY(0); opacity: 0; }
+    50% { transform: translateX(-50%) translateY(10px) scaleY(1.1) scaleX(0.8); }
+    100% { transform: translateX(-50%) translateY(0) scaleY(1) scaleX(1); opacity: 1; }
+}
+
+@keyframes slimePour3 {
+    0% { transform: translateX(-50%) scale(0); opacity: 0; filter: blur(10px); }
+    70% { transform: translateX(-50%) scale(1.1); filter: blur(2px); }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; filter: blur(0); }
+}
+
+@keyframes slimePour4 {
+    0% { transform: translateX(-50%) perspective(400px) rotateX(-90deg); opacity: 0; transform-origin: top; }
+    100% { transform: translateX(-50%) perspective(400px) rotateX(0deg); opacity: 1; transform-origin: top; }
+}
+
+@keyframes slimePour5 {
+    0% { transform: translateX(-50%) skewY(-10deg) scaleY(0); opacity: 0; }
+    60% { transform: translateX(-50%) skewY(5deg) scaleY(1.1); }
+    100% { transform: translateX(-50%) skewY(0) scaleY(1); opacity: 1; }
 }
 
 .season-option {

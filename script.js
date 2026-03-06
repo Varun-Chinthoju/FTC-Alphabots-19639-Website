@@ -695,7 +695,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 2. Wait for the slide animation to finish (220ms), then drip down
             dripTimeout = setTimeout(() => {
-                seasonDropdown.classList.add('open');
+                const animIndex = Math.floor(Math.random() * 5) + 1;
+                seasonDropdown.className = 'season-dropdown open slime-anim-' + animIndex;
             }, 220);
         });
 
@@ -704,8 +705,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             if (seasonDropdown.classList.contains('open')) {
                 seasonDropdown.classList.remove('open');
+                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
             } else {
-                seasonDropdown.classList.add('open');
+                const animIndex = Math.floor(Math.random() * 5) + 1;
+                seasonDropdown.className = 'season-dropdown open slime-anim-' + animIndex;
             }
         });
 
@@ -714,6 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdownWrapper.addEventListener('mouseleave', () => {
                 clearTimeout(dripTimeout);
                 seasonDropdown.classList.remove('open');
+                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
                 
                 // Return indicator to the currently active tab
                 const activeBtn = document.querySelector('.nav-btn.active');
@@ -734,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', (e) => {
             if (!dropdownWrapper.contains(e.target)) {
                 seasonDropdown.classList.remove('open');
+                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
             }
         });
 
@@ -742,6 +747,7 @@ document.addEventListener('DOMContentLoaded', () => {
             option.addEventListener('click', (e) => {
                 selectedSeason = e.currentTarget.getAttribute('data-season');
                 seasonDropdown.classList.remove('open');
+                seasonDropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
                 
                 renderMembers(selectedSeason);
                 switchTab('members');
