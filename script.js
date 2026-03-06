@@ -674,35 +674,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // ======= Team Members Dropdown =======
     const membersToggle = document.getElementById('members-toggle');
     const seasonDropdown = document.getElementById('season-dropdown');
+    const dropdownWrapper = document.querySelector('.nav-item-dropdown');
     let selectedSeason = null;
+    let dripTimeout = null;
 
     if (membersToggle && seasonDropdown) {
-        // Toggle dropdown on Team Members button click
-        membersToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
+        // Open on hover
+        membersToggle.addEventListener('mouseenter', () => {
+            clearTimeout(dripTimeout);
             
-            if (seasonDropdown.classList.contains('open')) {
-                seasonDropdown.classList.remove('open');
-            } else {
-                // 1. Move the slider over to Team Members immediately
-                navButtons.forEach(b => b.classList.remove('active'));
-                membersToggle.classList.add('active');
-                if (typeof moveIndicator === 'function') {
-                    moveIndicator(membersToggle, true);
-                }
-
-                // 2. Wait for the slide animation to finish (220ms), then drip down
-                setTimeout(() => {
-                    seasonDropdown.classList.add('open');
-                }, 220);
+            // 1. Move the slider over to Team Members immediately
+            if (typeof moveIndicator === 'function') {
+                moveIndicator(membersToggle, true);
             }
+
+            // 2. Wait for the slide animation to finish (220ms), then drip down
+            dripTimeout = setTimeout(() => {
+                seasonDropdown.classList.add('open');
+            }, 220);
         });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!seasonDropdown.contains(e.target) && e.target !== membersToggle) {
+        // Close when mouse leaves the entire dropdown area
+        if (dropdownWrapper) {
+            dropdownWrapper.addEventListener('mouseleave', () => {
+                clearTimeout(dripTimeout);
                 seasonDropdown.classList.remove('open');
-            }
+                
+                // Return indicator to the currently active tab
+                const activeBtn = document.querySelector('.nav-btn.active');
+                if (activeBtn && activeBtn !== membersToggle) {
+                    if (typeof moveIndicator === 'function') {
+                        moveIndicator(activeBtn, true);
+                    }
+                }
+            });
+        }
+
+        // Keep dropdown open if mouse is over it
+        seasonDropdown.addEventListener('mouseenter', () => {
+            clearTimeout(dripTimeout);
         });
 
         // Handle season option clicks
@@ -713,6 +723,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 renderMembers(selectedSeason);
                 switchTab('members');
+                
+                // Explicitly set active state after selection
                 navButtons.forEach(b => b.classList.remove('active'));
                 membersToggle.classList.add('active');
                 if (typeof moveIndicator === 'function') {
