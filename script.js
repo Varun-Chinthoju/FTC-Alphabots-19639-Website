@@ -768,47 +768,92 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Sort: captains first, then alphabetically
-        alumni.sort((a, b) => {
-            const aIsCap = a.bestRole.toLowerCase().includes('captain') ? 0 : 1;
-            const bIsCap = b.bestRole.toLowerCase().includes('captain') ? 0 : 1;
-            if (aIsCap !== bIsCap) return aIsCap - bIsCap;
-            return a.name.localeCompare(b.name);
-        });
+        // Group Alumni into tiers just like current members
+        const tiers = { "Captains": [], "Hardware": [], "Software": [], "Outreach": [], "Members": [] };
 
-        grid.innerHTML = alumni.map((m, i) => {
-            let avatarHTML = '';
-            if (m.img && m.img.length > 5) {
-                avatarHTML = `<img src="${m.img}" alt="${m.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
-            } else {
-                avatarHTML = `<span>${getInitials(m.name)}</span>`;
-            }
-
-            const yearsStr = m.seasons.length === 1
-                ? m.seasons[0]
-                : `${m.seasons[m.seasons.length - 1]} – ${m.seasons[0]}`;
-
-            let roleClass = 'role-member';
+        alumni.forEach(m => {
             const r = m.bestRole.toLowerCase();
             if ((r.includes('captain') || r === 'captain') && !r.includes('software') && !r.includes('hardware') && !r.includes('outreach')) {
-                roleClass = 'role-captain';
-            } else if (r.includes('software')) {
-                roleClass = 'role-software';
+                tiers["Captains"].push(m);
             } else if (r.includes('hardware')) {
-                roleClass = 'role-hardware';
+                tiers["Hardware"].push(m);
+            } else if (r.includes('software')) {
+                tiers["Software"].push(m);
             } else if (r.includes('outreach')) {
-                roleClass = 'role-outreach';
+                tiers["Outreach"].push(m);
+            } else {
+                tiers["Members"].push(m);
             }
+        });
 
-            return `
-            <div class="member-card" style="animation: fadeInUp 0.4s ease ${i * 0.07}s both;">
-                <div class="member-avatar ${roleClass}">${avatarHTML}</div>
-                <div class="member-name">${m.name}</div>
-                <div class="member-role">${m.bestRole}</div>
-                <div class="member-role" style="font-size: 0.7rem; margin-top: 0.25rem; opacity: 0.5;">${yearsStr}</div>
-            </div>
-            `;
-        }).join('');
+        const roleOrder = [
+            "Team Captain",
+            "Captain",
+            "Hardware Captain",
+            "Hardware Member",
+            "Software Captain",
+            "Software Member",
+            "Outreach Captain",
+            "Outreach Member",
+            "Member"
+        ];
+
+        let finalHTML = '';
+        const tierOrder = ["Captains", "Hardware", "Software", "Outreach", "Members"];
+        let animationDelay = 0;
+        
+        tierOrder.forEach(tierName => {
+            if (tiers[tierName].length > 0) {
+                // Sort within tier to keep Captains > Members
+                tiers[tierName].sort((a, b) => {
+                    const aIsCap = a.bestRole.toLowerCase().includes('captain');
+                    const bIsCap = b.bestRole.toLowerCase().includes('captain');
+                    if (aIsCap && !bIsCap) return -1;
+                    if (!aIsCap && bIsCap) return 1;
+                    return a.name.localeCompare(b.name);
+                });
+
+                let tierHTML = '<div class="team-tier"><h3 class="tier-title">' + tierName + '</h3><div class="members-grid">';
+
+                tiers[tierName].forEach((m) => {
+                    let avatarHTML = '';
+                    if (m.img && m.img.length > 5) {
+                        avatarHTML = '<img src="' + m.img + '" alt="' + m.name + '" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">';
+                    } else {
+                        avatarHTML = '<span>' + getInitials(m.name) + '</span>';
+                    }
+
+                    const yearsStr = m.seasons.length === 1
+                        ? m.seasons[0]
+                        : m.seasons[m.seasons.length - 1] + ' – ' + m.seasons[0];
+
+                    let roleClass = 'role-member';
+                    const r = m.bestRole.toLowerCase();
+                    if ((r.includes('captain') || r === 'captain') && !r.includes('software') && !r.includes('hardware') && !r.includes('outreach')) {
+                        roleClass = 'role-captain';
+                    } else if (r.includes('software')) {
+                        roleClass = 'role-software';
+                    } else if (r.includes('hardware')) {
+                        roleClass = 'role-hardware';
+                    } else if (r.includes('outreach')) {
+                        roleClass = 'role-outreach';
+                    }
+
+                    animationDelay += 0.07;
+                    tierHTML += '<div class="member-card" style="animation: fadeInUp 0.4s ease ' + animationDelay + 's both;">' +
+                                '<div class="member-avatar ' + roleClass + '">' + avatarHTML + '</div>' +
+                                '<div class="member-name">' + m.name + '</div>' +
+                                '<div class="member-role">' + m.bestRole + '</div>' +
+                                '<div class="member-role" style="font-size: 0.7rem; margin-top: 0.25rem; opacity: 0.5;">' + yearsStr + '</div>' +
+                                '</div>';
+                });
+
+                tierHTML += '</div></div>';
+                finalHTML += tierHTML;
+            }
+        });
+
+        grid.innerHTML = finalHTML;
     }
 
     // =========================================
