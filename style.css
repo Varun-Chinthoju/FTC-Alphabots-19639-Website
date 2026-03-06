@@ -521,7 +521,7 @@ header {
 }
 
 .season-dropdown {
-    display: none;
+    display: none !important;
     position: absolute;
     top: calc(100% - 2px); /* Slight overlap to ensure hover bridge */
     left: 50%;
@@ -545,18 +545,18 @@ header {
 }
 
 .season-dropdown.open {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     gap: 0.3rem;
     opacity: 1;
 }
 
 /* 5 Slime Pour Animations */
-.slime-anim-1 { animation: slimePour1 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.slime-anim-2 { animation: slimePour2 0.7s ease-in-out forwards; }
-.slime-anim-3 { animation: slimePour3 0.9s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
-.slime-anim-4 { animation: slimePour4 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) forwards; }
-.slime-anim-5 { animation: slimePour5 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.slime-anim-1 { animation: slimePour1 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important; }
+.slime-anim-2 { animation: slimePour2 0.7s ease-in-out forwards !important; }
+.slime-anim-3 { animation: slimePour3 0.9s cubic-bezier(0.19, 1, 0.22, 1) forwards !important; }
+.slime-anim-4 { animation: slimePour4 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) forwards !important; }
+.slime-anim-5 { animation: slimePour5 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important; }
 
 @keyframes slimePour1 {
     0% { transform: translateX(-50%) scaleY(0) scaleX(0.4); opacity: 0; }

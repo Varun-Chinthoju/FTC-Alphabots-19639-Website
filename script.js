@@ -182,7 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) {
                 // Close dropdown if open
                 const dropdown = document.getElementById('season-dropdown');
-                if (dropdown) dropdown.classList.remove('open');
+                if (dropdown) {
+                    dropdown.classList.remove('open');
+                    dropdown.classList.remove('slime-anim-1', 'slime-anim-2', 'slime-anim-3', 'slime-anim-4', 'slime-anim-5');
+                }
                 switchTab(target);
             }
         });
