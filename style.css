@@ -641,6 +641,21 @@ header {
 }
 
 /* Members Grid */
+.roster-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.tier-title {
+    font-size: 1.8rem;
+    color: var(--brand-green);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid rgba(13, 163, 113, 0.2);
+    padding-bottom: 0.5rem;
+}
+
 .members-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

@@ -599,43 +599,72 @@ document.addEventListener('DOMContentLoaded', () => {
             "Member"
         ];
 
-        members = [...members].sort((a, b) => {
-            let indexA = roleOrder.indexOf(a.role);
-            let indexB = roleOrder.indexOf(b.role);
-            if (indexA === -1) indexA = 99;
-            if (indexB === -1) indexB = 99;
-            return indexA - indexB;
-        });
+        const tiers = { "Captains": [], "Hardware": [], "Software": [], "Outreach": [], "Members": [] };
 
-
-        grid.innerHTML = members.map((m, i) => {
-            let avatarHTML = '';
-            if (m.img && m.img.length > 5) {
-                avatarHTML = `<img src="${m.img}" alt="${m.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
-            } else {
-                avatarHTML = `<span>${getInitials(m.name)}</span>`;
-            }
-
-            let roleClass = 'role-member';
+        members.forEach(m => {
             const r = m.role.toLowerCase();
             if ((r.includes('captain') || r === 'captain') && !r.includes('software') && !r.includes('hardware') && !r.includes('outreach')) {
-                roleClass = 'role-captain';
-            } else if (r.includes('software')) {
-                roleClass = 'role-software';
+                tiers["Captains"].push(m);
             } else if (r.includes('hardware')) {
-                roleClass = 'role-hardware';
+                tiers["Hardware"].push(m);
+            } else if (r.includes('software')) {
+                tiers["Software"].push(m);
             } else if (r.includes('outreach')) {
-                roleClass = 'role-outreach';
+                tiers["Outreach"].push(m);
+            } else {
+                tiers["Members"].push(m);
             }
+        });
 
-            return `
-            <div class="member-card" style="animation: fadeInUp 0.4s ease ${i * 0.07}s both;">
-                <div class="member-avatar ${roleClass}">${avatarHTML}</div>
-                <div class="member-name">${m.name}</div>
-                <div class="member-role">${m.role}</div>
-            </div>
-            `;
-        }).join('');
+        let finalHTML = '';
+        const tierOrder = ["Captains", "Hardware", "Software", "Outreach", "Members"];
+        let animationDelay = 0;
+        
+        tierOrder.forEach(tierName => {
+            if (tiers[tierName].length > 0) {
+                // Sort within tier to keep Captains > Members
+                tiers[tierName].sort((a, b) => {
+                    let indexA = roleOrder.indexOf(a.role);
+                    let indexB = roleOrder.indexOf(b.role);
+                    return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
+                });
+
+                let tierHTML = '<div class="team-tier"><h3 class="tier-title">' + tierName + '</h3><div class="members-grid">';
+
+                tiers[tierName].forEach((m) => {
+                    let avatarHTML = '';
+                    if (m.img && m.img.length > 5) {
+                        avatarHTML = '<img src="' + m.img + '" alt="' + m.name + '" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">';
+                    } else {
+                        avatarHTML = '<span>' + getInitials(m.name) + '</span>';
+                    }
+
+                    let roleClass = 'role-member';
+                    const r = m.role.toLowerCase();
+                    if ((r.includes('captain') || r === 'captain') && !r.includes('software') && !r.includes('hardware') && !r.includes('outreach')) {
+                        roleClass = 'role-captain';
+                    } else if (r.includes('software')) {
+                        roleClass = 'role-software';
+                    } else if (r.includes('hardware')) {
+                        roleClass = 'role-hardware';
+                    } else if (r.includes('outreach')) {
+                        roleClass = 'role-outreach';
+                    }
+
+                    animationDelay += 0.07;
+                    tierHTML += '<div class="member-card" style="animation: fadeInUp 0.4s ease ' + animationDelay + 's both;">' +
+                                '<div class="member-avatar ' + roleClass + '">' + avatarHTML + '</div>' +
+                                '<div class="member-name">' + m.name + '</div>' +
+                                '<div class="member-role">' + m.role + '</div>' +
+                                '</div>';
+                });
+
+                tierHTML += '</div></div>';
+                finalHTML += tierHTML;
+            }
+        });
+
+        grid.innerHTML = finalHTML;
     }
 
 
