@@ -639,11 +639,11 @@ header {
 .nav-item-dropdown.pattern-5.open .item-5 { transition-delay: 0.16s; }
 
 /* Global Open Positions */
-.nav-item-dropdown.open .item-1 { transform: translateY(42px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-2 { transform: translateY(84px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-3 { transform: translateY(126px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-4 { transform: translateY(168px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-5 { transform: translateY(210px); opacity: 1; pointer-events: auto; }
+.nav-item-dropdown.open .item-1 { transform: translateY(34px); opacity: 1; pointer-events: auto; }
+.nav-item-dropdown.open .item-2 { transform: translateY(68px); opacity: 1; pointer-events: auto; }
+.nav-item-dropdown.open .item-3 { transform: translateY(102px); opacity: 1; pointer-events: auto; }
+.nav-item-dropdown.open .item-4 { transform: translateY(136px); opacity: 1; pointer-events: auto; }
+.nav-item-dropdown.open .item-5 { transform: translateY(170px); opacity: 1; pointer-events: auto; }
 
 /* Closing - Snappy retraction */
 .nav-item-dropdown:not(.open) .season-option {
