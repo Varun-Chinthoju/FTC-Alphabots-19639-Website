@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // If 'gallery' tab is clicked, init lightbox
         if (targetId === 'gallery') {
-            initLightbox();
+            loadGalleryAndLightbox();
         }
 
         // If 'alumni' tab is clicked, render alumni if we haven't already
@@ -2141,33 +2141,84 @@ const ftcWords = [
     
     let galleryImages = [];
     let currentImageIndex = 0;
+    let galleryBuilt = false;
 
-    function initLightbox() {
-        // Find all gallery images
-        const imgElements = document.querySelectorAll('.gallery-img');
-        galleryImages = Array.from(imgElements).map(img => ({
-            src: img.src,
-            alt: img.alt || 'Gallery Image'
-        }));
+    async function loadGalleryAndLightbox() {
+        if (galleryBuilt) return; // Prevent multiple builds
 
-        // Add click listeners to gallery items
-        imgElements.forEach((img, index) => {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', () => {
-                openLightbox(index);
+        const galleryGrid = document.querySelector('.gallery-grid');
+        if (!galleryGrid) return;
+
+        try {
+            const response = await fetch('gallery/gallery.json?v=' + new Date().getTime()); // Cache bust
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const imageUrls = await response.json();
+
+            // Clear existing hardcoded images
+            galleryGrid.innerHTML = ''; 
+
+            // Create and append gallery items
+            imageUrls.forEach((imageUrl, index) => {
+                const item = document.createElement('div');
+                item.className = 'premium-card reveal gallery-item p-1';
+                
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Gallery Image ${index + 1}`;
+                img.className = 'gallery-img';
+                img.style.cursor = 'pointer';
+
+                // Add special class for the wide image for styling
+                if ((index + 1) % 5 === 0) { // Example: make every 5th image span full width
+                    item.style.gridColumn = '1 / -1';
+                }
+                
+                item.appendChild(img);
+                galleryGrid.appendChild(item);
             });
-        });
+            
+            // Now that images are in the DOM, initialize lightbox data
+            const imgElements = document.querySelectorAll('.gallery-img');
+            galleryImages = Array.from(imgElements).map(img => ({
+                src: img.src,
+                alt: img.alt || 'Gallery Image'
+            }));
+            
+            // Add click listeners to newly created gallery items
+            imgElements.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    openLightbox(index);
+                });
+            });
+
+            galleryBuilt = true; // Mark as built
+
+        } catch (error) {
+            console.error('Error loading gallery:', error);
+            galleryGrid.innerHTML = '<p class="text-center text-red" style="grid-column: 1/-1;">Could not load gallery images.</p>';
+        }
     }
+    
+    // The main tab switching function needs to be updated to call this
+    // The original snippet had:
+    // if (targetId === 'gallery') {
+    //     initLightbox();
+    // }
+    // It should be changed to:
+    // if (targetId === 'gallery') {
+    //     loadGalleryAndLightbox();
+    // }
+
 
     function openLightbox(index) {
         currentImageIndex = index;
         
-        // Remove switching class if it was stuck
         lightboxImg.classList.remove('lightbox-img-switching');
         
         updateLightboxContent();
         
-        // Use a tiny delay to allow class removal to settle
         setTimeout(() => {
             lightbox.classList.add('open');
             document.body.style.overflow = 'hidden'; 
@@ -2176,14 +2227,14 @@ const ftcWords = [
 
     function closeLightbox() {
         lightbox.classList.remove('open');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
     }
 
     function updateLightboxContent() {
+        if (galleryImages.length === 0) return;
         const image = galleryImages[currentImageIndex];
         if (!image) return;
 
-        // Apply switching class for transition
         lightboxImg.classList.add('lightbox-img-switching');
         
         setTimeout(() => {
@@ -2192,7 +2243,6 @@ const ftcWords = [
             lightboxCaption.textContent = image.alt;
             lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
             
-            // Wait for image to load or just short delay for smoother fade in
             setTimeout(() => {
                 lightboxImg.classList.remove('lightbox-img-switching');
             }, 50);
@@ -2209,12 +2259,10 @@ const ftcWords = [
         updateLightboxContent();
     }
 
-    // Event Listeners
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
     if (nextBtn) nextBtn.addEventListener('click', nextImage);
     if (prevBtn) prevBtn.addEventListener('click', prevImage);
 
-    // Close on background click
     if (lightbox) {
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
@@ -2223,7 +2271,6 @@ const ftcWords = [
         });
     }
 
-    // Keyboard support
     document.addEventListener('keydown', (e) => {
         if (!lightbox || !lightbox.classList.contains('open')) return;
         
@@ -2232,7 +2279,6 @@ const ftcWords = [
         if (e.key === 'ArrowLeft') prevImage();
     });
 
-    // Initialize lightbox after a short delay to ensure gallery is rendered
-    setTimeout(initLightbox, 500);
+    // We no longer call initLightbox globally, it's called on tab switch.
 
 });
