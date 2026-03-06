@@ -576,16 +576,14 @@ header {
 
 .season-option {
     position: absolute;
-    top: 5px; 
-    width: 100%;
-    height: 36px;
-    /* Translucent Slime Texture */
-    background: rgba(18, 217, 144, 0.7);
-    backdrop-filter: blur(4px);
+    top: 5px;
+    width: 180px;
+    height: 40px;
+    background: rgba(18, 217, 144, 0.92);
     border-radius: 100px;
     display: flex;
     align-items: center;
-    padding: 0 1.2rem;
+    padding: 0 1rem;
     color: var(--brand-black);
     text-decoration: none;
     z-index: 1;
@@ -597,9 +595,15 @@ header {
     border: none;
     justify-content: space-between;
     box-shadow: none;
-    /* Snappier base transition */
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.2s ease, background 0.3s ease;
 }
+
+/* Uneven widths for organic goo silhouette */
+.nav-item-dropdown.open .item-1 { width: 200px; margin-left: -10px; }
+.nav-item-dropdown.open .item-2 { width: 170px; margin-left: 12px; }
+.nav-item-dropdown.open .item-3 { width: 190px; margin-left: -6px; }
+.nav-item-dropdown.open .item-4 { width: 175px; margin-left: 8px; }
+.nav-item-dropdown.open .item-5 { width: 160px; margin-left: 4px; }
 
 /* --- RANDOM PATTERN LOGIC --- */
 
@@ -638,18 +642,35 @@ header {
 .nav-item-dropdown.pattern-5.open .item-3, .nav-item-dropdown.pattern-5.open .item-4 { transition-delay: 0.08s; }
 .nav-item-dropdown.pattern-5.open .item-5 { transition-delay: 0.16s; }
 
-/* Global Open Positions */
-.nav-item-dropdown.open .item-1 { transform: translateY(34px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-2 { transform: translateY(68px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-3 { transform: translateY(102px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-4 { transform: translateY(136px); opacity: 1; pointer-events: auto; }
-.nav-item-dropdown.open .item-5 { transform: translateY(170px); opacity: 1; pointer-events: auto; }
+/* Global Open Positions — tighter so goo merges */
+.nav-item-dropdown.open .item-1 { transform: translateY(32px); opacity: 1; pointer-events: auto; animation: gooDrip1 3.5s ease-in-out infinite 0.3s; }
+.nav-item-dropdown.open .item-2 { transform: translateY(62px); opacity: 1; pointer-events: auto; animation: gooDrip2 4s ease-in-out infinite 0.5s; }
+.nav-item-dropdown.open .item-3 { transform: translateY(92px); opacity: 1; pointer-events: auto; animation: gooDrip1 3.8s ease-in-out infinite 0.8s; }
+.nav-item-dropdown.open .item-4 { transform: translateY(122px); opacity: 1; pointer-events: auto; animation: gooDrip2 3.6s ease-in-out infinite 0.2s; }
+.nav-item-dropdown.open .item-5 { transform: translateY(152px); opacity: 1; pointer-events: auto; animation: gooDrip1 4.2s ease-in-out infinite 0.6s; }
 
 /* Closing - Snappy retraction */
 .nav-item-dropdown:not(.open) .season-option {
-    transform: translateY(10px) scaleY(1.8) scaleX(0.7);
+    transform: translateY(8px) scaleY(1.5) scaleX(0.6);
     opacity: 0;
-    transition: transform 0.35s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.15s ease;
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.12s ease;
+}
+
+/* Slow organic goo breathing animations */
+@keyframes gooDrip1 {
+    0%   { border-radius: 100px; transform-origin: center; }
+    20%  { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+    45%  { border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%; }
+    70%  { border-radius: 55% 45% 60% 40% / 40% 60% 40% 60%; }
+    100% { border-radius: 100px; }
+}
+
+@keyframes gooDrip2 {
+    0%   { border-radius: 100px; }
+    25%  { border-radius: 55% 45% 40% 60% / 45% 60% 40% 55%; }
+    50%  { border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%; }
+    75%  { border-radius: 60% 40% 45% 55% / 40% 55% 45% 60%; }
+    100% { border-radius: 100px; }
 }
 
 .season-option:hover {

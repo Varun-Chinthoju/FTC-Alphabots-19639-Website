@@ -119,20 +119,9 @@
             </div>
 
             <div class="gallery-grid">
-                <div class="premium-card reveal delay-1 gallery-item p-1">
-                    <img src="gallery/media__1772515084776.jpg" alt="Gallery Image 1" class="gallery-img">
-                </div>
-                <div class="premium-card reveal delay-2 gallery-item p-1">
-                    <img src="gallery/media__1772515098673.jpg" alt="Gallery Image 2" class="gallery-img">
-                </div>
-                <div class="premium-card reveal delay-3 gallery-item p-1">
-                    <img src="gallery/media__1772515103798.jpg" alt="Gallery Image 3" class="gallery-img">
-                </div>
-                <div class="premium-card reveal delay-4 gallery-item p-1">
-                    <img src="gallery/media__1772515111777.jpg" alt="Gallery Image 4" class="gallery-img">
-                </div>
-                <div class="premium-card reveal gallery-item p-1" style="grid-column: 1 / -1;">
-                    <img src="gallery/media__1772515078968.jpg" alt="Gallery Image 5" class="gallery-img">
+                <div class="text-center py-3" style="grid-column: 1 / -1;">
+                    <i class="ph ph-spinner-gap spin icon-large text-green"></i>
+                    <p class="mt-1 font-medium">Loading Gallery...</p>
                 </div>
             </div>
         </section>
@@ -559,10 +548,11 @@
     <!-- SVG Gooey Filter for Slime Dropdown -->
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none;" aria-hidden="true">
         <defs>
-            <filter id="thick-slime">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -15" result="goo" />
-                <feBlend in="SourceGraphic" in2="goo" />
+            <!-- Gooey merge filter -->
+            <filter id="thick-slime" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
             </filter>
         </defs>
     </svg>
