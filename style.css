@@ -522,6 +522,12 @@ header {
     margin-bottom: -20px;
 }
 
+/* Extend the hit area when open so cursor can reach the absolute-positioned items */
+.nav-item-dropdown.open {
+    padding-bottom: 210px;
+    margin-bottom: -210px;
+}
+
 .gooey-nav-wrapper {
     filter: none;
     position: relative;
