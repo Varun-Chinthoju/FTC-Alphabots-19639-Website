@@ -705,12 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 randomizePattern();
             }
 
-            // 1. Move the slider over to Team Members immediately
-            if (typeof moveIndicator === 'function') {
-                moveIndicator(membersToggle, true);
-            }
-
-            // 2. Wait for the slide animation to finish (220ms), then drip down
+            // Open dropdown after short delay (no liquid indicator movement on hover)
             dripTimeout = setTimeout(() => {
                 dropdownWrapper.classList.add('open');
             }, 220);
