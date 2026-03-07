@@ -1003,9 +1003,8 @@ const ftcWords = [
                 if (letter) tile.classList.add('filled');
 
                 if (i < wordleGuesses.length) {
-                    if (wordleAnswer[j] === letter) tile.classList.add('correct');
-                    else if (wordleAnswer.includes(letter)) tile.classList.add('present');
-                    else tile.classList.add('absent');
+                    const feedback = getWordleFeedback(guessString, wordleAnswer);
+                    tile.classList.add(feedback[j]);
                 }
 
                 row.appendChild(tile);
@@ -1077,14 +1076,8 @@ const ftcWords = [
                         tile.classList.add('flip');
                         // Apply color at midpoint of flip (when tile is edge-on)
                         setTimeout(() => {
-                            const letter = guess[j];
-                            if (wordleAnswer[j] === letter) {
-                                tile.classList.add('correct');
-                            } else if (wordleAnswer.includes(letter)) {
-                                tile.classList.add('present');
-                            } else {
-                                tile.classList.add('absent');
-                            }
+                            const feedback = getWordleFeedback(guess, wordleAnswer);
+                            tile.classList.add(feedback[j]);
                         }, 250); // Half of the 500ms flip
                     }, j * 100); // Stagger 100ms per tile
                 });
