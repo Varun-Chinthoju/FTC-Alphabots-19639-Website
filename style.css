@@ -1268,6 +1268,7 @@ header {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 8px;
+    perspective: 1000px;
 }
 .wordle-tile {
     width: 65px;
@@ -1285,7 +1286,7 @@ header {
 }
 .wordle-tile.filled { 
     border-color: rgba(255, 255, 255, 0.4); 
-    animation: tilePop 0.1s ease;
+    animation: tilePop 0.15s ease;
 }
 .wordle-tile.correct {
     background: linear-gradient(135deg, var(--brand-green) 0%, #0ab57c 100%);
@@ -1312,15 +1313,16 @@ header {
 
 @keyframes tileFlip {
     0% { transform: rotateX(0deg); }
-    45% { transform: rotateX(90deg); }
-    55% { transform: rotateX(90deg); }
+    45% { transform: rotateX(90deg) scale(0.9); }
+    55% { transform: rotateX(90deg) scale(0.9); }
     100% { transform: rotateX(0deg); }
 }
 
 /* Pop when typing a letter */
 @keyframes tilePop {
     0% { transform: scale(1); }
-    50% { transform: scale(1.12); }
+    50% { transform: scale(1.15); }
+    75% { transform: scale(0.95); }
     100% { transform: scale(1); }
 }
 
@@ -1330,10 +1332,11 @@ header {
 }
 
 @keyframes tileBounce {
-    0% { transform: translateY(0); }
-    30% { transform: translateY(-20px); }
-    50% { transform: translateY(0); }
-    70% { transform: translateY(-8px); }
+    0%, 20% { transform: translateY(0); }
+    40% { transform: translateY(-30px) scaleY(1.1); }
+    50% { transform: translateY(5px) scaleY(0.95); }
+    60% { transform: translateY(-15px) scaleY(1.05); }
+    80% { transform: translateY(2px) scaleY(0.98); }
     100% { transform: translateY(0); }
 }
 
@@ -1350,10 +1353,8 @@ header {
 
 @keyframes shakeRow {
     0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-5px); }
-    40% { transform: translateX(5px); }
-    60% { transform: translateX(-5px); }
-    80% { transform: translateX(5px); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
 }
 .wordle-row.shake {
     animation: shakeRow 0.4s ease;

@@ -1,7 +1,22 @@
 [
-  "gallery/media__1772515078968.jpg",
-  "gallery/media__1772515084776.jpg",
-  "gallery/media__1772515098673.jpg",
-  "gallery/media__1772515103798.jpg",
-  "gallery/media__1772515111777.jpg"
+  {
+    "src": "gallery/media__1772515078968.jpg",
+    "caption": "Team Alphabots at Competition"
+  },
+  {
+    "src": "gallery/media__1772515084776.jpg",
+    "caption": "Team Alphabots with their bot"
+  },
+  {
+    "src": "gallery/media__1772515098673.jpg",
+    "caption": "Our robot preparing for a match"
+  },
+  {
+    "src": "gallery/media__1772515103798.jpg",
+    "caption": "Strategy discussion in the pits"
+  },
+  {
+    "src": "gallery/media__1772515111777.jpg",
+    "caption": "Hard at work refining mechanisms"
+  }
 ]

@@ -2102,13 +2102,16 @@ const ftcWords = [
             galleryGrid.innerHTML = ''; 
 
             // Create and append gallery items
-            imageUrls.forEach((imageUrl, index) => {
+            imageUrls.forEach((itemData, index) => {
+                const src = typeof itemData === 'string' ? itemData : itemData.src;
+                const caption = typeof itemData === 'string' ? `Gallery Image ${index + 1}` : itemData.title || itemData.caption;
+
                 const item = document.createElement('div');
                 item.className = 'premium-card reveal gallery-item p-1';
                 
                 const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = `Gallery Image ${index + 1}`;
+                img.src = src;
+                img.alt = caption;
                 img.className = 'gallery-img';
                 img.style.cursor = 'pointer';
 
