@@ -2234,7 +2234,7 @@ const ftcWords = [
                 document.body.style.transform = 'rotate(360deg)';
                 setTimeout(() => {
                     document.body.style.transition = 'none';
-                    document.body.style.transform = 'rotate(0deg)';
+                    document.body.style.transform = '';
                     logoClicks = 0;
                 }, 1000);
             }
