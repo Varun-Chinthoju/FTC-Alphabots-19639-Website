@@ -47,60 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const curLeft = parseFloat(liquidIndicator.style.left) || targetLeft;
         const curWidth = parseFloat(liquidIndicator.style.width) || btnRect.width;
 
-        // Phase 1: Stretch only 25% of the distance (short slime trail)
-        const fullStretchL = Math.min(curLeft, targetLeft);
-        const fullStretchR = Math.max(curLeft + curWidth, targetLeft + btnRect.width);
-        const fullStretchW = fullStretchR - fullStretchL;
-
-        // Lerp from current size toward the full stretch by 25%
-        const curCenter = curLeft + curWidth / 2;
-        const stretchCenter = fullStretchL + fullStretchW / 2;
-        const lerpCenter = curCenter + (stretchCenter - curCenter) * 0.25;
-        const lerpWidth = curWidth + (fullStretchW - curWidth) * 0.25;
-        const stretchL = lerpCenter - lerpWidth / 2;
-        const stretchW = lerpWidth;
-
-        liquidIndicator.classList.add('stretching');
-        liquidIndicator.style.left = stretchL + 'px';
-        liquidIndicator.style.width = stretchW + 'px';
-
-        // Spawn residue droplets along the path
-        spawnResidueDrops(containerRect, curLeft, curWidth, targetLeft, btnRect.width, targetTop, btnRect.height);
-
-        // Phase 2: Snap to destination (bouncy settle)
-        setTimeout(() => {
-            liquidIndicator.classList.remove('stretching');
-            liquidIndicator.style.left = targetLeft + 'px';
-            liquidIndicator.style.top = targetTop + 'px';
-            liquidIndicator.style.width = btnRect.width + 'px';
-            liquidIndicator.style.height = btnRect.height + 'px';
-        }, 220);
-    }
-
-    function spawnResidueDrops(containerRect, fromLeft, fromWidth, toLeft, toWidth, topOff, h) {
-        const midY = containerRect.top + topOff + h / 2;
-        const pStart = Math.min(fromLeft + fromWidth / 2, toLeft + toWidth / 2);
-        const pEnd = Math.max(fromLeft + fromWidth / 2, toLeft + toWidth / 2);
-        const pLen = pEnd - pStart;
-        if (pLen < 10) return;
-        const count = 3 + Math.floor(Math.random() * 3);
-
-        for (let i = 0; i < count; i++) {
-            const drop = document.createElement('div');
-            drop.classList.add('liquid-drop');
-            const sz = 3 + Math.random() * 5;
-            const t = 0.15 + Math.random() * 0.7;
-            drop.style.width = sz + 'px';
-            drop.style.height = sz + 'px';
-            drop.style.left = (containerRect.left + pStart + pLen * t) + 'px';
-            drop.style.top = (midY + (Math.random() - 0.3) * 8) + 'px';
-            drop.style.setProperty('--drop-x', ((Math.random() - 0.5) * 6) + 'px');
-            drop.style.setProperty('--drop-y', (8 + Math.random() * 15) + 'px');
-            drop.style.setProperty('--drop-duration', (0.4 + Math.random() * 0.4) + 's');
-            drop.style.animationDelay = (0.15 + Math.random() * 0.15) + 's';
-            document.body.appendChild(drop);
-            setTimeout(() => drop.remove(), 1000);
-        }
+        // Simple, clean animation to the new tab
+        liquidIndicator.style.left = targetLeft + 'px';
+        liquidIndicator.style.top = targetTop + 'px';
+        liquidIndicator.style.width = btnRect.width + 'px';
+        liquidIndicator.style.height = btnRect.height + 'px';
     }
 
     // Position indicator on initial active tab (after layout is stable)
@@ -682,48 +633,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const membersToggle = document.getElementById('members-toggle');
     const dropdownWrapper = document.getElementById('nav-dropdown-container');
     let selectedSeason = null;
-    let dripTimeout = null;
-
-    function randomizePattern() {
-        if (!dropdownWrapper) return;
-        const rand = Math.floor(Math.random() * 5) + 1;
-        // Remove all previous patterns
-        for (let i = 1; i <= 5; i++) {
-            dropdownWrapper.classList.remove(`pattern-${i}`);
-        }
-        // Add new random pattern
-        dropdownWrapper.classList.add(`pattern-${rand}`);
-    }
+    let openTimeout = null;
 
     if (membersToggle && dropdownWrapper) {
         // Open on hover
         membersToggle.addEventListener('mouseenter', () => {
-            clearTimeout(dripTimeout);
-            
-            // Randomize the pattern before opening
-            if (!dropdownWrapper.classList.contains('open')) {
-                randomizePattern();
-            }
-
-            // Open dropdown after short delay (no liquid indicator movement on hover)
-            dripTimeout = setTimeout(() => {
+            clearTimeout(openTimeout);
+            openTimeout = setTimeout(() => {
                 dropdownWrapper.classList.add('open');
-            }, 220);
+            }, 100);
         });
 
         // Toggle on click for mobile/accessibility
         membersToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (!dropdownWrapper.classList.contains('open')) {
-                randomizePattern();
-            }
             dropdownWrapper.classList.toggle('open');
         });
 
         // Close when mouse leaves the entire dropdown area
         if (dropdownWrapper) {
             dropdownWrapper.addEventListener('mouseleave', () => {
-                clearTimeout(dripTimeout);
+                clearTimeout(openTimeout);
                 dropdownWrapper.classList.remove('open');
                 
                 // Return indicator to the currently active tab
@@ -2292,5 +2222,70 @@ const ftcWords = [
     });
 
     // We no longer call initLightbox globally, it's called on tab switch.
+
+    // ======= Easter Egg: Barrel Roll =======
+    const logoContainer = document.querySelector('.logo-container');
+    let logoClicks = 0;
+    if (logoContainer) {
+        logoContainer.addEventListener('click', () => {
+            logoClicks++;
+            if (logoClicks >= 5) {
+                document.body.style.transition = 'transform 1s ease-in-out';
+                document.body.style.transform = 'rotate(360deg)';
+                setTimeout(() => {
+                    document.body.style.transition = 'none';
+                    document.body.style.transform = '';
+                    logoClicks = 0;
+                }, 1000);
+            }
+        });
+    }
+
+    // ======= Magnetic Buttons =======
+    const magneticElements = document.querySelectorAll('.btn-primary, .contact-card:not(.static)');
+    magneticElements.forEach(elem => {
+        elem.addEventListener('mousemove', (e) => {
+            const rect = elem.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Subtle pull
+            elem.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
+        });
+
+        elem.addEventListener('mouseleave', () => {
+            // Reset to default hover scale
+            elem.style.transform = `translate(0px, 0px) scale(1.02)`;
+            setTimeout(() => {
+                // If not hovered anymore, snap back completely
+                if (!elem.matches(':hover')) {
+                    elem.style.transform = ``;
+                }
+            }, 100);
+        });
+    });
+
+    // ======= 3D Card Tilt =======
+    const tiltCards = document.querySelectorAll('.premium-card, .game-card');
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top;  // y position within the element
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -5; // max 5 deg
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            // Apply slight tilt and maintain scaling
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateY(-2px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = ``;
+        });
+    });
 
 });
