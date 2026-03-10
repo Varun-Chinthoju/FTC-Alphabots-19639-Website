@@ -1059,8 +1059,8 @@ const ftcWords = [
             const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${w}`);
             return response.ok;
         } catch (e) {
-            console.warn("Dictionary API unreachable, allowing word.");
-            return true; // Fallback to allow if API is down
+            console.warn("Dictionary API unreachable, rejecting word.");
+            return false; // Strict checking: reject if not found or API down
         }
     }
 
@@ -1165,28 +1165,30 @@ const ftcWords = [
 
     // Get the feedback pattern for a guess against a target word
     function getWordleFeedback(guess, answer) {
-        const result = Array(5).fill('absent'); // gray
-        const answerUsed = Array(5).fill(false);
-        const guessUsed = Array(5).fill(false);
-        // Greens first
+        const result = Array(5).fill('absent');
+        const answerArr = answer.split('');
+        const guessArr = guess.split('');
+        
+        // Pass 1: Find all exact matches (greens)
         for (let i = 0; i < 5; i++) {
-            if (guess[i] === answer[i]) {
+            if (guessArr[i] === answerArr[i]) {
                 result[i] = 'correct';
-                answerUsed[i] = true;
-                guessUsed[i] = true;
+                answerArr[i] = null; // Mark as used
+                guessArr[i] = null;  // Mark as processed
             }
         }
-        // Yellows
+        
+        // Pass 2: Find remaining matches (yellows)
         for (let i = 0; i < 5; i++) {
-            if (guessUsed[i]) continue;
-            for (let j = 0; j < 5; j++) {
-                if (!answerUsed[j] && guess[i] === answer[j]) {
+            if (guessArr[i] !== null) {
+                const index = answerArr.indexOf(guessArr[i]);
+                if (index !== -1) {
                     result[i] = 'present';
-                    answerUsed[j] = true;
-                    break;
+                    answerArr[index] = null; // Mark as used
                 }
             }
         }
+        
         return result;
     }
 
