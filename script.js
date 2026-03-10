@@ -3118,7 +3118,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ======= 3D Card Tilt =======
-  const tiltCards = document.querySelectorAll(".premium-card, .game-card");
+  const tiltCards = document.querySelectorAll(
+    ".premium-card:not(#chat-widget-container), .game-card",
+  );
   tiltCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
