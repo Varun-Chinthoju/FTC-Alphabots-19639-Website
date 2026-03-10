@@ -112,6 +112,9 @@
             </button>
           </li>
           <li>
+            <button class="nav-btn" data-target="alpha">Alpha AI</button>
+          </li>
+          <li>
             <button class="nav-btn" data-target="training">Training</button>
           </li>
           <li>
@@ -866,6 +869,152 @@
           </div>
         </div>
       </section>
+      <!-- ALPHA AI SECTION -->
+      <section id="alpha" class="tab-pane fade-in hidden">
+        <div class="section-header reveal">
+          <h2
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 0.5rem;
+            "
+          >
+            Meet <span class="highlight-text">Alpha</span>
+            <span
+              style="
+                font-size: 0.65rem;
+                background: var(--brand-green);
+                color: white;
+                padding: 2px 6px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+              "
+              >Experimental</span
+            >
+          </h2>
+          <p class="text-muted text-center">
+            Your personalized AI assistant for FIRST Robotics and Team 19639
+          </p>
+          <div class="header-line"></div>
+        </div>
+
+        <div
+          class="premium-card reveal delay-1"
+          id="chat-widget-container"
+          style="
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 550px;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+          "
+        >
+          <div
+            class="chat-header"
+            style="
+              background: rgba(0, 0, 0, 0.2);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+              padding: 1.25rem 1.5rem;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 0.75rem">
+              <i class="ph ph-robot text-green icon-large"></i>
+              <div>
+                <h3 style="margin: 0; font-size: 1.25rem">Alpha</h3>
+                <span
+                  id="chat-status-text"
+                  style="font-size: 0.85rem; color: #a1a1aa"
+                  >Waiting to start...</span
+                >
+              </div>
+            </div>
+            <button
+              id="start-alpha-btn"
+              class="btn btn-primary btn-sm"
+              style="font-size: 0.85rem; padding: 0.5rem 1rem"
+            >
+              Start Engine
+            </button>
+          </div>
+
+          <div
+            id="chat-messages"
+            class="chat-messages"
+            style="
+              flex: 1;
+              padding: 1.5rem;
+              overflow-y: auto;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            "
+          >
+            <div class="chat-bubble system">
+              Engine is offline. Click "Start Engine" to download/load the AI
+              model directly into your browser memory (approx 2GB initially,
+              cached thereafter).
+            </div>
+          </div>
+
+          <div
+            class="chat-input-area"
+            style="
+              padding: 1rem 1.5rem;
+              background: rgba(0, 0, 0, 0.3);
+              border-top: 1px solid rgba(255, 255, 255, 0.05);
+              display: flex;
+              gap: 0.75rem;
+            "
+          >
+            <input
+              type="text"
+              id="chat-input"
+              class="chat-input"
+              placeholder="Ask Alpha anything about FTC..."
+              disabled
+              style="
+                flex: 1;
+                padding: 0.85rem 1.25rem;
+                border-radius: 2rem;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: white;
+                outline: none;
+                transition: border-color 0.2s;
+              "
+            />
+            <button
+              id="chat-send-btn"
+              class="btn btn-primary"
+              disabled
+              style="
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                border: none;
+                cursor: pointer;
+              "
+            >
+              <i class="ph ph-paper-plane-right" style="font-size: 1.5rem"></i>
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -950,80 +1099,6 @@
       </div>
       <div class="lightbox-caption" id="lightbox-caption"></div>
       <div class="lightbox-counter" id="lightbox-counter"></div>
-    </div>
-
-    <!-- WebLLM Chatbot UI -->
-    <div id="chat-widget-container" class="chat-widget-container">
-      <!-- Chat Window (hidden initially) -->
-      <div id="chat-window" class="chat-window hidden">
-        <div class="chat-header">
-          <div class="chat-header-info">
-            <i class="ph ph-robot icon-large"></i>
-            <div>
-              <h4
-                style="
-                  margin: 0;
-                  font-size: 1rem;
-                  display: flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                "
-              >
-                Alphabots AI
-                <span
-                  style="
-                    font-size: 0.65rem;
-                    background: var(--brand-green);
-                    color: white;
-                    padding: 2px 6px;
-                    border-radius: 4px;
-                    text-transform: uppercase;
-                    font-weight: 700;
-                    letter-spacing: 0.5px;
-                  "
-                  >Experimental</span
-                >
-              </h4>
-              <span
-                id="chat-status-text"
-                style="font-size: 0.75rem; color: #a1a1aa"
-                >Initializing AI Engine...</span
-              >
-            </div>
-          </div>
-          <button
-            id="close-chat-btn"
-            class="chat-close-btn"
-            aria-label="Close Chat"
-          >
-            <i class="ph ph-x"></i>
-          </button>
-        </div>
-        <div id="chat-messages" class="chat-messages">
-          <!-- Messages will be injected here -->
-        </div>
-        <div class="chat-input-area">
-          <input
-            type="text"
-            id="chat-input"
-            class="chat-input"
-            placeholder="Ask me about FTC or 19639..."
-            disabled
-          />
-          <button id="chat-send-btn" class="chat-send-btn" disabled>
-            <i class="ph ph-paper-plane-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Floating Action Button -->
-      <button
-        id="chat-toggle-btn"
-        class="chat-toggle-btn reveal delay-3"
-        aria-label="Toggle AI Chat"
-      >
-        <i class="ph ph-chat-teardrop-text"></i>
-      </button>
     </div>
 
     <!-- Import Map for WebLLM -->

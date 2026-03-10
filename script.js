@@ -1138,6 +1138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let wordleGuesses = [];
   let wordleCurrentGuess = "";
   let wordleGameOver = false;
+  let wordleValidating = false;
   let wordleMode = "daily"; // "daily" or "unlimited"
   let dailyCompleted = false;
 
