@@ -3096,6 +3096,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ".btn-primary, .contact-card:not(.static)",
   );
   magneticElements.forEach((elem) => {
+    // Exclude elements inside the AI chat widget
+    if (elem.closest("#alpha-chat-container")) return;
+
     elem.addEventListener("mousemove", (e) => {
       const rect = elem.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
@@ -3119,7 +3122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ======= 3D Card Tilt =======
   const tiltCards = document.querySelectorAll(
-    ".premium-card:not(#chat-widget-container), .game-card",
+    ".premium-card:not(#alpha-chat-container), .game-card",
   );
   tiltCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
