@@ -3235,15 +3235,9 @@ Be concise, helpful, and enthusiastic. Use formatting (like bolding) to make you
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Initialize Engine Button
-  if (startAlphaBtn) {
-    startAlphaBtn.addEventListener("click", () => {
-      if (!engine && !window.engineInitializing) {
-        startAlphaBtn.disabled = true;
-        startAlphaBtn.textContent = "Starting...";
-        initializeWebLLM();
-      }
-    });
+  // Start engine automatically
+  if (!engine && !window.engineInitializing) {
+    initializeWebLLM();
   }
 
   // Initialize the engine
