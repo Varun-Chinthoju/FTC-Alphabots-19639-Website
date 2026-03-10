@@ -1048,8 +1048,24 @@ const ftcWords = [
         });
     }
 
-    function handleWordleKey(key) {
-        if (wordleGameOver) return;
+    async function checkValidWord(word) {
+        const w = word.toLowerCase();
+        // 1. Check if it's in our FTC word list first (fast)
+        if (ftcWords.includes(w.toUpperCase())) return true;
+        
+        // 2. Use a free dictionary API to check if it's a real word
+        // We use dictionaryapi.dev as it doesn't require an API key
+        try {
+            const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${w}`);
+            return response.ok;
+        } catch (e) {
+            console.warn("Dictionary API unreachable, allowing word.");
+            return true; // Fallback to allow if API is down
+        }
+    }
+
+    async function handleWordleKey(key) {
+        if (wordleGameOver || wordleValidating) return;
 
         if (key === 'BACK' || key === 'Backspace') {
             wordleCurrentGuess = wordleCurrentGuess.slice(0, -1);
@@ -1060,7 +1076,26 @@ const ftcWords = [
                 shakeCurrentRow();
                 return;
             }
+            
             const guess = wordleCurrentGuess;
+            wordleValidating = true;
+
+            // Show temporary status
+            const msgEl = document.getElementById('wordle-message');
+            msgEl.textContent = "Checking word...";
+            msgEl.style.color = "var(--text-muted)";
+
+            // Validate against actual dictionary
+            const isValid = await checkValidWord(guess);
+            msgEl.textContent = "";
+            wordleValidating = false;
+
+            if (!isValid) {
+                showMessage("Not in word list");
+                shakeCurrentRow();
+                return;
+            }
+
             wordleGuesses.push(guess);
             wordleCurrentGuess = "";
 
