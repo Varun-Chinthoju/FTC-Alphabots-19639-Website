@@ -1,3 +1,5 @@
+import { CreateMLCEngine } from "@mlc-ai/web-llm";
+
 document.addEventListener("DOMContentLoaded", () => {
   // Navigation elements
   const navButtons = document.querySelectorAll(".nav-btn");
@@ -1259,12 +1261,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const usedLetters = {};
     wordleGuesses.forEach((guess) => {
+      const fb = getWordleFeedback(guess, wordleAnswer);
       for (let i = 0; i < 5; i++) {
         const char = guess[i];
-        if (wordleAnswer[i] === char) usedLetters[char] = "correct";
-        else if (wordleAnswer.includes(char) && usedLetters[char] !== "correct")
-          usedLetters[char] = "present";
-        else if (!usedLetters[char]) usedLetters[char] = "absent";
+        const status = fb[i];
+
+        if (status === "correct") {
+          usedLetters[char] = "correct";
+        } else if (status === "present") {
+          if (usedLetters[char] !== "correct") {
+            usedLetters[char] = "present";
+          }
+        } else if (status === "absent") {
+          if (!usedLetters[char]) {
+            usedLetters[char] = "absent";
+          }
+        }
       }
     });
 
@@ -1297,8 +1309,8 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       return response.ok;
     } catch (e) {
-      console.warn("Dictionary API unreachable, rejecting word.");
-      return false; // Strict checking: reject if not found or API down
+      console.warn("Dictionary API unreachable, allowing word.");
+      return true; // Fallback to allow if API is down
     }
   }
 
@@ -1334,6 +1346,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      const feedback = getWordleFeedback(guess, wordleAnswer);
       wordleGuesses.push(guess);
       wordleCurrentGuess = "";
 
@@ -1349,7 +1362,6 @@ document.addEventListener("DOMContentLoaded", () => {
             tile.classList.add("flip");
             // Apply color at midpoint of flip (when tile is edge-on)
             setTimeout(() => {
-              const feedback = getWordleFeedback(guess, wordleAnswer);
               tile.classList.add(feedback[j]);
             }, 250); // Half of the 500ms flip
           }, j * 100); // Stagger 100ms per tile
@@ -3127,15 +3139,9 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.transform = ``;
     });
   });
-});
-import { CreateMLCEngine } from "@mlc-ai/web-llm";
 
-document.addEventListener("DOMContentLoaded", () => {
   // ======= WebLLM Chatbot Integration =======
-  const chatContainer = document.getElementById("chat-widget-container");
-  const chatToggleBtn = document.getElementById("chat-toggle-btn");
-  const chatWindow = document.getElementById("chat-window");
-  const chatCloseBtn = document.getElementById("close-chat-btn");
+  const startAlphaBtn = document.getElementById("start-alpha-btn");
   const chatInput = document.getElementById("chat-input");
   const chatSendBtn = document.getElementById("chat-send-btn");
   const chatMessages = document.getElementById("chat-messages");
@@ -3224,22 +3230,14 @@ Be concise, helpful, and enthusiastic. Use formatting (like bolding) to make you
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Toggle Chat Window
-  if (chatToggleBtn && chatWindow) {
-    chatToggleBtn.addEventListener("click", () => {
-      chatWindow.classList.remove("hidden");
-      chatToggleBtn.style.transform = "scale(0) translateY(20px)";
-      chatToggleBtn.style.opacity = "0";
-
+  // Initialize Engine Button
+  if (startAlphaBtn) {
+    startAlphaBtn.addEventListener("click", () => {
       if (!engine && !window.engineInitializing) {
+        startAlphaBtn.disabled = true;
+        startAlphaBtn.textContent = "Starting...";
         initializeWebLLM();
       }
-    });
-
-    chatCloseBtn.addEventListener("click", () => {
-      chatWindow.classList.add("hidden");
-      chatToggleBtn.style.transform = "";
-      chatToggleBtn.style.opacity = "1";
     });
   }
 
@@ -3265,6 +3263,11 @@ Be concise, helpful, and enthusiastic. Use formatting (like bolding) to make you
       chatStatusText.textContent = "Online";
       chatStatusText.style.color = "var(--brand-green)";
 
+      if (startAlphaBtn) {
+        startAlphaBtn.textContent = "Engine Running";
+        startAlphaBtn.style.display = "none";
+      }
+
       chatInput.disabled = false;
       chatSendBtn.disabled = false;
 
@@ -3276,6 +3279,10 @@ Be concise, helpful, and enthusiastic. Use formatting (like bolding) to make you
       console.error("Failed to initialize WebLLM:", error);
       chatStatusText.textContent = "Initialization Failed";
       chatStatusText.style.color = "#ef4444";
+      if (startAlphaBtn) {
+        startAlphaBtn.textContent = "Try Again";
+        startAlphaBtn.disabled = false;
+      }
       addMessageToUI(
         "system",
         "Failed to load the AI model. Your browser or hardware might not be supported.",
