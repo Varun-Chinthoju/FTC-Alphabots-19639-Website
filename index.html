@@ -1,1114 +1,1221 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Official website of the FTC Team 19639 Alphabots. A Bay Area-based high school robotics team empowering youth through STEM."
-    />
-    <title>FTC Team 19639 | Alphabots Robotics</title>
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+   name="description"
+   content="Official website of the FTC Team 19639 Alphabots. A Bay Area-based high school robotics team empowering youth through STEM."
+  />
+  <title>FTC Team 19639 | Alphabots Robotics</title>
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Google Fonts -->
+  <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+   rel="stylesheet"
+  />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=16" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css?v=16" />
 
-    <!-- Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Google Model Viewer for 3D CAD -->
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
-    ></script>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar">
-        <div class="nav-brand">
-          <img
-            src="logo.png"
-            alt="Alphabots Logo"
-            class="nav-logo"
-            onerror="
-              this.style.display = 'none';
-              document.getElementById('nav-logo-fallback').style.display =
-                'block';
-            "
-          />
-          <div
-            id="nav-logo-fallback"
-            class="nav-logo-text"
-            style="display: none"
-          >
-            ALPHAB<span>O</span>TS
-          </div>
-        </div>
-
-        <ul class="nav-links" id="nav-links">
-          <li>
-            <button class="nav-btn active" data-target="home">Home</button>
-          </li>
-          <li><button class="nav-btn" data-target="team">Our Team</button></li>
-          <li class="nav-item-dropdown" id="nav-dropdown-container">
-            <div class="gooey-nav-wrapper">
-              <!-- Main Trigger -->
-              <button class="nav-btn main-button" id="members-toggle">
-                <span>Team Members</span>
-                <svg
-                  class="chevron"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  style="
-                    width: 20px;
-                    height: 20px;
-                    margin-left: 8px;
-                    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-                  "
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-
-              <!-- Menu Items -->
-              <button class="season-option item-1" data-season="2025-2026">
-                2025–2026 <span>DECODE</span>
-              </button>
-              <button class="season-option item-2" data-season="2024-2025">
-                2024–2025 <span>INTO THE DEEP</span>
-              </button>
-              <button class="season-option item-3" data-season="2023-2024">
-                2023–2024 <span>CENTERSTAGE</span>
-              </button>
-              <button class="season-option item-4" data-season="2022-2023">
-                2022–2023 <span>POWERPLAY</span>
-              </button>
-              <button class="season-option item-5" data-season="2021-2022">
-                2021–2022 <span>FREIGHT FRENZY</span>
-              </button>
-              <button class="season-option item-6" data-target="alumni">
-                Alumni <span>PAST MEMBERS</span>
-              </button>
-            </div>
-          </li>
-          <li>
-            <button class="nav-btn" data-target="outreach">Outreach</button>
-          </li>
-          <li>
-            <button class="nav-btn" data-target="gallery">Gallery</button>
-          </li>
-          <li>
-            <button class="nav-btn" data-target="stats">
-              Stats & Scout Data
-            </button>
-          </li>
-          <li>
-            <button class="nav-btn" data-target="alpha">Alpha AI</button>
-          </li>
-          <li>
-            <button class="nav-btn" data-target="training">Training</button>
-          </li>
-          <li>
-            <button class="nav-btn" data-target="contact">Contact</button>
-          </li>
-        </ul>
-        <button class="mobile-menu-btn" aria-label="Toggle menu">
-          <i class="ph ph-list"></i>
-        </button>
-      </nav>
-    </header>
-
-    <main class="content-container">
-      <!-- HOME SECTION -->
-      <section id="home" class="tab-pane active fade-in">
-        <div class="hero-section reveal">
-          <div class="hero-content reveal delay-1">
-            <div class="badge">FTC TEAM 19639</div>
-            <h1 class="hero-title">
-              Enginering the <span class="highlight-text">Future</span>
-            </h1>
-            <p class="hero-subtitle">
-              We are a Bay Area-based high school robotics team pasionately
-              learning, competing, and growing through the FIRST® Tech Challenge
-              program.
-            </p>
-
-            <div class="action-buttons">
-              <button class="btn btn-primary cta-nav" data-target="team">
-                Learn About Us <i class="ph ph-arrow-right"></i>
-              </button>
-              <button class="btn btn-secondary cta-nav" data-target="contact">
-                Partner With Us
-              </button>
-            </div>
-          </div>
-          <!-- Large Logo Feature in Hero -->
-          <div class="hero-visual reveal delay-2">
-            <div class="premium-card p-1" style="padding: 1rem">
-              <img
-                src="bot.jpg"
-                alt="Alphabots Robot"
-                style="
-                  width: 100%;
-                  height: auto;
-                  border-radius: calc(var(--border-radius-2xl) - 4px);
-                  object-fit: cover;
-                  aspect-ratio: 4/3;
-                "
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TEAM INFO SECTION -->
-      <section id="team" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Our <span class="highlight-text">Mission</span></h2>
-          <div class="header-line"></div>
-        </div>
-
-        <div class="premium-card text-center mission-card reveal delay-1">
-          <i
-            class="ph ph-target text-green"
-            style="
-              font-size: 3.5rem;
-              margin-bottom: 1rem;
-              display: inline-block;
-            "
-          ></i>
-          <p class="large-text">
-            Facilitate members of the organization and the community to learn
-            more about math and science, while expanding their knowledge of
-            careers involving computer programming, business, engineering and
-            robotics. Our goal is also to spread STEM awareness by getting young
-            people interested in these fields to get them to pursue their
-            interests further.
-          </p>
-        </div>
-
-        <div class="grid-2-col mt-3">
-          <div class="premium-card flex-col reveal delay-2">
-            <h3><i class="ph ph-users-three"></i> Who We Are</h3>
-            <p>
-              We are a group of 13 to 15-year-olds with a passion for robotics.
-              We have the drive to compete, trying to learn and also spread the
-              word about computer science, business, and engineering.
-            </p>
-            <p>
-              Our robotics team members build and program robots to compete at
-              regional competitions, potentially qualifying for the NorCal State
-              tournament and World Championship.
-            </p>
-          </div>
-          <div class="premium-card flex-col reveal delay-3">
-            <h3><i class="ph ph-buildings"></i> Organization</h3>
-            <p>
-              Our team consists of 9 students from multiple middle and high
-              schools in the Fremont Unified School District. We have 2 coaches
-              and 2 mentors on the team.
-            </p>
-            <div class="org-badge mt-auto">
-              Alphabots is a 501(c)(3) non-profit organization (EIN: 81-1543325)
-              based in Fremont, California.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- OUTREACH SECTION -->
-      <section id="outreach" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Community <span class="highlight-text">Outreach</span></h2>
-          <div class="header-line"></div>
-        </div>
-
-        <div class="premium-card reveal delay-1">
-          <div class="flex-row items-center gap-2 mb-2">
-            <div class="icon-box">
-              <i class="ph ph-globe-hemisphere-west"></i>
-            </div>
-            <h3>Global Impact, Local Roots</h3>
-          </div>
-          <p>
-            As part of our wider aim to empower ourselevs and others through
-            STEM, we hold various events. Getting young people interested in
-            these fields is very important, not only to our comunity, but also
-            to our state and country.
-          </p>
-
-          <hr class="divider" />
-
-          <div class="flex-row items-center gap-2 mb-1">
-            <div class="icon-box"><i class="ph ph-robot"></i></div>
-            <h3>FIRST® Tech Challenge Impact</h3>
-          </div>
-          <p>
-            FIRST® Tech Challenge is an out-of-school program for students
-            (grades 7-12) to learn about STEM through hands-on robotics.
-            Participating allows us to expand our knowledge of computer
-            programming, business, and engineering.
-          </p>
-        </div>
-      </section>
-
-      <!-- GALLERY SECTION -->
-      <section id="gallery" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Photo <span class="highlight-text">Gallery</span></h2>
-          <div class="header-line"></div>
-        </div>
-
-        <div class="gallery-grid">
-          <div class="text-center py-3" style="grid-column: 1 / -1">
-            <i class="ph ph-spinner-gap spin icon-large text-green"></i>
-            <p class="mt-1 font-medium">Loading Gallery...</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- TEAM MEMBERS SECTION -->
-      <section id="members" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Team <span class="highlight-text">Members</span></h2>
-          <div class="header-line"></div>
-        </div>
-
-        <div id="members-grid" class="roster-container reveal delay-1">
-          <p class="text-muted text-center" style="grid-column: 1/-1">
-            Select a season above to view team members.
-          </p>
-        </div>
-      </section>
-
-      <!-- STATS SECTION -->
-      <section id="stats" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Live <span class="highlight-text">Statistics</span></h2>
-          <p class="text-muted text-center">
-            Data fetched dynamically from the FTC Scout API
-          </p>
-          <div class="header-line"></div>
-        </div>
-
-        <div class="premium-card data-card relative-overflow reveal delay-1">
-          <div class="bg-shape"></div>
-
-          <div id="stats-container" class="relative z-10">
-            <div id="stats-loading" class="text-center py-3">
-              <i class="ph ph-spinner-gap spin icon-large text-green"></i>
-              <p class="mt-1 font-medium">Fetching Live Data...</p>
-            </div>
-
-            <div id="stats-error" class="hidden text-center py-3">
-              <i class="ph ph-warning-circle icon-large text-red"></i>
-              <p class="mt-1 font-medium text-red">
-                Could not load stats. Please try again later.
-              </p>
-            </div>
-
-            <div id="stats-data" class="hidden">
-              <div class="season-badge mb-2">
-                <span
-                  >Season
-                  <span id="stat-season" class="font-bold">--</span></span
-                >
-              </div>
-
-              <div class="stats-grid">
-                <!-- Total OPR -->
-                <div class="stat-box primary-stat">
-                  <h4>
-                    Total OPR
-                    <i class="ph ph-info" title="Offensive Power Rating"></i>
-                  </h4>
-                  <div class="stat-value text-green" id="stat-opr">--</div>
-                  <div class="stat-rank-wrapper">
-                    <span class="rank-label">Global Rank</span>
-                    <span class="rank-number"
-                      >#<span id="stat-opr-rank">--</span></span
-                    >
-                  </div>
-                </div>
-
-                <!-- Breakdown OPRs -->
-                <div class="stat-breakdown-grid">
-                  <div class="stat-box minor-stat">
-                    <h4>Auto OPR</h4>
-                    <div class="stat-value" id="stat-auto">--</div>
-                    <div class="stat-rank-wrapper sm">
-                      <span class="rank-label">Rank</span>
-                      <span class="rank-number"
-                        >#<span id="stat-auto-rank">--</span></span
-                      >
-                    </div>
-                  </div>
-                  <div class="stat-box minor-stat">
-                    <h4>Teleop OPR</h4>
-                    <div class="stat-value" id="stat-dc">--</div>
-                    <div class="stat-rank-wrapper sm">
-                      <span class="rank-label">Rank</span>
-                      <span class="rank-number"
-                        >#<span id="stat-dc-rank">--</span></span
-                      >
-                    </div>
-                  </div>
-                  <div class="stat-box minor-stat">
-                    <h4>World Record</h4>
-                    <div class="stat-value text-green">402</div>
-                    <div class="stat-rank-wrapper sm">
-                      <span class="rank-label">Points</span>
-                      <span class="rank-number">in a Match</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TRAINING SECTION -->
-      <section id="training" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Member <span class="highlight-text">Training</span></h2>
-          <p class="text-muted text-center">
-            Sharpen your FTC knowledge with fun mini-games
-          </p>
-          <div class="header-line"></div>
-        </div>
-
-        <!-- Game Launcher Grid -->
-        <div id="training-launcher" class="training-grid reveal delay-1">
-          <button class="game-card" data-game="wordle" id="launch-wordle">
-            <div class="game-card-icon"><i class="ph ph-textbox"></i></div>
-            <h3>FTC Wordle</h3>
-            <p>Guess the 5-letter FTC term in 6 tries</p>
-            <span class="game-card-tag">Word Puzzle</span>
-          </button>
-
-          <button class="game-card" data-game="trivia" id="launch-trivia">
-            <div class="game-card-icon"><i class="ph ph-brain"></i></div>
-            <h3>FTC Trivia</h3>
-            <p>Test your knowledge with multiple-choice questions</p>
-            <span class="game-card-tag">Quiz</span>
-          </button>
-
-          <button class="game-card" data-game="scramble" id="launch-scramble">
-            <div class="game-card-icon"><i class="ph ph-shuffle"></i></div>
-            <h3>Term Scramble</h3>
-            <p>Unscramble jumbled FTC terms before time runs out</p>
-            <span class="game-card-tag">Speed</span>
-          </button>
-
-          <button
-            class="game-card"
-            data-game="flashcards"
-            id="launch-flashcards"
-          >
-            <div class="game-card-icon"><i class="ph ph-cards"></i></div>
-            <h3>Flashcards</h3>
-            <p>Flip through FTC rules, parts & concepts</p>
-            <span class="game-card-tag">Study</span>
-          </button>
-
-          <button
-            class="game-card"
-            data-game="speedmatch"
-            id="launch-speedmatch"
-          >
-            <div class="game-card-icon"><i class="ph ph-lightning"></i></div>
-            <h3>Speed Match</h3>
-            <p>Match FTC terms to their definitions as fast as you can</p>
-            <span class="game-card-tag">Matching</span>
-          </button>
-
-          <button class="game-card" data-game="penalty" id="launch-penalty">
-            <div class="game-card-icon">
-              <i class="ph ph-warning-circle"></i>
-            </div>
-            <h3>Penalty or Legal?</h3>
-            <p>Test your knowledge of the FTC Game Manual rules</p>
-            <span class="game-card-tag">Rules</span>
-          </button>
-
-          <button class="game-card" data-game="hangman" id="launch-hangman">
-            <div class="game-card-icon"><i class="ph ph-text-t"></i></div>
-            <h3>FTC Hangman</h3>
-            <p>Guess the hidden FTC phrase before time runs out</p>
-            <span class="game-card-tag">Word Game</span>
-          </button>
-
-          <button class="game-card" data-game="memory" id="launch-memory">
-            <div class="game-card-icon"><i class="ph ph-squares-four"></i></div>
-            <h3>Memory Match</h3>
-            <p>Find the matching pairs of FTC parts and concepts</p>
-            <span class="game-card-tag">Puzzle</span>
-          </button>
-        </div>
-
-        <!-- ===== GAME: FTC WORDLE ===== -->
-        <div id="game-wordle" class="game-container hidden">
-          <button class="game-back-btn" data-back>
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-textbox text-green"></i> FTC Wordle</h3>
-            <p class="text-muted">
-              Guess the FTC-related word (5 letters, 6 tries)
-            </p>
-            <div
-              id="wordle-mode-badge"
-              style="
-                display: inline-block;
-                margin-top: 0.5rem;
-                padding: 4px 14px;
-                border-radius: 20px;
-                font-size: 0.75rem;
-                font-weight: 700;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-              "
-            ></div>
-          </div>
-          <div id="wordle-board" class="wordle-board"></div>
-          <div id="wordle-message" class="wordle-message"></div>
-          <div id="wordle-keyboard" class="wordle-keyboard"></div>
-
-          <div
-            id="wordle-endgame"
-            style="display: none; margin-top: 1.5rem; text-align: center"
-          >
-            <button id="wordle-restart" class="btn btn-primary">
-              Play Again (Unlimited)
-            </button>
-          </div>
-
-          <!-- Wordle Bot Analysis -->
-          <div
-            id="wordle-bot"
-            style="display: none; margin-top: 2rem; text-align: left"
-          >
-            <div
-              style="
-                border: 1px solid rgba(13, 163, 113, 0.3);
-                border-radius: var(--border-radius-lg);
-                padding: 1.5rem;
-                background: rgba(13, 163, 113, 0.05);
-              "
-            >
-              <h4
-                style="
-                  margin-bottom: 1rem;
-                  display: flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                "
-              >
-                <i class="ph ph-robot text-green"></i> Wordle Bot Analysis
-              </h4>
-              <div id="wordle-bot-content"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== GAME: FTC TRIVIA ===== -->
-        <div id="game-trivia" class="game-container hidden">
-          <button class="game-back-btn" data-back>
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-brain text-green"></i> FTC Trivia</h3>
-          </div>
-
-          <div id="trivia-topic-screen" class="text-center my-4">
-            <p class="text-muted mb-4">
-              Select a topic to test your knowledge:
-            </p>
-            <div
-              class="trivia-topic-grid"
-              style="
-                display: flex;
-                gap: 10px;
-                justify-content: center;
-                flex-wrap: wrap;
-              "
-            >
-              <button
-                class="btn btn-outline trivia-topic-btn"
-                data-topic="Hardware"
-              >
-                Hardware
-              </button>
-              <button
-                class="btn btn-outline trivia-topic-btn"
-                data-topic="Software"
-              >
-                Software
-              </button>
-              <button
-                class="btn btn-outline trivia-topic-btn"
-                data-topic="Outreach"
-              >
-                Outreach
-              </button>
-              <button
-                class="btn btn-outline trivia-topic-btn"
-                data-topic="General"
-              >
-                General
-              </button>
-              <button class="btn btn-primary trivia-topic-btn" data-topic="All">
-                Mixed (All Rules)
-              </button>
-            </div>
-          </div>
-
-          <div id="trivia-progress" class="trivia-progress hidden">
-            <div id="trivia-bar" class="trivia-bar"></div>
-          </div>
-          <div id="trivia-question-area" class="trivia-question-area hidden">
-            <div id="trivia-q-num" class="trivia-q-num"></div>
-            <div id="trivia-question" class="trivia-question"></div>
-            <div id="trivia-options" class="trivia-options"></div>
-          </div>
-          <div id="trivia-result" class="trivia-result hidden">
-            <div class="trivia-score-circle">
-              <span id="trivia-final-score">0</span>
-            </div>
-            <p id="trivia-result-msg" class="text-xl font-bold mt-1"></p>
-            <button id="trivia-restart" class="btn btn-primary mt-2">
-              Play Again
-            </button>
-          </div>
-        </div>
-
-        <!-- ===== GAME: TERM SCRAMBLE ===== -->
-        <div id="game-scramble" class="game-container hidden">
-          <button class="game-back-btn" data-back>
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-shuffle text-green"></i> Term Scramble</h3>
-            <p class="text-muted">Unscramble the FTC term!</p>
-          </div>
-          <div class="scramble-timer-bar">
-            <div id="scramble-timer-fill" class="scramble-timer-fill"></div>
-          </div>
-          <div id="scramble-score" class="scramble-score">
-            Score: <span id="scramble-score-val">0</span>
-          </div>
-          <div id="scramble-jumbled" class="scramble-jumbled"></div>
-          <div id="scramble-hint" class="scramble-hint"></div>
-          <input
-            type="text"
-            id="scramble-input"
-            class="scramble-input"
-            placeholder="Type your answer..."
-            autocomplete="off"
-            spellcheck="false"
-          />
-          <div id="scramble-feedback" class="scramble-feedback"></div>
-          <button id="scramble-submit" class="btn btn-primary">Submit</button>
-          <button
-            id="scramble-skip"
-            class="btn btn-secondary"
-            style="margin-left: 0.5rem"
-          >
-            Skip
-          </button>
-          <div id="scramble-over" class="scramble-over hidden">
-            <p class="text-xl font-bold mt-1">Time's Up!</p>
-            <p class="text-muted mt-1">
-              Final Score:
-              <span id="scramble-final" class="text-green font-bold">0</span>
-            </p>
-            <button id="scramble-restart" class="btn btn-primary mt-2">
-              Play Again
-            </button>
-          </div>
-        </div>
-
-        <!-- ===== GAME: FLASHCARDS ===== -->
-        <div id="game-flashcards" class="game-container hidden">
-          <button class="game-back-btn" data-back>
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-cards text-green"></i> Flashcards</h3>
-            <p class="text-muted">Click a card to flip it</p>
-          </div>
-          <div id="flashcard-counter" class="flashcard-counter"></div>
-          <div id="flashcard-wrapper" class="flashcard-wrapper">
-            <div id="flashcard" class="flashcard">
-              <div class="flashcard-front" id="flashcard-front"></div>
-              <div class="flashcard-back" id="flashcard-back"></div>
-            </div>
-          </div>
-          <div class="flashcard-nav">
-            <button id="fc-prev" class="btn btn-secondary">
-              <i class="ph ph-arrow-left"></i> Prev
-            </button>
-            <button id="fc-shuffle" class="btn btn-secondary">
-              <i class="ph ph-shuffle"></i> Shuffle
-            </button>
-            <button id="fc-next" class="btn btn-primary">
-              Next <i class="ph ph-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- ===== GAME: SPEED MATCH ===== -->
-        <div id="game-speedmatch" class="game-container hidden">
-          <button class="game-back-btn" data-back>
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-lightning text-green"></i> Speed Match</h3>
-            <p class="text-muted">Click the correct definition for each term</p>
-          </div>
-          <div class="speedmatch-hud">
-            <div class="speedmatch-timer">⏱ <span id="sm-timer">30</span>s</div>
-            <div class="speedmatch-score">
-              Score: <span id="sm-score">0</span>
-            </div>
-          </div>
-          <div id="sm-term" class="sm-term"></div>
-          <div id="sm-options" class="sm-options"></div>
-          <div id="sm-feedback" class="sm-feedback"></div>
-          <div id="sm-gameover" class="sm-gameover hidden">
-            <p class="text-xl font-bold">Game Over!</p>
-            <p class="text-muted mt-1">
-              You matched
-              <span id="sm-final" class="text-green font-bold">0</span> terms
-              correctly.
-            </p>
-            <button id="sm-restart" class="btn btn-primary mt-2">
-              Play Again
-            </button>
-          </div>
-        </div>
-
-        <!-- ===== GAME: PENALTY OR LEGAL ===== -->
-        <div id="game-penalty" class="game-container hidden">
-          <button class="game-back-btn" data-back>
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3>
-              <i class="ph ph-warning-circle text-green"></i> Penalty or Legal?
-            </h3>
-            <p class="text-muted">
-              You are the Referee. Is this scenario a Penalty or Legal?
-            </p>
-          </div>
-          <div
-            id="penalty-scenario"
-            class="penalty-scenario mb-4 text-center mt-4 text-xl"
-          ></div>
-          <div id="penalty-options" class="penalty-options flex-center gap-4">
-            <button
-              id="btn-penalty"
-              class="btn btn-outline"
-              style="border-color: #ef4444; color: #ef4444"
-            >
-              Penalty
-            </button>
-            <button
-              id="btn-legal"
-              class="btn btn-outline"
-              style="
-                border-color: var(--brand-green);
-                color: var(--brand-green);
-              "
-            >
-              Legal
-            </button>
-          </div>
-          <div
-            id="penalty-feedback"
-            class="penalty-feedback text-center mt-4"
-          ></div>
-          <div
-            id="penalty-gameover"
-            class="penalty-gameover text-center hidden mt-4"
-          >
-            <h4 class="text-2xl font-bold">Finished!</h4>
-            <p class="mt-2 text-muted">
-              You correctly ruled
-              <span id="penalty-score" class="text-green">0</span> scenarios.
-            </p>
-            <button id="penalty-restart" class="btn btn-primary mt-4">
-              Play Again
-            </button>
-          </div>
-        </div>
-
-        <!-- ===== GAME: FTC HANGMAN ===== -->
-        <div id="game-hangman" class="game-container hidden text-center">
-          <button class="game-back-btn" data-back style="text-align: left">
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-text-t text-green"></i> FTC Hangman</h3>
-            <p class="text-muted">
-              Guess the letters in the hidden word or phrase
-            </p>
-          </div>
-          <div class="hangman-stats mt-4 mb-2">
-            Lives: <span id="hangman-lives" class="text-green">6</span>
-          </div>
-          <div
-            id="hangman-word"
-            class="hangman-word tracking-widest text-3xl font-bold mb-4"
-          ></div>
-          <div
-            id="hangman-keyboard"
-            class="hangman-keyboard flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"
-          ></div>
-          <div id="hangman-gameover" class="hangman-gameover hidden mt-4">
-            <p id="hangman-result-msg" class="text-xl font-bold"></p>
-            <button id="hangman-restart" class="btn btn-primary mt-2">
-              Play Again
-            </button>
-          </div>
-        </div>
-
-        <!-- ===== GAME: MEMORY MATCH ===== -->
-        <div id="game-memory" class="game-container hidden text-center">
-          <button class="game-back-btn" data-back style="text-align: left">
-            <i class="ph ph-arrow-left"></i> Back to Games
-          </button>
-          <div class="game-header">
-            <h3><i class="ph ph-squares-four text-green"></i> Memory Match</h3>
-            <p class="text-muted">Find matching pairs of FTC concepts</p>
-          </div>
-          <div class="memory-stats mb-4">
-            Moves: <span id="memory-moves">0</span>
-          </div>
-          <div id="memory-board" class="memory-board"></div>
-          <div id="memory-gameover" class="memory-gameover hidden mt-4">
-            <h4 class="text-2xl font-bold text-green">Board Cleared!</h4>
-            <button id="memory-restart" class="btn btn-primary mt-4">
-              Play Again
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ALUMNI SECTION -->
-      <section id="alumni" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Team <span class="highlight-text">Alumni</span></h2>
-          <div class="header-line"></div>
-        </div>
-        <p
-          class="text-muted text-center reveal delay-1"
-          style="margin-bottom: 2rem"
-        >
-          Honoring the past members who helped build Team 19639 into what it is
-          today.
-        </p>
-        <div id="alumni-grid" class="roster-container reveal delay-2">
-          <p class="text-muted text-center" style="grid-column: 1/-1">
-            Loading alumni...
-          </p>
-        </div>
-      </section>
-
-      <!-- CONTACT SECTION -->
-      <section id="contact" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2>Get In <span class="highlight-text">Touch</span></h2>
-          <div class="header-line"></div>
-        </div>
-
-        <div class="premium-card max-w-lg mx-auto reveal delay-1">
-          <div class="text-center mb-2">
-            <i
-              class="ph ph-handshake icon-large text-green mb-1"
-              style="display: inline-block"
-            ></i>
-            <h3 class="text-xl">Sponsorship & Funding</h3>
-          </div>
-
-          <p class="text-center text-muted mb-3">
-            We are actively seeking team funding to support our robot build,
-            competition fees, and community outreach events. As a 501(c)(3)
-            non-profit, your donations are tax-deductible.
-          </p>
-
-          <div class="contact-links">
-            <a href="mailto:contact@alphabotsrobotics.com" class="contact-card">
-              <div class="contact-icon">
-                <i class="ph ph-envelope-simple"></i>
-              </div>
-              <div class="contact-details">
-                <span class="contact-label">Email Us</span>
-                <span class="contact-value">contact@alphabotsrobotics.com</span>
-              </div>
-              <i class="ph ph-arrow-up-right contact-arrow"></i>
-            </a>
-
-            <div class="contact-card static">
-              <div class="contact-icon"><i class="ph ph-map-pin"></i></div>
-              <div class="contact-details">
-                <span class="contact-label">Location</span>
-                <span class="contact-value">Fremont, California</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- ALPHA AI SECTION -->
-      <section id="alpha" class="tab-pane fade-in hidden">
-        <div class="section-header reveal">
-          <h2
-            style="
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 0.5rem;
-            "
-          >
-            Meet <span class="highlight-text">Alpha</span>
-            <span
-              style="
-                font-size: 0.65rem;
-                background: var(--brand-green);
-                color: white;
-                padding: 2px 6px;
-                border-radius: 4px;
-                text-transform: uppercase;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-              "
-              >Experimental</span
-            >
-          </h2>
-          <p class="text-muted text-center">
-            Your personalized AI assistant for FIRST Robotics and Team 19639
-          </p>
-          <div class="header-line"></div>
-        </div>
-
-        <div
-          class="premium-card reveal delay-1"
-          id="alpha-chat-container"
-          style="
-            max-width: 800px;
-            margin: 0 auto;
-            min-height: 550px;
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            overflow: hidden;
-            position: relative;
-          "
-        >
-          <div
-            class="chat-header"
-            style="
-              background: rgba(0, 0, 0, 0.2);
-              border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-              padding: 1.25rem 1.5rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            "
-          >
-            <div style="display: flex; align-items: center; gap: 0.75rem">
-              <i class="ph ph-robot text-green icon-large"></i>
-              <div>
-                <h3 style="margin: 0; font-size: 1.25rem">Alpha</h3>
-                <span
-                  id="chat-status-text"
-                  style="font-size: 0.85rem; color: #a1a1aa"
-                  >Waiting to start...</span
-                >
-              </div>
-            </div>
-            <button
-              id="start-alpha-btn"
-              class="btn btn-primary btn-sm"
-              style="font-size: 0.85rem; padding: 0.5rem 1rem"
-            >
-              Start Engine
-            </button>
-          </div>
-
-          <div
-            id="chat-messages"
-            class="chat-messages"
-            style="
-              flex: 1;
-              padding: 1.5rem;
-              overflow-y: auto;
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-            "
-          >
-            <div class="chat-bubble system">
-              Engine is offline. Click "Start Engine" to download/load the AI
-              model directly into your browser memory (approx 2GB initially,
-              cached thereafter).
-            </div>
-          </div>
-
-          <div
-            class="chat-input-area"
-            style="
-              padding: 1rem 1.5rem;
-              background: rgba(0, 0, 0, 0.3);
-              border-top: 1px solid rgba(255, 255, 255, 0.05);
-              display: flex;
-              gap: 0.75rem;
-            "
-          >
-            <input
-              type="text"
-              id="chat-input"
-              class="chat-input"
-              placeholder="Ask Alpha anything about FTC..."
-              disabled
-              style="
-                flex: 1;
-                padding: 0.85rem 1.25rem;
-                border-radius: 2rem;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                color: white;
-                outline: none;
-                transition: border-color 0.2s;
-              "
-            />
-            <button
-              id="chat-send-btn"
-              class="btn btn-primary"
-              disabled
-              style="
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-                border: none;
-                cursor: pointer;
-              "
-            >
-              <i class="ph ph-paper-plane-right" style="font-size: 1.5rem"></i>
-            </button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-container">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <img
-              src="logo.png"
-              alt="Logo"
-              class="footer-logo"
-              onerror="this.style.display = 'none'"
-            />
-            <span class="font-bold text-white tracking-wider"
-              >ALPHAB<span class="text-green">O</span>TS 19639</span
-            >
-          </div>
-          <div class="footer-socials">
-            <a href="#" aria-label="Github"
-              ><i class="ph ph-github-logo"></i
-            ></a>
-            <a href="#" aria-label="Instagram"
-              ><i class="ph ph-instagram-logo"></i
-            ></a>
-            <a href="#" aria-label="YouTube"
-              ><i class="ph ph-youtube-logo"></i
-            ></a>
-          </div>
-        </div>
-        <div class="footer-divider"></div>
-        <div class="footer-bottom">
-          <p>
-            &copy; 2026 Alphabots Robotics 19639. A 501(c)(3) Non-Profit
-            Organization.
-          </p>
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              gap: 8px;
-              align-items: center;
-              margin-top: 0.5rem;
-            "
-            class="text-sm"
-          >
-            <span>Designed for the Future.</span>
-            <span class="text-muted">|</span>
-            <button
-              class="cta-nav"
-              data-target="alumni"
-              style="
-                background: none;
-                border: none;
-                color: inherit;
-                text-decoration: underline;
-                font-family: inherit;
-                font-size: inherit;
-                padding: 0;
-                cursor: pointer;
-              "
-              aria-label="View Alumni"
-            >
-              Alumni
-            </button>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Lightbox / Photo Viewer -->
-    <div id="lightbox" class="lightbox">
-      <button class="lightbox-close" aria-label="Close viewer">
-        <i class="ph ph-x"></i>
-      </button>
-      <button class="lightbox-nav prev" aria-label="Previous image">
-        <i class="ph ph-caret-left"></i>
-      </button>
-      <button class="lightbox-nav next" aria-label="Next image">
-        <i class="ph ph-caret-right"></i>
-      </button>
-      <div class="lightbox-content">
-        <img id="lightbox-img" src="" alt="Enlarged gallery image" />
-      </div>
-      <div class="lightbox-caption" id="lightbox-caption"></div>
-      <div class="lightbox-counter" id="lightbox-counter"></div>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+ </head>
+ <body>
+  <header>
+   <nav class="navbar">
+    <div class="nav-brand">
+     <img
+      src="bot.jpg"
+      alt="Alphabots Logo"
+      class="nav-logo"
+      onerror="
+       this.style.display = 'none';
+       document.getElementById('nav-logo-fallback').style.display =
+        'block';
+      "
+     />
+     <div
+      id="nav-logo-fallback"
+      class="nav-logo-text"
+      style="display: none"
+     >
+      ALPHAB<span>O</span>TS
+     </div>
     </div>
 
-    <!-- Import Map for WebLLM -->
-    <script type="importmap">
-      {
-        "imports": {
-          "@mlc-ai/web-llm": "https://esm.run/@mlc-ai/web-llm"
-        }
-      }
-    </script>
-    <script type="module" src="script.js?v=21"></script>
-  </body>
+    <ul class="nav-links" id="nav-links">
+     <li>
+      <button class="nav-btn active" data-target="home">Home</button>
+     </li>
+     <li><button class="nav-btn" data-target="team">Our Team</button></li>
+     <li class="nav-item-dropdown" id="nav-dropdown-container">
+      <div class="gooey-nav-wrapper">
+       <!-- Main Trigger -->
+       <button class="nav-btn main-button" id="members-toggle">
+        <span>Team Members</span>
+        <svg
+         class="chevron"
+         viewBox="0 0 20 20"
+         fill="currentColor"
+         style="
+          width: 20px;
+          height: 20px;
+          margin-left: 8px;
+          transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+         "
+        >
+         <path
+          fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+         />
+        </svg>
+       </button>
+
+       <!-- Menu Items -->
+       <button class="season-option item-1" data-season="2025-2026">
+        20252026 <span>DECODE</span>
+       </button>
+       <button class="season-option item-2" data-season="2024-2025">
+        20242025 <span>INTO THE DEEP</span>
+       </button>
+       <button class="season-option item-3" data-season="2023-2024">
+        20232024 <span>CENTERSTAGE</span>
+       </button>
+       <button class="season-option item-4" data-season="2022-2023">
+        20222023 <span>POWERPLAY</span>
+       </button>
+       <button class="season-option item-5" data-season="2021-2022">
+        20212022 <span>FREIGHT FRENZY</span>
+       </button>
+       <button class="season-option item-6" data-target="alumni">
+        Alumni <span>PAST MEMBERS</span>
+       </button>
+      </div>
+     </li>
+     <li>
+      <button class="nav-btn" data-target="outreach">Outreach</button>
+     </li>
+     <li>
+      <button class="nav-btn" data-target="gallery">Gallery</button>
+     </li>
+     <li>
+      <button class="nav-btn" data-target="stats">
+       Stats & Scout Data
+      </button>
+     </li>
+     <li>
+      <button class="nav-btn" data-target="alpha">Alpha AI</button>
+     </li>
+     <li>
+      <button class="nav-btn" data-target="training">Training</button>
+     </li>
+     <li>
+      <button class="nav-btn" data-target="contact">Contact</button>
+     </li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Toggle menu">
+     <i class="ph ph-list"></i>
+    </button>
+   </nav>
+  </header>
+
+  <main class="content-container">
+   <!-- HOME SECTION -->
+   <section id="home" class="tab-pane active fade-in">
+    <div class="hero-section reveal">
+     <div class="hero-content reveal delay-1">
+      <div class="badge">FTC TEAM 19639</div>
+      <h1 class="hero-title">
+       Enginering the <span class="highlight-text">Future</span>
+      </h1>
+      <p class="hero-subtitle">
+       We are a Bay Area-based high school robotics team pasionately
+       learning, competing, and growing through the FIRST Tech Challenge
+       program.
+      </p>
+
+      <div class="action-buttons">
+       <button class="btn btn-primary cta-nav" data-target="team">
+        Learn About Us <i class="ph ph-arrow-right"></i>
+       </button>
+       <button class="btn btn-secondary cta-nav" data-target="contact">
+        Partner With Us
+       </button>
+      </div>
+     </div>
+     <!-- Large Logo Feature in Hero -->
+     <div class="hero-visual reveal delay-2">
+      <div class="premium-card p-1" style="padding: 1rem">
+       <img
+        src="bot.jpg"
+        alt="Alphabots Robot"
+        style="
+         width: 100%;
+         height: auto;
+         border-radius: calc(var(--border-radius-2xl) - 4px);
+         object-fit: cover;
+         aspect-ratio: 4/3;
+        "
+       />
+      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
+     </div>
+    </div>
+   </section>
+
+   <!-- TEAM INFO SECTION -->
+   <section id="team" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Our <span class="highlight-text">Mission</span></h2>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div class="premium-card text-center mission-card reveal delay-1">
+     <i
+      class="ph ph-target text-green"
+      style="
+       font-size: 3.5rem;
+       margin-bottom: 1rem;
+       display: inline-block;
+      "
+     ></i>
+     <p class="large-text">
+      Facilitate members of the organization and the community to learn
+      more about math and science, while expanding their knowledge of
+      careers involving computer programming, business, engineering and
+      robotics. Our goal is also to spread STEM awareness by getting young
+      people interested in these fields to get them to pursue their
+      interests further.
+     </p>
+    </div>
+
+    <div class="grid-2-col mt-3">
+     <div class="premium-card flex-col reveal delay-2">
+      <h3><i class="ph ph-users-three"></i> Who We Are</h3>
+      <p>
+       We are a group of 13 to 15-year-olds with a passion for robotics.
+       We have the drive to compete, trying to learn and also spread the
+       word about computer science, business, and engineering.
+      </p>
+      <p>
+       Our robotics team members build and program robots to compete at
+       regional competitions, potentially qualifying for the NorCal State
+       tournament and World Championship.
+      </p>
+     </div>
+     <div class="premium-card flex-col reveal delay-3">
+      <h3><i class="ph ph-buildings"></i> Organization</h3>
+      <p>
+       Our team consists of 9 students from multiple middle and high
+       schools in the Fremont Unified School District. We have 2 coaches
+       and 2 mentors on the team.
+      </p>
+      <div class="org-badge mt-auto">
+       Alphabots is a 501(c)(3) non-profit organization (EIN: 81-1543325)
+       based in Fremont, California.
+      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
+     </div>
+    </div>
+   </section>
+
+   <!-- OUTREACH SECTION -->
+   <section id="outreach" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Community <span class="highlight-text">Outreach</span></h2>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div class="premium-card reveal delay-1">
+     <div class="flex-row items-center gap-2 mb-2">
+      <div class="icon-box">
+       <i class="ph ph-globe-hemisphere-west"></i>
+      </div>
+      <h3>Global Impact, Local Roots</h3>
+     </div>
+     <p>
+      As part of our wider aim to empower ourselevs and others through
+      STEM, we hold various events. Getting young people interested in
+      these fields is very important, not only to our comunity, but also
+      to our state and country.
+     </p>
+
+     <hr class="divider" />
+
+     <div class="flex-row items-center gap-2 mb-1">
+      <div class="icon-box"><i class="ph ph-robot"></i></div>
+      <h3>FIRST Tech Challenge Impact</h3>
+     </div>
+     <p>
+      FIRST Tech Challenge is an out-of-school program for students
+      (grades 7-12) to learn about STEM through hands-on robotics.
+      Participating allows us to expand our knowledge of computer
+      programming, business, and engineering.
+     </p>
+    </div>
+   </section>
+
+   <!-- GALLERY SECTION -->
+   <section id="gallery" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Photo <span class="highlight-text">Gallery</span></h2>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div class="gallery-grid">
+     <div class="text-center py-3" style="grid-column: 1 / -1">
+      <i class="ph ph-spinner-gap spin icon-large text-green"></i>
+      <p class="mt-1 font-medium">Loading Gallery...</p>
+     </div>
+    </div>
+   </section>
+
+   <!-- TEAM MEMBERS SECTION -->
+   <section id="members" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Team <span class="highlight-text">Members</span></h2>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div id="members-grid" class="roster-container reveal delay-1">
+     <p class="text-muted text-center" style="grid-column: 1/-1">
+      Select a season above to view team members.
+     </p>
+    </div>
+   </section>
+
+   <!-- STATS SECTION -->
+   <section id="stats" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Live <span class="highlight-text">Statistics</span></h2>
+     <p class="text-muted text-center">
+      Data fetched dynamically from the FTC Scout API
+     </p>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div class="premium-card data-card relative-overflow reveal delay-1">
+     <div class="bg-shape"></div>
+
+     <div id="stats-container" class="relative z-10">
+      <div id="stats-loading" class="text-center py-3">
+       <i class="ph ph-spinner-gap spin icon-large text-green"></i>
+       <p class="mt-1 font-medium">Fetching Live Data...</p>
+      </div>
+
+      <div id="stats-error" class="hidden text-center py-3">
+       <i class="ph ph-warning-circle icon-large text-red"></i>
+       <p class="mt-1 font-medium text-red">
+        Could not load stats. Please try again later.
+       </p>
+      </div>
+
+      <div id="stats-data" class="hidden">
+       <div class="season-badge mb-2">
+        <span
+         >Season
+         <span id="stat-season" class="font-bold">--</span></span
+        >
+       </div>
+
+       <div class="stats-grid">
+        <!-- Total OPR -->
+        <div class="stat-box primary-stat">
+         <h4>
+          Total OPR
+          <i class="ph ph-info" title="Offensive Power Rating"></i>
+         </h4>
+         <div class="stat-value text-green" id="stat-opr">--</div>
+         <div class="stat-rank-wrapper">
+          <span class="rank-label">Global Rank</span>
+          <span class="rank-number"
+           >#<span id="stat-opr-rank">--</span></span
+          >
+         </div>
+        </div>
+
+        <!-- Breakdown OPRs -->
+        <div class="stat-breakdown-grid">
+         <div class="stat-box minor-stat">
+          <h4>Auto OPR</h4>
+          <div class="stat-value" id="stat-auto">--</div>
+          <div class="stat-rank-wrapper sm">
+           <span class="rank-label">Rank</span>
+           <span class="rank-number"
+            >#<span id="stat-auto-rank">--</span></span
+           >
+          </div>
+         </div>
+         <div class="stat-box minor-stat">
+          <h4>Teleop OPR</h4>
+          <div class="stat-value" id="stat-dc">--</div>
+          <div class="stat-rank-wrapper sm">
+           <span class="rank-label">Rank</span>
+           <span class="rank-number"
+            >#<span id="stat-dc-rank">--</span></span
+           >
+          </div>
+         </div>
+         <div class="stat-box minor-stat">
+          <h4>World Record</h4>
+          <div class="stat-value text-green">402</div>
+          <div class="stat-rank-wrapper sm">
+           <span class="rank-label">Points</span>
+           <span class="rank-number">in a Match</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
+     </div>
+    </div>
+   </section>
+
+   <!-- TRAINING SECTION -->
+   <section id="training" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Member <span class="highlight-text">Training</span></h2>
+     <p class="text-muted text-center">
+      Sharpen your FTC knowledge with fun mini-games
+     </p>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+     <div id="total-games-played-badge" style="margin-top: 1rem; display: inline-block; padding: 0.5rem 1rem; background: rgba(13, 163, 113, 0.15); border: 1px solid rgba(13, 163, 113, 0.3); border-radius: 20px; color: var(--brand-green); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+      Total Games Played: <span id="total-games-count">0</span>
+     </div>
+
+     <!-- Recent Activity Ticker -->
+     <div id="activity-ticker-container" style="width: 100%; max-width: 800px; margin: 1.5rem auto 0; background: var(--brand-dark); border: 1px solid var(--brand-gray); border-radius: 12px; height: 40px; overflow: hidden; position: relative; display: flex; align-items: center;">
+      <div style="background: var(--brand-green); color: white; padding: 0 1rem; height: 100%; display: flex; align-items: center; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; z-index: 2; position: relative;">Live Activity</div>
+      <div id="activity-ticker" style="position: absolute; white-space: nowrap; padding-left: 100%; animation: ticker 60s linear infinite; color: var(--text-secondary); font-size: 0.85rem;">
+        Akshay Shoroff just scored 180 in FTC Simulator! Suhas Bathini solved the Daily Wordle in 3 tries! Saket Sandru matched 12 pairs in Memory Match! Shiv Gurjar set a new high score in Trivia! Aadit Verma unscrambled 15 words! Rushil Shah identified a Major Penalty!
+      </div>
+     </div>
+
+     <!-- Awards Cabinet -->
+     <div id="awards-cabinet" style="width: 100%; max-width: 800px; margin: 2rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--brand-gray); border-radius: 16px;">
+      <div class="award-slot" id="award-wordle-streak" title="Get a 5-win streak in Wordle" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
+       <i class="ph ph-medal" style="font-size: 2.2rem; color: #fbbf24;"></i>
+       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Wordle Master</div>
+      </div>
+      <div class="award-slot" id="award-sim-record" title="Score 300+ in Simulator" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
+       <i class="ph ph-trophy" style="font-size: 2.2rem; color: #fbbf24;"></i>
+       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Top Gun</div>
+      </div>
+      <div class="award-slot" id="award-trivia-perfect" title="Get 100% in any Trivia category" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
+       <i class="ph ph-star" style="font-size: 2.2rem; color: #fbbf24;"></i>
+       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">FTC Scholar</div>
+      </div>
+      <div class="award-slot" id="award-speed-match" title="Complete Speed Match in < 20s" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
+       <i class="ph ph-lightning" style="font-size: 2.2rem; color: #fbbf24;"></i>
+       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Quick Hands</div>
+      </div>
+      <div class="award-slot" id="award-memory-perfect" title="Complete Memory in < 40 moves" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
+       <i class="ph ph-brain" style="font-size: 2.2rem; color: #fbbf24;"></i>
+       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Total Recall</div>
+      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
+     </div>
+    </div>
+
+    <!-- Game Launcher Grid -->
+    <div id="training-launcher" class="training-grid reveal delay-1">
+     <button class="game-card" data-game="wordle" id="launch-wordle">
+      <div class="game-card-icon"><i class="ph ph-textbox"></i></div>
+      <h3>FTC Wordle</h3>
+      <div class="high-score-badge" id="hs-wordle">Best Streak: <span>0</span> | Total Wins: <span>0</span></div>
+      <p>Guess the 5-letter FTC term in 6 tries</p>
+      <span class="game-card-tag">Word Puzzle</span>
+     </button>
+
+     <button class="game-card" data-game="trivia" id="launch-trivia">
+      <div class="game-card-icon"><i class="ph ph-brain"></i></div>
+      <h3>FTC Trivia</h3>
+      <div class="high-score-badge" id="hs-trivia">Highest Score: <span>0</span></div>
+      <p>Test your knowledge with multiple-choice questions</p>
+      <span class="game-card-tag">Quiz</span>
+     </button>
+
+     <button class="game-card" data-game="scramble" id="launch-scramble">
+      <div class="game-card-icon"><i class="ph ph-shuffle"></i></div>
+      <h3>Term Scramble</h3>
+      <div class="high-score-badge" id="hs-scramble">Fastest Time: <span>--</span> | Words: <span>0</span></div>
+      <p>Unscramble jumbled FTC terms before time runs out</p>
+      <span class="game-card-tag">Speed</span>
+     </button>
+
+     <button
+      class="game-card"
+      data-game="flashcards"
+      id="launch-flashcards"
+     >
+      <div class="game-card-icon"><i class="ph ph-cards"></i></div>
+      <h3>Flashcards</h3>
+      <div class="high-score-badge" id="hs-flashcards">Cards Reviewed: <span>0</span></div>
+      <p>Flip through FTC rules, parts & concepts</p>
+      <span class="game-card-tag">Study</span>
+     </button>
+
+     <button
+      class="game-card"
+      data-game="speedmatch"
+      id="launch-speedmatch"
+     >
+      <div class="game-card-icon"><i class="ph ph-lightning"></i></div>
+      <h3>Speed Match</h3>
+      <div class="high-score-badge" id="hs-speedmatch">Fastest Time: <span>--</span></div>
+      <p>Match FTC terms to their definitions as fast as you can</p>
+      <span class="game-card-tag">Matching</span>
+     </button>
+
+     <button class="game-card" data-game="penalty" id="launch-penalty">
+      <div class="game-card-icon">
+       <i class="ph ph-warning-circle"></i>
+      </div>
+      <h3>Penalty or Legal?</h3>
+      <div class="high-score-badge" id="hs-penalty">Highest Streak: <span>0</span></div>
+      <p>Test your knowledge of the FTC Game Manual rules</p>
+      <span class="game-card-tag">Rules</span>
+     </button>
+
+     <button class="game-card" data-game="hangman" id="launch-hangman">
+      <div class="game-card-icon"><i class="ph ph-text-t"></i></div>
+      <h3>FTC Hangman</h3>
+      <div class="high-score-badge" id="hs-hangman">Total Wins: <span>0</span></div>
+      <p>Guess the hidden FTC phrase before time runs out</p>
+      <span class="game-card-tag">Word Game</span>
+     </button>
+
+     <button class="game-card" data-game="memory" id="launch-memory">
+      <div class="game-card-icon"><i class="ph ph-squares-four"></i></div>
+      <h3>Memory Match</h3>
+      <div class="high-score-badge" id="hs-memory">Fastest Time: <span>--</span> | Fewest Moves: <span>--</span></div>
+      <p>Find the matching pairs of FTC parts and concepts</p>
+      <span class="game-card-tag">Puzzle</span>
+     </button>
+
+     <button class="game-card" data-game="simulator" id="launch-simulator">
+      <div class="game-card-icon"><i class="ph ph-robot"></i></div>
+      <h3>FTC Simulator</h3>
+      <p>Score the highest points in 2m. World Record Leaderboard.</p>
+      <span class="game-card-tag">Action</span>
+     </button>
+    </div>
+
+    <!-- ===== GAME: FTC WORDLE ===== -->
+    <div id="game-wordle" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-textbox text-green"></i> FTC Wordle</h3>
+      <div class="high-score-badge" id="hs-wordle">Best Streak: <span>0</span> | Total Wins: <span>0</span></div>
+      <p class="text-muted">
+       Guess the FTC-related word (5 letters, 6 tries)
+      </p>
+      <div
+       id="wordle-mode-badge"
+       style="
+        display: inline-block;
+        margin-top: 0.5rem;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+       "
+      ></div><label style="font-size: 0.7rem; color: var(--text-secondary); display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" id="wordle-hard-mode"> HARD MODE </label></div>
+     <div id="wordle-board" class="wordle-board"></div>
+     <div id="wordle-message" class="wordle-message"></div>
+     <div id="wordle-keyboard" class="wordle-keyboard"></div>
+
+     <div
+      id="wordle-endgame"
+      style="display: none; margin-top: 1.5rem; text-align: center"
+     >
+      <button id="wordle-restart" class="btn btn-primary">Play Again</button>
+      <button id="wordle-share" class="btn btn-outline" style="margin-top: 0.5rem; border-color: var(--brand-green); color: var(--brand-green);">Share Results </button>
+     </div>
+
+     <!-- Wordle Bot Analysis -->
+     <div
+      id="wordle-bot"
+      style="display: none; margin-top: 2rem; text-align: left"
+     >
+      <div
+       style="
+        border: 1px solid rgba(13, 163, 113, 0.3);
+        border-radius: var(--border-radius-lg);
+        padding: 1.5rem;
+        background: rgba(13, 163, 113, 0.05);
+       "
+      >
+       <h4
+        style="
+         margin-bottom: 1rem;
+         display: flex;
+         align-items: center;
+         gap: 0.5rem;
+        "
+       >
+        <i class="ph ph-robot text-green"></i> Wordle Bot Analysis
+       </h4>
+       <div id="wordle-bot-content"></div>
+      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
+     </div>
+    </div>
+
+    <!-- ===== GAME: FTC TRIVIA ===== -->
+    <div id="game-trivia" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-brain text-green"></i> FTC Trivia</h3>
+      <div class="high-score-badge" id="hs-trivia">Highest Score: <span>0</span></div>
+     </div>
+
+     <div id="trivia-topic-screen" class="text-center my-4">
+      <p class="text-muted mb-4">
+       Select a topic to test your knowledge:
+      </p>
+      <div
+       class="trivia-topic-grid"
+       style="
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+       "
+      >
+       <button
+        class="btn btn-outline trivia-topic-btn"
+        data-topic="Hardware"
+       >
+        Hardware
+       </button>
+       <button
+        class="btn btn-outline trivia-topic-btn"
+        data-topic="Software"
+       >
+        Software
+       </button>
+       <button
+        class="btn btn-outline trivia-topic-btn"
+        data-topic="Outreach"
+       >
+        Outreach
+       </button>
+       <button
+        class="btn btn-outline trivia-topic-btn"
+        data-topic="General"
+       >
+        General
+       </button>
+       <button class="btn btn-primary trivia-topic-btn" data-topic="All">
+        Mixed (All Rules)
+       </button>
+      </div>
+     </div>
+
+     <div id="trivia-progress" class="trivia-progress hidden">
+      <div id="trivia-bar" class="trivia-bar"></div>
+     </div>
+     <div id="trivia-question-area" class="trivia-question-area hidden">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><div id="trivia-q-num" class="trivia-q-num"></div><button id="trivia-ai-lifeline" class="btn btn-outline" style="font-size: 0.7rem; padding: 4px 10px; border-color: #3b82f6; color: #3b82f6;"><i class="ph ph-robot"></i> Ask Alpha AI</button></div>
+      <div id="trivia-question" class="trivia-question"></div>
+      <div id="trivia-options" class="trivia-options"></div>
+     </div>
+     <div id="trivia-result" class="trivia-result hidden">
+      <div class="trivia-score-circle">
+       <span id="trivia-final-score">0</span>
+      </div>
+      <p id="trivia-result-msg" class="text-xl font-bold mt-1"></p>
+      <button id="trivia-restart" class="btn btn-primary mt-2">
+       Play Again
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: TERM SCRAMBLE ===== -->
+    <div id="game-scramble" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-shuffle text-green"></i> Term Scramble</h3>
+      <div class="high-score-badge" id="hs-scramble">Fastest Time: <span>--</span> | Words: <span>0</span></div>
+      <p class="text-muted">Unscramble the FTC term!</p>
+     </div>
+     <div class="scramble-timer-bar">
+      <div id="scramble-timer-fill" class="scramble-timer-fill"></div>
+     </div>
+     <div id="scramble-score" class="scramble-score">
+      Score: <span id="scramble-score-val">0</span>
+     </div>
+     <div id="scramble-jumbled" class="scramble-jumbled"></div>
+     <div id="scramble-hint" class="scramble-hint"></div>
+     <input
+      type="text"
+      id="scramble-input"
+      class="scramble-input"
+      placeholder="Type your answer..."
+      autocomplete="off"
+      spellcheck="false"
+     />
+     <div id="scramble-feedback" class="scramble-feedback"></div>
+     <button id="scramble-submit" class="btn btn-primary">Submit</button>
+     <button
+      id="scramble-skip"
+      class="btn btn-secondary"
+      style="margin-left: 0.5rem"
+     >
+      Skip
+     </button>
+     <div id="scramble-over" class="scramble-over hidden">
+      <p class="text-xl font-bold mt-1">Time's Up!</p>
+      <p class="text-muted mt-1">
+       Final Score:
+       <span id="scramble-final" class="text-green font-bold">0</span>
+      </p>
+      <button id="scramble-restart" class="btn btn-primary mt-2">
+       Play Again
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: FLASHCARDS ===== -->
+    <div id="game-flashcards" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-cards text-green"></i> Flashcards</h3>
+      <div class="high-score-badge" id="hs-flashcards">Cards Reviewed: <span>0</span></div>
+      <p class="text-muted">Click a card to flip it</p>
+     </div>
+     <div id="flashcard-counter" class="flashcard-counter"></div>
+     <div id="flashcard-wrapper" class="flashcard-wrapper">
+      <div id="flashcard" class="flashcard">
+       <div class="flashcard-front" id="flashcard-front"></div>
+       <div class="flashcard-back" id="flashcard-back"></div>
+      </div>
+     </div>
+     <div class="flashcard-nav">
+      <button id="fc-prev" class="btn btn-secondary">
+       <i class="ph ph-arrow-left"></i> Prev
+      </button>
+      <button id="fc-shuffle" class="btn btn-secondary">
+       <i class="ph ph-shuffle"></i> Shuffle
+      </button>
+      <button id="fc-next" class="btn btn-primary">
+       Next <i class="ph ph-arrow-right"></i>
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: SPEED MATCH ===== -->
+    <div id="game-speedmatch" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-lightning text-green"></i> Speed Match</h3>
+      <div class="high-score-badge" id="hs-speedmatch">Fastest Time: <span>--</span></div>
+      <p class="text-muted">Click the correct definition for each term</p>
+     </div>
+     <div class="speedmatch-hud">
+      <div class="speedmatch-timer"> <span id="sm-timer">30</span>s</div>
+      <div class="speedmatch-score">
+       Score: <span id="sm-score">0</span>
+      </div>
+     </div>
+     <div id="sm-term" class="sm-term"></div>
+     <div id="sm-options" class="sm-options"></div>
+     <div id="sm-feedback" class="sm-feedback"></div>
+     <div id="sm-gameover" class="sm-gameover hidden">
+      <p class="text-xl font-bold">Game Over!</p>
+      <p class="text-muted mt-1">
+       You matched
+       <span id="sm-final" class="text-green font-bold">0</span> terms
+       correctly.
+      </p>
+      <button id="sm-restart" class="btn btn-primary mt-2">
+       Play Again
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: PENALTY OR LEGAL ===== -->
+    <div id="game-penalty" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3>
+       <i class="ph ph-warning-circle text-green"></i> Penalty or Legal?
+      </h3>
+      <p class="text-muted">
+       You are the Referee. Is this scenario a Penalty or Legal?
+      </p>
+     </div>
+     <div
+      id="penalty-scenario"
+      class="penalty-scenario mb-4 text-center mt-4 text-xl"
+     ></div>
+     <div id="penalty-options" class="penalty-options flex-center gap-4">
+      <button
+       id="btn-penalty"
+       class="btn btn-outline"
+       style="border-color: #ef4444; color: #ef4444"
+      >
+       Penalty
+      </button>
+      <button
+       id="btn-legal"
+       class="btn btn-outline"
+       style="
+        border-color: var(--brand-green);
+        color: var(--brand-green);
+       "
+      >
+       Legal
+      </button>
+     </div>
+     <div
+      id="penalty-feedback"
+      class="penalty-feedback text-center mt-4"
+     ></div>
+     <div
+      id="penalty-gameover"
+      class="penalty-gameover text-center hidden mt-4"
+     >
+      <h4 class="text-2xl font-bold">Finished!</h4>
+      <p class="mt-2 text-muted">
+       You correctly ruled
+       <span id="penalty-score" class="text-green">0</span> scenarios.
+      </p>
+      <button id="penalty-restart" class="btn btn-primary mt-4">
+       Play Again
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: FTC HANGMAN ===== -->
+    <div id="game-hangman" class="game-container hidden text-center">
+     <button class="game-back-btn" data-back style="text-align: left">
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-text-t text-green"></i> FTC Hangman</h3>
+      <div class="high-score-badge" id="hs-hangman">Total Wins: <span>0</span></div>
+      <p class="text-muted">
+       Guess the letters in the hidden word or phrase
+      </p>
+     </div>
+     <div class="hangman-stats mt-4 mb-2">
+      Lives: <span id="hangman-lives" class="text-green">6</span>
+     </div>
+     <div
+      id="hangman-word"
+      class="hangman-word tracking-widest text-3xl font-bold mb-4"
+     ></div>
+     <div
+      id="hangman-keyboard"
+      class="hangman-keyboard flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"
+     ></div>
+     <div id="hangman-gameover" class="hangman-gameover hidden mt-4">
+      <p id="hangman-result-msg" class="text-xl font-bold"></p>
+      <button id="hangman-restart" class="btn btn-primary mt-2">
+       Play Again
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: MEMORY MATCH ===== -->
+    <div id="game-memory" class="game-container hidden text-center">
+     <button class="game-back-btn" data-back style="text-align: left">
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-squares-four text-green"></i> Memory Match</h3>
+      <div class="high-score-badge" id="hs-memory">Fastest Time: <span>--</span> | Fewest Moves: <span>--</span></div>
+      <p class="text-muted">Find matching pairs of FTC concepts</p>
+     </div>
+     <div class="memory-stats mb-4">
+      Moves: <span id="memory-moves">0</span>
+     </div>
+     <div id="memory-board" class="memory-board"></div>
+     <div id="memory-gameover" class="memory-gameover hidden mt-4">
+      <h4 class="text-2xl font-bold text-green">Board Cleared!</h4>
+      <button id="memory-restart" class="btn btn-primary mt-4">
+       Play Again
+      </button>
+     </div>
+    </div>
+
+    <!-- ===== GAME: FTC SIMULATOR ===== -->
+    <div id="game-simulator" class="game-container hidden">
+     <button class="game-back-btn" data-back>
+      <i class="ph ph-arrow-left"></i> Back to Games
+     </button>
+     <div class="game-header">
+      <h3><i class="ph ph-robot text-green"></i> FTC Simulator: Into the Deep</h3>
+      <p class="text-muted">Control your robot (WASD/Arrows). Intake max 3 balls. Shoot to score. 2 Minutes.</p>
+      <div class="high-score-badge" id="hs-simulator">High Score: <span>0</span></div>
+     </div>
+     
+     <div class="sim-hud" style="display: flex; justify-content: space-between; margin-bottom: 1rem; align-items: center;">
+      <div class="sim-stat">Time: <span id="sim-time" class="text-green">120</span>s</div>
+      <div class="sim-stat">Score: <span id="sim-score" class="text-green">0</span></div>
+      <div class="sim-stat">Intake: <span id="sim-intake">0 / 3</span></div>
+     </div>
+
+     <div style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; background: var(--brand-dark); border-radius: var(--border-radius-sm); border: 1px solid var(--brand-gray);">
+      <canvas id="sim-canvas" width="600" height="600" style="width: 100%; height: auto; display: block;"></canvas>
+      
+      <div id="sim-start-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
+        <button id="sim-start-btn" class="btn btn-primary">Start Match</button>
+      </div>
+      
+      <div id="sim-gameover-overlay" class="hidden" style="position: absolute; inset: 0; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
+        <h3 class="text-green" style="font-size: 2rem;">Match Over!</h3>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">Score: <span id="sim-final-score"></span></p>
+        <div id="sim-lb-input" class="hidden" style="margin-bottom: 1rem;">
+          <p class="text-green" style="margin-bottom: 0.5rem; font-weight: bold;">New Leaderboard Score!</p>
+          <input type="text" id="sim-name-input" placeholder="Enter your name" style="padding: 0.5rem; border-radius: 4px; border: 1px solid var(--brand-green); background: var(--brand-black); color: white; margin-right: 0.5rem;" maxlength="10">
+          <button id="sim-submit-score" class="btn btn-primary" style="padding: 0.5rem 1rem;">Submit</button>
+        </div>
+        <button id="sim-restart-btn" class="btn btn-outline">Play Again</button>
+      </div>
+     </div>
+     
+     <div id="sim-leaderboard" style="margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+       <h4 style="text-align: center; margin-bottom: 1rem; color: var(--brand-green);">Top 10 Global Leaderboard</h4>
+       <ul id="sim-lb-list" style="list-style: none; padding: 0; background: var(--brand-dark); border-radius: var(--border-radius-sm); border: 1px solid var(--brand-gray);">
+        <!-- Populated via JS -->
+       </ul>
+     </div>
+    </div>
+   </section>
+
+   <!-- ALUMNI SECTION -->
+   <section id="alumni" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Team <span class="highlight-text">Alumni</span></h2>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+    <p
+     class="text-muted text-center reveal delay-1"
+     style="margin-bottom: 2rem"
+    >
+     Honoring the past members who helped build Team 19639 into what it is
+     today.
+    </p>
+    <div id="alumni-grid" class="roster-container reveal delay-2">
+     <p class="text-muted text-center" style="grid-column: 1/-1">
+      Loading alumni...
+     </p>
+    </div>
+   </section>
+
+   <!-- CONTACT SECTION -->
+   <section id="contact" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2>Get In <span class="highlight-text">Touch</span></h2>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div class="premium-card max-w-lg mx-auto reveal delay-1">
+     <div class="text-center mb-2">
+      <i
+       class="ph ph-handshake icon-large text-green mb-1"
+       style="display: inline-block"
+      ></i>
+      <h3 class="text-xl">Sponsorship & Funding</h3>
+     </div>
+
+     <p class="text-center text-muted mb-3">
+      We are actively seeking team funding to support our robot build,
+      competition fees, and community outreach events. As a 501(c)(3)
+      non-profit, your donations are tax-deductible.
+     </p>
+
+     <div class="contact-links">
+      <a href="mailto:contact@alphabotsrobotics.com" class="contact-card">
+       <div class="contact-icon">
+        <i class="ph ph-envelope-simple"></i>
+       </div>
+       <div class="contact-details">
+        <span class="contact-label">Email Us</span>
+        <span class="contact-value">contact@alphabotsrobotics.com</span>
+       </div>
+       <i class="ph ph-arrow-up-right contact-arrow"></i>
+      </a>
+
+      <div class="contact-card static">
+       <div class="contact-icon"><i class="ph ph-map-pin"></i></div>
+       <div class="contact-details">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Fremont, California</span>
+       </div>
+      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
+     </div>
+    </div>
+   </section>
+   <!-- ALPHA AI SECTION -->
+   <section id="alpha" class="tab-pane fade-in hidden">
+    <div class="section-header reveal">
+     <h2
+      style="
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       gap: 0.5rem;
+      "
+     >
+      Meet <span class="highlight-text">Alpha</span>
+      <span
+       style="
+        font-size: 0.65rem;
+        background: var(--brand-green);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+       "
+       >Experimental</span
+      >
+     </h2>
+     <p class="text-muted text-center">
+      Your personalized AI assistant for FIRST Robotics and Team 19639
+     </p>
+     <div class="header-line"></div><div id="kitchen-lights" style="margin-top: 1rem; display: flex; gap: 10px; justify-content: center;"><button class="light-btn active" data-mode="abyss" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Deep Abyss</button><button class="light-btn" data-mode="neon" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Neon Pulse</button><button class="light-btn" data-mode="classic" style="font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--brand-gray); background: transparent; color: white; cursor: pointer;">Classic Tech</button></div>
+    </div>
+
+    <div
+     class="premium-card reveal delay-1"
+     id="alpha-chat-container"
+     style="
+      max-width: 800px;
+      margin: 0 auto;
+      min-height: 550px;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+     "
+    >
+     
+     
+     <div
+      class="chat-header"
+      style="
+       background: rgba(0, 0, 0, 0.2);
+       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+       padding: 1.25rem 1.5rem;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+      "
+     >
+      <div style="display: flex; align-items: center; gap: 0.75rem">
+       <i class="ph ph-robot text-green icon-large"></i>
+       <div>
+        <h3 style="margin: 0; font-size: 1.25rem">Alpha</h3>
+        <span
+         id="chat-status-text"
+         style="font-size: 0.85rem; color: #a1a1aa"
+         >Waiting to start...</span
+        >
+       </div>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+       <div style="display: flex; align-items: center; gap: 0.25rem;">
+        <span style="font-size: 0.75rem; color: #a1a1aa">Model:</span>
+        <select id="ai-version-select" style="background: rgba(0, 0, 0, 0.3); color: white; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 0.25rem 0.5rem; font-size: 0.8rem; cursor: pointer; outline: none;">
+         <option value="v1">v1 (Smart)</option>
+         <option value="v2" selected>v2 (Fast)</option>
+        </select>
+       </div>
+       <button
+        id="start-alpha-btn"
+        class="btn btn-primary btn-sm"
+        style="font-size: 0.85rem; padding: 0.5rem 1rem"
+       >
+        Start Engine
+       </button>
+      </div>
+     </div>
+
+     <div
+      id="chat-messages"
+      class="chat-messages"
+      style="
+       flex: 1;
+       padding: 1.5rem;
+       overflow-y: auto;
+       display: flex;
+       flex-direction: column;
+       gap: 1rem;
+      "
+     >
+      <div class="chat-bubble system">
+       Engine is offline. Click "Start Engine" to download/load the AI
+       model directly into your browser memory (approx 2GB initially,
+       cached thereafter).
+      </div>
+     </div>
+
+     <div
+      class="chat-input-area"
+      style="
+       padding: 1rem 1.5rem;
+       background: rgba(0, 0, 0, 0.3);
+       border-top: 1px solid rgba(255, 255, 255, 0.05);
+       display: flex;
+       gap: 0.75rem;
+      "
+     >
+      <input
+       type="text"
+       id="chat-input"
+       class="chat-input"
+       placeholder="Ask Alpha anything about FTC..."
+       disabled
+       style="
+        flex: 1;
+        padding: 0.85rem 1.25rem;
+        border-radius: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        outline: none;
+        transition: border-color 0.2s;
+       "
+      />
+      <button
+       id="chat-send-btn"
+       class="btn btn-primary"
+       disabled
+       style="
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: none;
+        cursor: pointer;
+       "
+      >
+       <i class="ph ph-paper-plane-right" style="font-size: 1.5rem"></i>
+      </button>
+     </div>
+    </div>
+   </section>
+  </main>
+
+  <footer>
+   <div class="footer-container">
+    <div class="footer-top">
+     <div class="footer-brand">
+      <img
+       src="bot.jpg"
+       alt="Logo"
+       class="footer-logo"
+       onerror="this.style.display = 'none'"
+      />
+      <span class="font-bold text-white tracking-wider"
+       >ALPHAB<span class="text-green">O</span>TS 19639</span
+      >
+     </div>
+     <div class="footer-socials">
+      <a href="#" aria-label="Github"
+       ><i class="ph ph-github-logo"></i
+      ></a>
+      <a href="#" aria-label="Instagram"
+       ><i class="ph ph-instagram-logo"></i
+      ></a>
+      <a href="#" aria-label="YouTube"
+       ><i class="ph ph-youtube-logo"></i
+      ></a>
+     </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+     <p>
+      &copy; 2026 Alphabots Robotics 19639. A 501(c)(3) Non-Profit
+      Organization.
+     </p>
+     <div
+      style="
+       display: flex;
+       justify-content: center;
+       gap: 8px;
+       align-items: center;
+       margin-top: 0.5rem;
+      "
+      class="text-sm"
+     >
+      <span>Designed for the Future.</span>
+      <span class="text-muted">|</span>
+      <button
+       class="cta-nav"
+       data-target="alumni"
+       style="
+        background: none;
+        border: none;
+        color: inherit;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0;
+        cursor: pointer;
+       "
+       aria-label="View Alumni"
+      >
+       Alumni
+      </button>
+     </div>
+    </div>
+   </div>
+  </footer>
+
+  <!-- Lightbox / Photo Viewer -->
+  <div id="lightbox" class="lightbox">
+   <button class="lightbox-close" aria-label="Close viewer">
+    <i class="ph ph-x"></i>
+   </button>
+   <button class="lightbox-nav prev" aria-label="Previous image">
+    <i class="ph ph-caret-left"></i>
+   </button>
+   <button class="lightbox-nav next" aria-label="Next image">
+    <i class="ph ph-caret-right"></i>
+   </button>
+   <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="Enlarged gallery image" />
+   </div>
+   <div class="lightbox-caption" id="lightbox-caption"></div>
+   <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+
+  <!-- Import Map for WebLLM -->
+  <script type="importmap">
+   {
+    "imports": {
+     "@mlc-ai/web-llm": "https://esm.run/@mlc-ai/web-llm"
+    }
+   }
+  </script>
+  <script type="module" src="script.js?v=22"></script>
+ </body>
 </html>

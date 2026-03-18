@@ -1,0 +1,292 @@
+{
+  "2025-2026": [
+    {
+      "name": "Akshay Shoroff",
+      "role": "Team Captain",
+      "img": "images/team/2025_2026_akshay_shoroff.jpg"
+    },
+    {
+      "name": "Suhas Bathini",
+      "role": "Team Captain",
+      "img": "images/team/2025_2026_suhas_bathini.jpg"
+    },
+    {
+      "name": "Saket Sandru",
+      "role": "Hardware Captain",
+      "img": "images/team/2025_2026_saket_sandru.jpg"
+    },
+    {
+      "name": "Shiv Gurjar",
+      "role": "Software Captain",
+      "img": "images/team/2025_2026_shiv_gurjar.jpg"
+    },
+    {
+      "name": "Srithan Deverashetty",
+      "role": "Hardware Member",
+      "img": ""
+    },
+    {
+      "name": "Varun Chinthoju",
+      "role": "Software Member",
+      "img": ""
+    },
+    {
+      "name": "Aadit Verma",
+      "role": "Outreach Captain",
+      "img": "images/team/2025_2026_aadit_verma.jpg"
+    },
+    {
+      "name": "Rushil Shah",
+      "role": "Outreach Captain",
+      "img": "images/team/2025_2026_rushil_shah.jpg"
+    },
+    {
+      "name": "Renu Mandala",
+      "role": "Outreach Member",
+      "img": ""
+    },
+    {
+      "name": "Vihaan Sanghvi",
+      "role": "Outreach Member",
+      "img": "images/team/2025_2026_vihaan_sanghvi.jpg"
+    },
+    {
+      "name": "Aashi",
+      "role": "Outreach Member",
+      "img": ""
+    }
+  ],
+  "2024-2025": [
+    {
+      "name": "Akshay Shoroff",
+      "role": "Team Captain",
+      "img": "images/team/2024_2025_akshay_shoroff.jpg"
+    },
+    {
+      "name": "Suhas Bathini",
+      "role": "Team Captain",
+      "img": "images/team/2024_2025_suhas_bathini.jpg"
+    },
+    {
+      "name": "Rishaan Jain",
+      "role": "Software Member",
+      "img": "images/team/2024_2025_rishaan_jain.jpg"
+    },
+    {
+      "name": "Ronit Parikh",
+      "role": "Software Member",
+      "img": "images/team/2024_2025_ronit_parikh.jpg"
+    },
+    {
+      "name": "Trisha Bhuwania",
+      "role": "Software Member",
+      "img": "images/team/2024_2025_trisha_bhuwania.jpg"
+    },
+    {
+      "name": "Shiv Gurjar",
+      "role": "Hardware Captain",
+      "img": "images/team/2024_2025_shiv_gurjar.jpg"
+    },
+    {
+      "name": "Saket Sandru",
+      "role": "Hardware Member",
+      "img": "images/team/2024_2025_saket_sandru.jpg"
+    },
+    {
+      "name": "Simran Chhabria",
+      "role": "Hardware Member",
+      "img": "images/team/2024_2025_simran_chhabria.jpg"
+    },
+    {
+      "name": "Aadit Verma",
+      "role": "Outreach Captain",
+      "img": "images/team/2024_2025_aadit_verma.jpg"
+    },
+    {
+      "name": "Rushil Shah",
+      "role": "Outreach Captain",
+      "img": "images/team/2024_2025_rushil_shah.jpg"
+    },
+    {
+      "name": "Saanvi Shah",
+      "role": "Outreach Member",
+      "img": "images/team/2024_2025_saanvi_shah.jpg"
+    },
+    {
+      "name": "Vihaan Sanghvi",
+      "role": "Outreach Member",
+      "img": "images/team/2024_2025_vihaan_sanghvi.jpg"
+    }
+  ],
+  "2023-2024": [
+    {
+      "name": "Maanav Shah",
+      "role": "Team Captain",
+      "img": "images/team/2023_2024_maanav_shah.jpg"
+    },
+    {
+      "name": "Parsh Gandhi",
+      "role": "Team Captain",
+      "img": "images/team/2023_2024_parsh_gandhi.jpg"
+    },
+    {
+      "name": "Suhas Bathini",
+      "role": "Software Captain",
+      "img": "images/team/2023_2024_suhas_bathini.jpg"
+    },
+    {
+      "name": "Rishaan Jain",
+      "role": "Software Member",
+      "img": "images/team/2023_2024_rishaan_jain.jpg"
+    },
+    {
+      "name": "Trisha Bhuwania",
+      "role": "Software Member",
+      "img": "images/team/2023_2024_trisha_bhuwania.jpg"
+    },
+    {
+      "name": "Gabriel Hwang",
+      "role": "Hardware Captain",
+      "img": "images/team/2023_2024_gabriel_hwang.jpg"
+    },
+    {
+      "name": "Saket Sandru",
+      "role": "Hardware Member",
+      "img": "images/team/2023_2024_saket_sandru.jpg"
+    },
+    {
+      "name": "Shakil Musthafa",
+      "role": "Hardware Member",
+      "img": "images/team/2023_2024_shakil_musthafa.jpg"
+    },
+    {
+      "name": "Shiv Gurjar",
+      "role": "Hardware Member",
+      "img": "images/team/2023_2024_shiv_gurjar.jpg"
+    },
+    {
+      "name": "Simran Chhabria",
+      "role": "Hardware Member",
+      "img": "images/team/2023_2024_simran_chhabria.jpg"
+    },
+    {
+      "name": "Anand Raghunath",
+      "role": "Outreach Captain",
+      "img": "images/team/2023_2024_anand_raghunath.jpg"
+    },
+    {
+      "name": "Rushil Shah",
+      "role": "Outreach Member",
+      "img": "images/team/2023_2024_rushil_shah.jpg"
+    },
+    {
+      "name": "Saanvi Shah",
+      "role": "Outreach Member",
+      "img": "images/team/2023_2024_saanvi_shah.jpg"
+    }
+  ],
+  "2022-2023": [
+    {
+      "name": "Parsh Gandhi",
+      "role": "Team Captain",
+      "img": "images/team/2022_2023_parsh_gandhi.jpg"
+    },
+    {
+      "name": "Tarun Iyer",
+      "role": "Team Captain",
+      "img": "images/team/2022_2023_tarun_iyer.jpg"
+    },
+    {
+      "name": "Suhas Bathini",
+      "role": "Software Captain",
+      "img": "images/team/2022_2023_suhas_bathini.jpg"
+    },
+    {
+      "name": "Maanav Shah",
+      "role": "Hardware Captain",
+      "img": "images/team/2022_2023_maanav_shah.jpg"
+    },
+    {
+      "name": "Amogh Khandkar",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_amogh_khandkar.jpg"
+    },
+    {
+      "name": "Anand Raghunath",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_anand_raghunath.jpg"
+    },
+    {
+      "name": "Gabriel Hwang",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_gabriel_hwang.jpg"
+    },
+    {
+      "name": "Pranav Kunisetty",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_pranav_kunisetty.jpg"
+    },
+    {
+      "name": "Rushil Shah",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_rushil_shah.jpg"
+    },
+    {
+      "name": "Shakil Musthafa",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_shakil_musthafa.jpg"
+    },
+    {
+      "name": "Shiv Gurjar",
+      "role": "Hardware Member",
+      "img": "images/team/2022_2023_shiv_gurjar.jpg"
+    }
+  ],
+  "2021-2022": [
+    {
+      "name": "Parsh Gandhi",
+      "role": "Captain",
+      "img": "images/team/2021_2022_parsh_gandhi.jpg"
+    },
+    {
+      "name": "Tarun Iyer",
+      "role": "Team Captain",
+      "img": "images/team/2021_2022_tarun_iyer.jpg"
+    },
+    {
+      "name": "Suhas Bathini",
+      "role": "Software Member",
+      "img": "images/team/2021_2022_suhas_bathini.jpg"
+    },
+    {
+      "name": "Maanav Shah",
+      "role": "Hardware Captain",
+      "img": "images/team/2021_2022_maanav_shah.jpg"
+    },
+    {
+      "name": "Amogh Khandkar",
+      "role": "Hardware Member",
+      "img": "images/team/2021_2022_amogh_khandkar.jpg"
+    },
+    {
+      "name": "Gabriel Hwang",
+      "role": "Hardware Member",
+      "img": "images/team/2021_2022_gabriel_hwang.jpg"
+    },
+    {
+      "name": "Pranav Kunisetty",
+      "role": "Hardware Member",
+      "img": "images/team/2021_2022_pranav_kunisetty.jpg"
+    },
+    {
+      "name": "Anand Raghunath",
+      "role": "Outreach Captain",
+      "img": "images/team/2021_2022_anand_raghunath.jpg"
+    },
+    {
+      "name": "Rushil Shah",
+      "role": "Outreach Member",
+      "img": "images/team/2021_2022_rushil_shah.jpg"
+    }
+  ]
+}

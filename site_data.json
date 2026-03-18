@@ -1,0 +1,45 @@
+{
+  "about": {
+    "mission": "Facilitate members of the organization and the community to learn more about math and science, while expanding their knowledge of careers involving computer programming, business, engineering and robotics. spread STEM awareness by getting young people interested in these fields.",
+    "who_we_are": [
+      "We are a group of 13 to 15-year-olds with a passion for robotics.",
+      "We build and program robots to compete at regional competitions, potentially qualifying for State and World championships.",
+      "9 students from multiple middle and high schools in the Fremont Unified School District, with 2 coaches and 2 mentors."
+    ],
+    "organization": "Alphabots is a 501(c)(3) non-profit organization (EIN: 81-1543325) based in Fremont, California."
+  },
+  "outreach": {
+    "aim": "Empower inside and wider community through STEM holding various events.",
+    "impact": "Participating in FIRST Tech Challenge (Grades 7-12) to expand knowledge of programming, business, engineering."
+  },
+  "games": {
+    "sim": {
+      "title": "FTC Simulator",
+      "description": "2D top-down drive game to score game elements.",
+      "controls": "Arrow keys or WASD to move. Shift for Speed Boost.",
+      "mechanics": "Inertia weight scaling, Battery management (recharges when stopped), Stun effects on wall impacts, Intake sound cues."
+    },
+    "trivia": {
+      "title": "Trivia Game",
+      "topics": ["Hardware", "Software", "Outreach", "General Rules"],
+      "features": "AI Lifeline support option giving 80% accurate correctness suggestions."
+    },
+    "wordle": {
+      "title": "FTC Wordle",
+      "description": "Guess the 5-letter FTC themed keywords in limited tries."
+    }
+  },
+  "current_team_2025_2026": [
+    { "name": "Akshay Shoroff", "role": "Team Captain" },
+    { "name": "Suhas Bathini", "role": "Team Captain" },
+    { "name": "Saket Sandru", "role": "Hardware Captain" },
+    { "name": "Shiv Gurjar", "role": "Software Captain" },
+    { "name": "Aadit Verma", "role": "Outreach Captain" },
+    { "name": "Rushil Shah", "role": "Outreach Captain" },
+    { "name": "Srithan Deverashetty", "role": "Hardware Member" },
+    { "name": "Varun Chinthoju", "role": "Software Member" },
+    { "name": "Renu Mandala", "role": "Outreach Member" },
+    { "name": "Vihaan Sanghvi", "role": "Outreach Member" },
+    { "name": "Aashi", "role": "Outreach Member" }
+  ]
+}
