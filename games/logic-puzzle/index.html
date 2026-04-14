@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Puzzle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="stats-row">
+            <div class="stat">LEVEL: <span id="score">1</span></div>
+            <div class="stat">LIVES: <span id="lives">3</span></div>
+        </div>
+        
+        <div class="circuit-area">
+            <div class="input-nodes">
+                <div class="node-wrapper">
+                    <div class="node" id="node-a">A: <span id="val-a">1</span></div>
+                    <div class="wire-horizontal" id="wire-a">
+                        <div class="pulse"></div>
+                    </div>
+                </div>
+                <div class="node-wrapper">
+                    <div class="node" id="node-b">B: <span id="val-b">0</span></div>
+                    <div class="wire-horizontal" id="wire-b">
+                        <div class="pulse"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gate-slot">
+                <div id="selected-gate" class="gate-box">?</div>
+            </div>
+            
+            <div class="output-node-area">
+                <div class="wire-horizontal" id="wire-out">
+                    <div class="pulse"></div>
+                </div>
+                <div class="node" id="node-out">OUT: <span id="val-out">1</span></div>
+            </div>
+        </div>
+        
+        <p class="instruction">Choose the correct logic gate:</p>
+        <div class="gate-options">
+            <button class="gate-btn" onclick="handleChoice('AND')">AND</button>
+            <button class="gate-btn" onclick="handleChoice('OR')">OR</button>
+            <button class="gate-btn" onclick="handleChoice('XOR')">XOR</button>
+            <button class="gate-btn" onclick="handleChoice('NAND')">NAND</button>
+        </div>
+        
+        <div id="gameover" class="gameover hidden">
+            <h2>Short Circuit!</h2>
+            <p id="stats-msg"></p>
+            <button id="restart-btn" class="btn-primary" onclick="initGame()">Reset System</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

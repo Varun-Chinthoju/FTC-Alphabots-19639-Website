@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Matcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="stats-row">
+            <div class="stat">SCORE: <span id="score">0</span></div>
+            <div class="stat">BEST: <span id="high-score">0</span></div>
+        </div>
+        
+        <div id="status-text" class="status-text">Watch the pattern...</div>
+        
+        <div class="pattern-grid">
+            <div class="pad" id="pad-0" onclick="handlePadClick(0)"><i class="ph ph-robot"></i></div>
+            <div class="pad" id="pad-1" onclick="handlePadClick(1)"><i class="ph ph-nut"></i></div>
+            <div class="pad" id="pad-2" onclick="handlePadClick(2)"><i class="ph ph-code"></i></div>
+            <div class="pad" id="pad-3" onclick="handlePadClick(3)"><i class="ph ph-cpu"></i></div>
+        </div>
+        
+        <div id="start-overlay" class="overlay">
+            <h2>Pattern Matcher</h2>
+            <p>Memorize the sequence of robotics systems.</p>
+            <button class="btn-primary" onclick="initGame()">Execute Sequence</button>
+        </div>
+        
+        <div id="gameover" class="overlay hidden">
+            <h2>Sequence Error!</h2>
+            <p id="stats-msg"></p>
+            <button class="btn-primary" onclick="initGame()">Re-run Init</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

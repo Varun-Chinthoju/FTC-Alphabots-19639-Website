@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Trivia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div id="topic-screen">
+            <p class="instruction">Select a topic to test your knowledge:</p>
+            <div class="topic-grid">
+                <button class="topic-btn" data-topic="Hardware">Hardware</button>
+                <button class="topic-btn" data-topic="Software">Software</button>
+                <button class="topic-btn" data-topic="Outreach">Outreach</button>
+                <button class="topic-btn" data-topic="General">General</button>
+                <button class="topic-btn primary" data-topic="All">Mixed (All Rules)</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="hidden">
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <div class="q-header">
+                <span id="q-num">Question 1 of 10</span>
+            </div>
+            <div id="question-text" class="question-text"></div>
+            <div id="options-container" class="options-container"></div>
+        </div>
+
+        <div id="result-screen" class="hidden">
+            <div class="score-circle">
+                <span id="final-score">0</span>
+            </div>
+            <h2 id="result-msg"></h2>
+            <button id="restart-btn" class="btn-primary">Try Another Topic</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div id="counter" class="counter">Card 1 of 10</div>
+        
+        <div class="card-container" onclick="flipCard()">
+            <div id="card" class="card">
+                <div class="card-front">
+                    <p id="front-text"></p>
+                </div>
+                <div class="card-back">
+                    <p id="back-text"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="nav-btn" onclick="prevCard()">PREV</button>
+            <button class="nav-btn primary" onclick="nextCard()">NEXT</button>
+        </div>
+        
+        <div id="completion" class="gameover hidden">
+            <h2>Deck Completed!</h2>
+            <p>You've reviewed all the cards in this set.</p>
+            <button class="btn-primary" onclick="initGame()">Restart Deck</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

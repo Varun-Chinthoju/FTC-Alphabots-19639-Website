@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
    }
   });
  }
- // ======= Liquid Blob Indicator System =======
+ // ======= Nav Indicator System =======
  const navLinksContainer = document.getElementById("nav-links");
- const liquidIndicator = document.createElement("div");
- liquidIndicator.classList.add("liquid-indicator", "no-transition");
- navLinksContainer.appendChild(liquidIndicator);
+ const navIndicator = document.createElement("div");
+ navIndicator.classList.add("nav-indicator", "no-transition");
+ navLinksContainer.appendChild(navIndicator);
 
  function moveIndicator(btn, animate) {
   if (!btn) return;
@@ -36,20 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const targetTop = btnRect.top - containerRect.top;
 
   if (!animate) {
-   liquidIndicator.classList.add("no-transition");
-   liquidIndicator.style.left = targetLeft + "px";
-   liquidIndicator.style.top = targetTop + "px";
-   liquidIndicator.style.width = btnRect.width + "px";
-   liquidIndicator.style.height = btnRect.height + "px";
-   void liquidIndicator.offsetWidth;
-   liquidIndicator.classList.remove("no-transition");
+   navIndicator.classList.add("no-transition");
+   navIndicator.style.left = targetLeft + "px";
+   navIndicator.style.top = targetTop + "px";
+   navIndicator.style.width = btnRect.width + "px";
+   navIndicator.style.height = btnRect.height + "px";
+   void navIndicator.offsetWidth;
+   navIndicator.classList.remove("no-transition");
    return;
   }
 
-  liquidIndicator.style.left = targetLeft + "px";
-  liquidIndicator.style.top = targetTop + "px";
-  liquidIndicator.style.width = btnRect.width + "px";
-  liquidIndicator.style.height = btnRect.height + "px";
+  navIndicator.style.left = targetLeft + "px";
+  navIndicator.style.top = targetTop + "px";
+  navIndicator.style.width = btnRect.width + "px";
+  navIndicator.style.height = btnRect.height + "px";
  }
 
  function initIndicator() {
@@ -84,19 +84,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatContainer = document.getElementById("alpha-chat-container");
   const fullPlaceholder = document.getElementById("alpha-full-placeholder");
   if (chatContainer) {
-    chatContainer.classList.remove("hidden-widget");
     if (targetId === "alpha") {
+      chatContainer.classList.remove("hidden-widget");
       chatContainer.classList.remove("minimized");
       chatContainer.classList.add("full-page");
       if (fullPlaceholder) fullPlaceholder.appendChild(chatContainer);
       const minBtn = document.getElementById("chat-minimize-btn");
       if (minBtn) minBtn.innerHTML = '<i class="ph ph-minus"></i>';
     } else {
-      chatContainer.classList.remove("full-page");
-      chatContainer.classList.add("minimized");
-      document.body.appendChild(chatContainer);
-      const minBtn = document.getElementById("chat-minimize-btn");
-      if (minBtn) minBtn.innerHTML = '<i class="ph ph-corners-out"></i>';
+      // Only keep it visible (minimized) if it was already visible
+      if (!chatContainer.classList.contains("hidden-widget")) {
+        chatContainer.classList.remove("full-page");
+        chatContainer.classList.add("minimized");
+        document.body.appendChild(chatContainer);
+        const minBtn = document.getElementById("chat-minimize-btn");
+        if (minBtn) minBtn.innerHTML = '<i class="ph ph-corners-out"></i>';
+      }
     }
   }
 
@@ -374,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
  let engine = null;
  let isGenerating = false;
- let attachedImageData = null;
+
 
  const MODELS = {
   v1: "Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
@@ -390,17 +393,9 @@ document.addEventListener("DOMContentLoaded", () => {
   aiVersionSelect.addEventListener("change", (e) => {
    if (MODELS[e.target.value]) {
     SELECTED_MODEL = MODELS[e.target.value];
-    const attachBtn = document.getElementById("attach-image-btn");
-    if (attachBtn) {
-      // Disable vision for both as they are text-only in this simplified config
-      attachBtn.disabled = true;
-      attachedImageData = null;
-      const preview = document.getElementById("image-preview-container");
-      if (preview) preview.style.display = "none";
-    }
    }
-  });
- }
+   }
+  );
 
  const systemPrompt = `You are "Alpha", the high-energy site concierge for Team 19639 Alphabots.
 
@@ -427,17 +422,9 @@ INTERACTION RULES:
 
  const chatHistory = [{ role: "system", content: systemPrompt }];
 
- function addMessageToUI(role, content, imageData = null) {
+ function addMessageToUI(role, content) {
   const bubble = document.createElement("div");
   bubble.classList.add("chat-bubble", role);
-  if (imageData && role === "user") {
-    const img = document.createElement("img");
-    img.src = imageData;
-    img.style.maxWidth = "100%";
-    img.style.borderRadius = "8px";
-    img.style.display = "block";
-    bubble.appendChild(img);
-  }
 
   let formattedContent = typeof content === "string" ? content : "";
   if (role === "assistant") {
@@ -504,25 +491,20 @@ INTERACTION RULES:
     if (fastPassMap[text.toLowerCase()] === "wordle") launchGame("wordle");
     else switchTab(fastPassMap[text.toLowerCase()]);
     chatInput.value = "";
+    chatInput.style.height = "auto";
     return;
+
   }
 
   chatInput.value = "";
+  chatInput.style.height = "auto";
   chatInput.disabled = true;
   chatSendBtn.disabled = true;
   isGenerating = true;
-  addMessageToUI("user", text, attachedImageData);
+  addMessageToUI("user", text);
 
-  let userMessage;
-  if (attachedImageData && SELECTED_MODEL.includes("Vision")) {
-    userMessage = { role: "user", content: [{ type: "text", text: text }, { type: "image_url", image_url: attachedImageData }] };
-  } else {
-    userMessage = { role: "user", content: text };
-  }
+  const userMessage = { role: "user", content: text };
   chatHistory.push(userMessage);
-  attachedImageData = null;
-  const preview = document.getElementById("image-preview-container");
-  if (preview) preview.style.display = "none";
 
   try {
    const response = await engine.chat.completions.create({ messages: chatHistory, temperature: 0.7 });
@@ -544,20 +526,81 @@ INTERACTION RULES:
  }
 
  chatSendBtn.addEventListener("click", handleSend);
- chatInput.addEventListener("keypress", (e) => { if (e.key === "Enter") handleSend(); });
+ 
+ chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+   e.preventDefault();
+   handleSend();
+  }
+ });
+
+ chatInput.addEventListener("input", () => {
+  chatInput.style.height = "auto";
+  chatInput.style.height = (chatInput.scrollHeight) + "px";
+ });
  if (startAlphaBtn) {
    startAlphaBtn.addEventListener("click", () => {
      initializeWebLLM();
    });
  }
 
- // Game Logic Simplified
+ // ======= Global Game State & Stats =======
+ let totalGamesPlayed = parseInt(localStorage.getItem("totalGamesPlayed") || "0");
+ const totalGamesCountEl = document.getElementById("total-games-count");
+ const inflate = 0;
+
+ function updateGlobalStats() {
+  if (totalGamesCountEl) {
+   totalGamesCountEl.textContent = totalGamesPlayed + inflate;
+  }
+ }
+ updateGlobalStats();
+
+ window.recordGamePlayed = function() {
+  totalGamesPlayed++;
+  localStorage.setItem("totalGamesPlayed", totalGamesPlayed);
+  updateGlobalStats();
+ }
+
+ // Shake animation trigger
+ window.shakeElement = function(el) {
+  if (!el) return;
+  el.classList.add("shake");
+  setTimeout(() => el.classList.remove("shake"), 500);
+ }
+
+ // Game Logic Modular Launcher
  function launchGame(gameId) {
   switchTab("training");
   const launcher = document.getElementById("training-launcher");
+  const modal = document.getElementById("game-modal-container");
+  const loadArea = document.getElementById("game-load-area");
+  const titleDisplay = document.getElementById("game-title-display");
+  
   if (launcher) launcher.classList.add("hidden");
-  const container = document.getElementById(`game-${gameId}`);
-  if (container) container.classList.remove("hidden");
+  if (modal) modal.classList.remove("hidden");
+  
+  if (titleDisplay) {
+    const nameMap = {
+      'hangman': 'FTC Hangman',
+      'wordle': 'FTC Wordle',
+      'trivia': 'FTC Trivia',
+      'memory-match': 'Memory Match',
+      'term-scramble': 'Term Scramble',
+      'penalty-legal': 'Penalty or Legal',
+      'flashcards': 'Knowledge Cards',
+      'field-simulator': 'Field Simulator',
+      'speed-match': 'Speed Match',
+      'part-id': 'Part ID',
+      'code-debugger': 'Code Debugger',
+      'logic-puzzle': 'Logic Puzzle'
+    };
+    titleDisplay.textContent = nameMap[gameId] || 'FTC Game';
+  }
+  
+  if (window.AlphabotsGameLoader) {
+    window.AlphabotsGameLoader.load(gameId, loadArea);
+  }
  }
 
  // ======= Training Games Initialization =======
@@ -573,8 +616,16 @@ INTERACTION RULES:
 
  document.querySelectorAll(".game-back-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-   document.querySelectorAll(".game-container").forEach(c => c.classList.add("hidden"));
-   if (trainingLauncher) trainingLauncher.classList.remove("hidden");
+   const launcher = document.getElementById("training-launcher");
+   const modal = document.getElementById("game-modal-container");
+   const loadArea = document.getElementById("game-load-area");
+   
+   if (modal) modal.classList.add("hidden");
+   if (launcher) launcher.classList.remove("hidden");
+   
+   if (window.AlphabotsGameLoader) {
+     window.AlphabotsGameLoader.unload(loadArea);
+   }
   });
  });
 
@@ -595,24 +646,4 @@ INTERACTION RULES:
    window.galleryBuilt = true;
   } catch(e) {}
  }
-
- // Vision Toggle
- const attachImageBtn = document.getElementById("attach-image-btn");
- const imageUploadInput = document.getElementById("image-upload");
- if (attachImageBtn && imageUploadInput) {
-  attachImageBtn.addEventListener("click", () => imageUploadInput.click());
-  imageUploadInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      attachedImageData = event.target.result;
-      const previewImg = document.getElementById("image-preview");
-      const previewContainer = document.getElementById("image-preview-container");
-      if (previewImg) previewImg.src = attachedImageData;
-      if (previewContainer) previewContainer.style.display = "flex";
-    };
-    reader.readAsDataURL(file);
-  });
- }
-});
+}});

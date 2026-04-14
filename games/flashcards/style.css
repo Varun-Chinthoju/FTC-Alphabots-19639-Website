@@ -1,0 +1,123 @@
+:root {
+    --brand-green: #0da371;
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --bg-dark: #000000;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-wrapper {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.counter {
+    color: var(--brand-green);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.card-container {
+    width: 100%;
+    aspect-ratio: 3/2;
+    perspective: 1000px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.card.flipped { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 16px;
+    background: #1c1c1e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-back {
+    background: var(--brand-green);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.card p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.nav-btn.primary { background: var(--brand-green); border: none; }
+
+.gameover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(28, 28, 30, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    z-index: 10;
+}
+
+.btn-primary {
+    background: var(--brand-green);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+.hidden { display: none; }

@@ -14,7 +14,6 @@
    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
    rel="stylesheet"
   />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css?v=16" />
@@ -24,12 +23,15 @@
 
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Game Loader -->
+  <script src="games/game-loader.js"></script>
  </head>
  <body>
   <header>
    <nav class="navbar">
     <div class="nav-brand">
-     <div class="nav-logo-text cyber">Alphabots</div>
+     <div class="nav-logo-text">Alphabots</div>
     </div>
 
     <ul class="nav-links" id="nav-links">
@@ -411,129 +413,112 @@
     <div class="section-header reveal">
      <h2>Member <span class="highlight-text">Training</span></h2>
      <p class="text-muted text-center">
-      Sharpen your FTC knowledge with fun mini-games
+      Sharpen your FTC knowledge with 12 premium mini-games
      </p>
      <div class="header-line"></div>
-     <div id="total-games-played-badge" style="margin-top: 1rem; display: inline-block; padding: 0.5rem 1rem; background: rgba(13, 163, 113, 0.15); border: 1px solid rgba(13, 163, 113, 0.3); border-radius: 10px; color: var(--brand-green); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+     <div id="total-games-played-badge" class="stats-badge">
       Total Games Played: <span id="total-games-count">0</span>
-     </div>
-
-     <!-- Recent Activity Ticker -->
-     <div id="activity-ticker-container" style="width: 100%; max-width: 800px; margin: 1.5rem auto 0; background: var(--brand-dark); border: 1px solid var(--brand-gray); border-radius: 6px; height: 40px; overflow: hidden; position: relative; display: flex; align-items: center;">
-      <div style="background: var(--brand-green); color: white; padding: 0 1rem; height: 100%; display: flex; align-items: center; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; z-index: 2; position: relative;">Live Activity</div>
-      <div id="activity-ticker" style="position: absolute; white-space: nowrap; padding-left: 100%; animation: ticker 60s linear infinite; color: var(--text-secondary); font-size: 0.85rem;">
-        Akshay Shoroff just scored 180 in FTC Simulator! Suhas Bathini solved the Daily Wordle in 3 tries! Saket Sandru matched 12 pairs in Memory Match! Shiv Gurjar set a new high score in Trivia! Aadit Verma unscrambled 15 words! Rushil Shah identified a Major Penalty!
-      </div>
-     </div>
-
-     <!-- Awards Cabinet -->
-     <div id="awards-cabinet" style="width: 100%; max-width: 800px; margin: 2rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--brand-gray); border-radius: 8px;">
-      <div class="award-slot" id="award-wordle-streak" title="Get a 5-win streak in Wordle" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
-       <i class="ph ph-medal" style="font-size: 2.2rem; color: #fbbf24;"></i>
-       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Wordle Master</div>
-      </div>
-      <div class="award-slot" id="award-sim-record" title="Score 300+ in Simulator" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
-       <i class="ph ph-trophy" style="font-size: 2.2rem; color: #fbbf24;"></i>
-       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Top Gun</div>
-      </div>
-      <div class="award-slot" id="award-trivia-perfect" title="Get 100% in any Trivia category" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
-       <i class="ph ph-star" style="font-size: 2.2rem; color: #fbbf24;"></i>
-       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">FTC Scholar</div>
-      </div>
-      <div class="award-slot" id="award-speed-match" title="Complete Speed Match in < 20s" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
-       <i class="ph ph-lightning" style="font-size: 2.2rem; color: #fbbf24;"></i>
-       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Quick Hands</div>
-      </div>
-      <div class="award-slot" id="award-memory-perfect" title="Complete Memory in < 40 moves" style="opacity: 0.2; filter: grayscale(1); text-align: center; transition: 0.5s all; cursor: help;">
-       <i class="ph ph-brain" style="font-size: 2.2rem; color: #fbbf24;"></i>
-       <div style="font-size: 0.65rem; margin-top: 5px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Total Recall</div>
-      <div class="award-slot" id="award-ultimate" title="Master of all games" style="opacity: 0.1; filter: grayscale(1); text-align: center; transition: 1s all; cursor: help;"><i class="ph ph-crown" style="font-size: 3rem; color: #fbbf24;"></i><div style="font-size: 0.7rem; margin-top: 5px; font-weight: 900; color: #fbbf24;">GOLDEN WHISK</div></div></div>
      </div>
     </div>
 
     <!-- Game Launcher Grid -->
     <div id="training-launcher" class="training-grid reveal delay-1">
-     <button class="game-card" data-game="wordle" id="launch-wordle">
-      <div class="game-card-icon"><i class="ph ph-textbox"></i></div>
-      <h3>FTC Wordle</h3>
-      <div class="high-score-badge" id="hs-wordle">Best Streak: <span>0</span> | Total Wins: <span>0</span></div>
-      <p>Guess the 5-letter FTC term in 6 tries</p>
-      <span class="game-card-tag">Word Puzzle</span>
-     </button>
-
-     <button class="game-card" data-game="trivia" id="launch-trivia">
-      <div class="game-card-icon"><i class="ph ph-brain"></i></div>
-      <h3>FTC Trivia</h3>
-      <div class="high-score-badge" id="hs-trivia">Highest Score: <span>0</span></div>
-      <p>Test your knowledge with multiple-choice questions</p>
-      <span class="game-card-tag">Quiz</span>
-     </button>
-
-     <button class="game-card" data-game="scramble" id="launch-scramble">
-      <div class="game-card-icon"><i class="ph ph-shuffle"></i></div>
-      <h3>Term Scramble</h3>
-      <div class="high-score-badge" id="hs-scramble">Fastest Time: <span>--</span> | Words: <span>0</span></div>
-      <p>Unscramble jumbled FTC terms before time runs out</p>
-      <span class="game-card-tag">Speed</span>
-     </button>
-
-     <button
-      class="game-card"
-      data-game="flashcards"
-      id="launch-flashcards"
-     >
-      <div class="game-card-icon"><i class="ph ph-cards"></i></div>
-      <h3>Flashcards</h3>
-      <div class="high-score-badge" id="hs-flashcards">Cards Reviewed: <span>0</span></div>
-      <p>Flip through FTC rules, parts & concepts</p>
-      <span class="game-card-tag">Study</span>
-     </button>
-
-     <button
-      class="game-card"
-      data-game="speedmatch"
-      id="launch-speedmatch"
-     >
-      <div class="game-card-icon"><i class="ph ph-lightning"></i></div>
-      <h3>Speed Match</h3>
-      <div class="high-score-badge" id="hs-speedmatch">Fastest Time: <span>--</span></div>
-      <p>Match FTC terms to their definitions as fast as you can</p>
-      <span class="game-card-tag">Matching</span>
-     </button>
-
-     <button class="game-card" data-game="penalty" id="launch-penalty">
-      <div class="game-card-icon">
-       <i class="ph ph-warning-circle"></i>
-      </div>
-      <h3>Penalty or Legal?</h3>
-      <div class="high-score-badge" id="hs-penalty">Highest Streak: <span>0</span></div>
-      <p>Test your knowledge of the FTC Game Manual rules</p>
-      <span class="game-card-tag">Rules</span>
-     </button>
-
-     <button class="game-card" data-game="hangman" id="launch-hangman">
-      <div class="game-card-icon"><i class="ph ph-text-t"></i></div>
+     <button class="game-card" data-game="hangman">
+      <div class="game-card-icon"><i class="ph ph-mask-happy"></i></div>
       <h3>FTC Hangman</h3>
       <div class="high-score-badge" id="hs-hangman">Total Wins: <span>0</span></div>
-      <p>Guess the hidden FTC phrase before time runs out</p>
-      <span class="game-card-tag">Word Game</span>
+      <p>Guess the robotics term before you run out of lives</p>
      </button>
 
-     <button class="game-card" data-game="memory" id="launch-memory">
-      <div class="game-card-icon"><i class="ph ph-squares-four"></i></div>
+     <button class="game-card" data-game="wordle">
+      <div class="game-card-icon"><i class="ph ph-textbox"></i></div>
+      <h3>FTC Wordle</h3>
+      <div class="high-score-badge" id="hs-wordle">Total Wins: <span>0</span></div>
+      <p>Guess the 5-letter FTC term in 6 tries</p>
+     </button>
+
+     <button class="game-card" data-game="trivia">
+      <div class="game-card-icon"><i class="ph ph-question"></i></div>
+      <h3>FTC Trivia</h3>
+      <div class="high-score-badge" id="hs-trivia">High Score: <span>0</span></div>
+      <p>Test your knowledge of rules, hardware, and outreach</p>
+     </button>
+
+     <button class="game-card" data-game="memory-match">
+      <div class="game-card-icon"><i class="ph ph-brain"></i></div>
       <h3>Memory Match</h3>
-      <div class="high-score-badge" id="hs-memory">Fastest Time: <span>--</span> | Fewest Moves: <span>--</span></div>
-      <p>Find the matching pairs of FTC parts and concepts</p>
-      <span class="game-card-tag">Puzzle</span>
+      <div class="high-score-badge" id="hs-memory-match">Best Time: <span>--</span></div>
+      <p>Match pairs of robotics components as fast as possible</p>
      </button>
 
-     <button class="game-card" data-game="simulator" id="launch-simulator">
-      <div class="game-card-icon"><i class="ph ph-robot"></i></div>
-      <h3>FTC Simulator</h3>
-      <p>Score the highest points in 2m. World Record Leaderboard.</p>
-      <span class="game-card-tag">Action</span>
+     <button class="game-card" data-game="term-scramble">
+      <div class="game-card-icon"><i class="ph ph-shuffle"></i></div>
+      <h3>Term Scramble</h3>
+      <div class="high-score-badge" id="hs-term-scramble">Most Correct: <span>0</span></div>
+      <p>Unscramble engineering and coding terminology</p>
+     </button>
+
+     <button class="game-card" data-game="penalty-legal">
+      <div class="game-card-icon"><i class="ph ph-gavel"></i></div>
+      <h3>Penalty or Legal</h3>
+      <div class="high-score-badge" id="hs-penalty-legal">Best Streak: <span>0</span></div>
+      <p>Be the referee; decide if match actions are legal</p>
+     </button>
+
+     <button class="game-card" data-game="flashcards">
+      <div class="game-card-icon"><i class="ph ph-cards"></i></div>
+      <h3>Knowledge Cards</h3>
+      <div class="high-score-badge" id="hs-flashcards">Cards Mastered: <span>0</span></div>
+      <p>Rapid-fire engineering notebook and CAD tips</p>
+     </button>
+
+     <button class="game-card" data-game="field-simulator">
+      <div class="game-card-icon"><i class="ph ph-navigation-arrow"></i></div>
+      <h3>Field Simulator</h3>
+      <div class="high-score-badge" id="hs-field-simulator">Record Score: <span>0</span></div>
+      <p>2D top-down game to score balls in Into the Deep</p>
+     </button>
+
+     <button class="game-card" data-game="speed-match">
+      <div class="game-card-icon"><i class="ph ph-lightning"></i></div>
+      <h3>Speed Match</h3>
+      <div class="high-score-badge" id="hs-speed-match">Fastest Time: <span>--</span></div>
+      <p>Categorize items as Hardware or Software instantly</p>
+     </button>
+
+     <button class="game-card" data-game="part-id">
+      <div class="game-card-icon"><i class="ph ph-eye"></i></div>
+      <h3>Part ID</h3>
+      <div class="high-score-badge" id="hs-part-id">High Score: <span>0</span></div>
+      <p>Identify specific components from zoomed-in photos</p>
+     </button>
+
+     <button class="game-card" data-game="code-debugger">
+      <div class="game-card-icon"><i class="ph ph-bug"></i></div>
+      <h3>Code Debugger</h3>
+      <div class="high-score-badge" id="hs-code-debugger">Solved: <span>0</span></div>
+      <p>Find the missing semicolon or logic error in Java</p>
+     </button>
+
+     <button class="game-card" data-game="logic-puzzle">
+      <div class="game-card-icon"><i class="ph ph-circuit-board"></i></div>
+      <h3>Logic Puzzle</h3>
+      <div class="high-score-badge" id="hs-logic-puzzle">Levels: <span>0</span></div>
+      <p>Connect logic gates to solve the signal flow</p>
      </button>
     </div>
+
+    <!-- Modular Game Container -->
+    <div id="game-modal-container" class="game-container hidden text-center">
+      <div class="game-header-minimal">
+       <button class="game-back-btn"><i class="ph ph-arrow-left"></i> Exit Game</button>
+       <div id="game-title-display" class="game-title-minimal">Game</div>
+      </div>
+      <div id="game-load-area" class="game-frame-wrapper">
+        <!-- Game content loaded via iframe here -->
+      </div>
+    </div>
+   </section>
 
     <!-- ===== GAME: FTC WORDLE ===== -->
     <div id="game-wordle" class="game-container hidden">
@@ -1079,37 +1064,25 @@
      </div>
 
      <div id="chat-messages" class="chat-messages">
-      <div class="chat-bubble system">
-       Engine is offline. Click "Start Engine" to load Alpha. <br><br>
-       <strong>Disclaimer:</strong> This model runs locally in your browser and may require significant GPU/system resources.
+       <div class="chat-bubble system">
+        Engine is offline. Click "Start Engine" to load Alpha. <br><br>
+        <strong>Disclaimer:</strong> This model runs locally in your browser and may require significant GPU/system resources.
+       </div>
       </div>
-     </div>
 
-     <div id="chat-input-area" class="chat-input-area">
-      <div id="image-preview-container">
-        <div class="preview-wrapper">
-          <img id="image-preview" src="">
-          <button id="remove-image-btn">×</button>
-        </div>
-        <span>Image attached</span>
-      </div>
-      <div class="input-wrapper">
-        <input type="file" id="image-upload" accept="image/*" style="display: none;">
-        <button id="attach-image-btn" class="btn btn-secondary" disabled>
-         <i class="ph ph-image"></i>
-        </button>
-        <input
-         type="text"
+      <div id="chat-input-area" class="chat-input-area">
+        <textarea
          id="chat-input"
          class="chat-input"
          placeholder="Ask Alpha anything..."
+         rows="1"
          disabled
-        />
+        ></textarea>
         <button id="chat-send-btn" class="btn btn-primary" disabled>
          <i class="ph ph-paper-plane-right"></i>
         </button>
       </div>
-     </div>
+
     </div>
 
   <footer>

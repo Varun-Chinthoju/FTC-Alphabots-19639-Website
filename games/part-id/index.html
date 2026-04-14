@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part Identification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="stats-row">
+            <div class="stat">SCORE: <span id="score">0</span></div>
+            <div class="stat">LIVES: <span id="lives">3</span></div>
+        </div>
+        
+        <div class="part-display">
+            <div class="image-container">
+                <img id="part-image" src="" alt="Robot Part">
+                <div class="scan-line"></div>
+            </div>
+            <p id="part-description">Analyzing component...</p>
+        </div>
+        
+        <div id="options-grid" class="options-grid"></div>
+        
+        <div id="gameover" class="gameover hidden">
+            <h2>Out of Spare Parts!</h2>
+            <p id="stats-msg"></p>
+            <button id="restart-btn" class="btn-primary" onclick="initGame()">Re-calibrate</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

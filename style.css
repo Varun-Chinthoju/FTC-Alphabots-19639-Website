@@ -237,20 +237,12 @@ header {
 .nav-logo-text {
  font-size: 1.25rem;
  font-weight: 800;
- letter-spacing: 1px;
+ letter-spacing: -0.02em;
  color: var(--white);
 }
 
 .nav-logo-text span {
  color: var(--brand-green);
-}
-
-.nav-logo-text.cyber {
- font-family: 'Orbitron', sans-serif;
- font-weight: 900;
- letter-spacing: 2px;
- color: var(--brand-green);
- font-size: 1.4rem;
 }
 
 .nav-links {
@@ -290,7 +282,7 @@ header {
 }
 
 /* High-contrast discrete pill for active tab */
-.liquid-indicator {
+.nav-indicator {
  position: absolute;
  z-index: 1;
  border-radius: 100px;
@@ -303,11 +295,11 @@ header {
   transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.liquid-indicator.no-transition {
+.nav-indicator.no-transition {
  transition: none !important;
 }
 
-.liquid-indicator.stretching {
+.nav-indicator.stretching {
  transition:
   left 0.18s cubic-bezier(0.4, 0, 0.2, 1),
   width 0.18s cubic-bezier(0.4, 0, 0.2, 1),
@@ -375,72 +367,6 @@ header {
 }
 .reveal.delay-4 {
  transition-delay: 0.4s;
-}
-
-/* =========================================
-  Liquid Drop Particle System
-  ========================================= */
-.liquid-drop {
- position: fixed;
- pointer-events: none;
- z-index: 9999;
- border-radius: 50%;
- background: radial-gradient(
-  ellipse at 30% 20%,
-  rgba(10, 181, 124, 0.9),
-  rgba(13, 163, 113, 0.6) 50%,
-  rgba(9, 117, 81, 0.3) 100%
- );
- box-shadow:
-  inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-  inset 0 2px 3px rgba(255, 255, 255, 0.4),
-  0 2px 8px rgba(13, 163, 113, 0.5);
- animation: liquidDrip var(--drop-duration, 0.8s)
-  cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-/* The specular highlight on each drop */
-.liquid-drop::before {
- content: "";
- position: absolute;
- top: 15%;
- left: 20%;
- width: 35%;
- height: 25%;
- border-radius: 50%;
- background: rgba(255, 255, 255, 0.6);
- filter: blur(1px);
-}
-
-@keyframes liquidDrip {
- 0% {
-  opacity: 1;
-  transform: translate(0, 0) scale(1);
-  border-radius: 50%;
- }
- 30% {
-  opacity: 0.9;
-  transform: translate(var(--drop-x, 10px), var(--drop-y, 20px)) scale(0.9);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Drip shape */
- }
- 60% {
-  opacity: 0.6;
-  transform: translate(
-    calc(var(--drop-x, 10px) * 1.5),
-    calc(var(--drop-y, 20px) * 2)
-   )
-   scale(0.5);
-  border-radius: 50%;
- }
- 100% {
-  opacity: 0;
-  transform: translate(
-    calc(var(--drop-x, 10px) * 2),
-    calc(var(--drop-y, 20px) * 3)
-   )
-   scale(0);
-  border-radius: 50%;
- }
 }
 
 /* =========================================
@@ -2409,8 +2335,8 @@ footer {
 .chat-bubble {
  max-width: 85%;
  padding: 0.75rem 1rem;
- border-radius: 6px;
- font-size: 0.95rem;
+ border-radius: 12px;
+ font-size: 1rem;
  line-height: 1.5;
  word-wrap: break-word;
  animation: fadeInBubble 0.3s ease forwards;
@@ -2528,17 +2454,21 @@ footer {
  border: 1px solid rgba(255, 255, 255, 0.1);
  color: white;
  padding: 0.75rem 1rem;
- border-radius: 6px;
- font-family: var(--font-primary);
- font-size: 0.95rem;
+ border-radius: 8px;
+ font-family: inherit;
+ font-size: 1rem;
  transition: all 0.3s ease;
+ resize: none;
+ min-height: 44px;
+ max-height: 200px;
+ line-height: 1.4;
 }
 
 .chat-input:focus {
  outline: none;
  background: rgba(255, 255, 255, 0.08);
- border-color: rgba(13, 163, 113, 0.5);
- box-shadow: 0 0 0 2px rgba(13, 163, 113, 0.2);
+ border-color: var(--brand-green);
+ box-shadow: 0 0 0 2px var(--brand-green-muted);
 }
 
 .chat-input:disabled {
@@ -2919,7 +2849,7 @@ input:focus, textarea:focus {
  right: auto;
  margin: 0 auto;
  width: 1000px;
- height: 75vh;
+ height: 85vh;
  max-width: 100%;
  box-shadow: none;
  background: rgba(28, 28, 30, 0.4);
@@ -3021,6 +2951,133 @@ input:focus, textarea:focus {
  padding: 0.5rem 1rem 1rem;
  opacity: 1;
  overflow-y: auto;
+}
+
+/* =========================================
+  Modular Games Styles
+  ========================================= */
+.training-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+ gap: 1.5rem;
+ margin-top: 2rem;
+}
+
+.game-card {
+ background: rgba(255, 255, 255, 0.03);
+ border: 1px solid rgba(255, 255, 255, 0.08);
+ border-radius: var(--border-radius-lg);
+ padding: 1.5rem;
+ text-align: left;
+ cursor: pointer;
+ transition: var(--transition);
+ display: flex;
+ flex-direction: column;
+ gap: 0.5rem;
+ color: inherit;
+ width: 100%;
+}
+
+.game-card:hover {
+ background: rgba(255, 255, 255, 0.06);
+ border-color: var(--brand-green);
+ transform: translateY(-2px);
+}
+
+.game-card-icon {
+ font-size: 2rem;
+ color: var(--brand-green);
+ margin-bottom: 0.5rem;
+}
+
+.game-card h3 {
+ font-size: 1.25rem;
+ margin: 0;
+}
+
+.game-card p {
+ font-size: 0.9rem;
+ opacity: 0.7;
+ margin: 0;
+}
+
+.high-score-badge {
+ font-size: 0.75rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+ color: var(--brand-green);
+ opacity: 0.8;
+}
+
+.stats-badge {
+ margin-top: 1rem;
+ display: inline-block;
+ padding: 0.5rem 1rem;
+ background: var(--brand-green-muted);
+ border: 1px solid rgba(13, 163, 113, 0.3);
+ border-radius: 100px;
+ color: var(--brand-green);
+ font-weight: 600;
+ font-size: 0.85rem;
+}
+
+.game-frame-wrapper {
+ width: 100%;
+ aspect-ratio: 16/9;
+ min-height: 600px;
+ background: #000;
+ border-radius: var(--border-radius-lg);
+ overflow: hidden;
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ margin-top: 1rem;
+}
+
+.game-iframe {
+ width: 100%;
+ height: 100%;
+ border: none;
+}
+
+.game-header-minimal {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 1rem;
+ padding: 0 0.5rem;
+}
+
+.game-title-minimal {
+ font-weight: 700;
+ color: var(--brand-green);
+ text-transform: uppercase;
+ letter-spacing: 1px;
+}
+
+.game-back-btn {
+ background: transparent;
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ color: var(--white);
+ padding: 0.5rem 1rem;
+ border-radius: 100px;
+ cursor: pointer;
+ font-size: 0.85rem;
+ transition: var(--transition);
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+}
+
+.game-back-btn:hover {
+ background: rgba(255, 255, 255, 0.1);
+ border-color: var(--white);
+}
+
+@media (max-width: 768px) {
+ .game-frame-wrapper {
+  aspect-ratio: 4/5;
+  min-height: 500px;
+ }
 }
 
 

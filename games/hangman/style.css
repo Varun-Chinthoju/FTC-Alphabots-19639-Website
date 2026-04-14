@@ -1,0 +1,126 @@
+:root {
+    --brand-green: #0da371;
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --bg-dark: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-wrapper {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.stats-row {
+    margin-bottom: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    color: var(--brand-green);
+}
+
+.word-display {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.5rem;
+    margin-bottom: 3rem;
+    min-height: 4rem;
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    min-width: 40px;
+}
+
+button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--white);
+}
+
+button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+button.correct {
+    border-color: var(--brand-green);
+    color: var(--brand-green);
+}
+
+button.wrong {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.btn-primary {
+    background: var(--brand-green);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.gameover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(28, 28, 30, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 90%;
+    max-width: 400px;
+    z-index: 10;
+}
+
+.hidden {
+    display: none;
+}
+
+#result-msg {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#target-word-msg {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}

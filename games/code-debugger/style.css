@@ -1,0 +1,180 @@
+:root {
+    --brand-green: #0da371;
+    --text-primary: #f5f5f7;
+    --bg-dark: #0d1117; /* GitHub Dark BG */
+    --editor-bg: #161b22;
+    --terminal-bg: #010409;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-wrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--brand-green);
+    font-size: 0.9rem;
+}
+
+/* Editor Window */
+.editor-window {
+    background: var(--editor-bg);
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: left;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.editor-header {
+    background: #21262d;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #30363d;
+}
+
+.dots { display: flex; gap: 6px; margin-right: 1rem; }
+.dots span { width: 10px; height: 10px; border-radius: 50%; background: #30363d; }
+.dots span:nth-child(1) { background: #ff5f56; }
+.dots span:nth-child(2) { background: #ffbd2e; }
+.dots span:nth-child(3) { background: #27c93f; }
+
+.filename {
+    font-size: 0.75rem;
+    color: #8b949e;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.code-container {
+    display: flex;
+    padding: 1rem 0;
+    min-height: 180px;
+}
+
+.line-numbers {
+    width: 40px;
+    text-align: right;
+    padding-right: 1rem;
+    color: #484f58;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    user-select: none;
+}
+
+pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+    line-height: 1.5;
+    flex: 1;
+    tab-size: 4;
+}
+
+/* Terminal Window */
+.terminal-window {
+    background: var(--terminal-bg);
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.terminal-header {
+    background: #161b22;
+    padding: 0.4rem 1rem;
+    color: #8b949e;
+    font-size: 0.7rem;
+    border-bottom: 1px solid #30363d;
+}
+
+.terminal-content {
+    padding: 1rem;
+    color: #c9d1d9;
+    min-height: 100px;
+}
+
+.error-text { color: #f85149; }
+.success-text { color: #3fb950; }
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.option-btn {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    padding: 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+}
+
+.option-btn:hover {
+    background: #30363d;
+    border-color: #8b949e;
+}
+
+.gameover {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 17, 23, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.btn-primary {
+    background: var(--brand-green);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.hidden { display: none; }
+
+/* Syntax highlighting basics */
+.keyword { color: #ff7b72; }
+.string { color: #a5d6ff; }
+.comment { color: #8b949e; }
+.type { color: #ffa657; }
+.call { color: #d2a8ff; }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Hangman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="stats-row">
+            <div class="stat">LIVES: <span id="lives">6</span></div>
+        </div>
+        
+        <div id="word-display" class="word-display"></div>
+        
+        <div id="keyboard" class="keyboard"></div>
+        
+        <div id="gameover" class="gameover hidden">
+            <h2 id="result-msg"></h2>
+            <p id="target-word-msg"></p>
+            <button id="restart-btn" class="btn-primary">Play Again</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

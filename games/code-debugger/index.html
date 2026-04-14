@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Debugger</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="stats-row">
+            <div class="stat">RESOLVED: <span id="score">0</span></div>
+            <div class="stat">TIME: <span id="timer">40</span>s</div>
+        </div>
+        
+        <div class="editor-window">
+            <div class="editor-header">
+                <div class="dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="filename">OpMode.java</div>
+            </div>
+            <div class="code-container">
+                <div class="line-numbers" id="line-numbers"></div>
+                <pre id="code-snippet"></pre>
+            </div>
+        </div>
+        
+        <div class="terminal-window">
+            <div class="terminal-header">TERMINAL</div>
+            <div id="terminal-output" class="terminal-content">
+                <div>$ ./gradlew assembleDebug</div>
+                <div class="error-text">> Task :TeamCode:compileDebugJavaWithJavac FAILED</div>
+                <div id="compiler-error"></div>
+            </div>
+        </div>
+        
+        <div id="options-grid" class="options-grid"></div>
+        
+        <div id="gameover" class="gameover hidden">
+            <h2>Build Failed!</h2>
+            <p id="stats-msg"></p>
+            <button id="restart-btn" class="btn-primary" onclick="initGame()">Rebuild System</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

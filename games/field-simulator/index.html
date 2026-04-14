@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="hud">
+            <div class="stat">TIME: <span id="timer">60</span>s</div>
+            <div class="stat">SCORE: <span id="score">0</span></div>
+        </div>
+        
+        <canvas id="game-canvas" width="600" height="600"></canvas>
+        
+        <div id="start-overlay" class="overlay">
+            <h2>FTC Simulator</h2>
+            <p>Score as many balls as possible!</p>
+            <p class="controls-hint">WASD to Drive | SPACE to Shoot</p>
+            <button id="start-btn" class="btn-primary">Start Match</button>
+        </div>
+        
+        <div id="gameover" class="overlay hidden">
+            <h2>Match Over!</h2>
+            <p id="final-score-msg"></p>
+            <button id="restart-btn" class="btn-primary">New Match</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
